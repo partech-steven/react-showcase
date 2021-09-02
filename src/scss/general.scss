@@ -24,7 +24,6 @@ body {
 .half {
     box-shadow: 3px 3px 0 0 black;
     box-sizing: border-box;
-    flex: 1;
     margin: 0 6px;
     padding: 8px;
 
@@ -38,11 +37,11 @@ body {
 }
 
 .quarter {
-    max-width: 25%;
+    flex: 1 25%;
 }
 
 .half {
-    max-width: 50%;
+    flex: 1 50%;
 }
 
 .no-padding {

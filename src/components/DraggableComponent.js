@@ -3,15 +3,6 @@ import dots from '../draggable-dots.svg';
 import {Draggable } from 'react-beautiful-dnd';
 
 export default class DraggableComponent extends Component {
-    /**
-     * Constructor
-     * 
-     * @param {*} props 
-     */
-    constructor(props) {
-    super(props);
-    }
-
     render() {
         return (
             <Draggable key={this.props.uniqueKey} draggableId={this.props.uniqueKey} index={this.props.index}>

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable} from 'react-beautiful-dnd';
 
 //Style
 import './style.scss';
@@ -23,7 +23,7 @@ class App extends Component {
       components: [
         {
           key: "twit-feed",
-          className: "quarter quarter--no-left no-padding content-box",
+          className: "quarter quarter no-padding content-box",
           title: "Twitter Feed",
           subtitle: "@ParTechIT",
           includeKeyInClass: true
@@ -36,20 +36,46 @@ class App extends Component {
         },
         {
           key: "multi-step-form",
-          className: "half half--no-right no-padding content-box",
+          className: "half half no-padding content-box",
           includeKeyInClass: true
         }
       ]
     }
   }
 
+  onDragEnd(result) {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
+    }
+
+    let components = this.reorder(
+      this.state.components,
+      result.source.index,
+      result.destination.index
+    );
+
+    this.setState({
+      components,
+    });
+  }
+
+  // a little function to help us with reordering the result
+  reorder(list, startIndex, endIndex) {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
   render() {
     return ([
       <header key="header">
         <h1>React Showcase</h1>
       </header>,
-      <DragDropContext key={"draggable-context"}>
-        <Droppable droppableId="content">
+      <DragDropContext key={"draggable-context"} onDragEnd={this.onDragEnd.bind(this)}>
+        <Droppable droppableId="content" direction="horizontal">
           {(provided) => (
             <div key="content" className="content" {...provided.droppableProps} ref={provided.innerRef}>
               {this.state.components.map((component, index) => {
@@ -64,7 +90,8 @@ class App extends Component {
                   />
                   )
                 })
-              }
+              },
+              {provided.placeholder}
             </div>
           )}
         </Droppable>
