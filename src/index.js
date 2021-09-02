@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { DragDropContext, Droppable} from 'react-beautiful-dnd';
-import TwitterUtil from './js/utils/TwitterUtil';
+import * as Constants from './js/constants';
 
 //Style
 import './style.scss';
 
 //Components
 import DraggableComponent from './js/components/DraggableComponent';
+
+//Utils
+import TwitterUtil from './js/utils/TwitterUtil';
 
 class App extends Component {
   /**
