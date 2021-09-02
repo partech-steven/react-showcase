@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { DragDropContext, Droppable} from 'react-beautiful-dnd';
+import TwitterUtil from './js/utils/TwitterUtil';
 
 //Style
 import './style.scss';
 
 //Components
-import DraggableComponent from './components/DraggableComponent';
+import DraggableComponent from './js/components/DraggableComponent';
 
 class App extends Component {
   /**
@@ -26,17 +27,21 @@ class App extends Component {
           className: "quarter quarter no-padding content-box",
           title: "Twitter Feed",
           subtitle: "@ParTechIT",
-          includeKeyInClass: true
+          content: TwitterUtil.getTimeline("ParTechIT"),
+          includeKeyInClass: true,
         },
         {
           key: "twit-favs",
           className: "quarter no-padding content-box",
           title: "Twitter Favourites",
+          subtitle: "@ParTechIT",
+          content: "Twitfavs",
           includeKeyInClass: true
         },
         {
           key: "multi-step-form",
           className: "half half no-padding content-box",
+          content: "Multi-step form",
           includeKeyInClass: true
         }
       ]
@@ -86,6 +91,7 @@ class App extends Component {
                     className={component.className + (component.includeKeyInClass && " " + component.key)}
                     title={component.title}
                     subtitle={component.subtitle}
+                    content={component.content}
                     index={index}
                   />
                   )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import dots from '../draggable-dots.svg';
+import dots from '../../draggable-dots.svg';
 import {Draggable } from 'react-beautiful-dnd';
 
 export default class DraggableComponent extends Component {
@@ -22,7 +22,7 @@ export default class DraggableComponent extends Component {
                             }
                         </div>
                         <div className="draggable-component__content">
-                            Henlo. Am draggable with class {this.props.className}.
+                            {this.props.content ? this.props.content : "No content was specified for this component"}
                         </div>
                     </div>
                 )}
