@@ -1,0 +1,36 @@
+.draggable-component {
+    &__header {
+        width: 100%;
+    }
+
+    &__icon {
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+        height: 12px;
+        padding: 4px 0;
+
+        img {
+            display: block;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__title-container {
+        margin: 0 auto;
+        padding: 4px;
+        text-align: center;
+        width: 100%;
+    }
+
+    &__subtitle {
+        font-size: 0.7em;
+    }
+
+    &__content {
+        padding: 6px;
+    }
+}

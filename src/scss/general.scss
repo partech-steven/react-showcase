@@ -1,0 +1,55 @@
+* {
+    user-select: none;
+}
+
+body {
+    background-color: $dark-purple;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 12px;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+.quarter,
+.half {
+    box-shadow: 3px 3px 0 0 black;
+    box-sizing: border-box;
+    flex: 1;
+    margin: 0 6px;
+    padding: 8px;
+
+    &--no-left {
+        margin-left: 0;
+    }
+
+    &--no-right {
+        margin-right: 0;
+    }
+}
+
+.quarter {
+    max-width: 25%;
+}
+
+.half {
+    max-width: 50%;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.content-box {
+    background-color: $gray;
+    border-radius: 4px;
+}
