@@ -10,7 +10,7 @@ import './style.scss';
 
 //Components
 import DraggableComponent from './js/components/DraggableComponent';
-import Spinner from './js/components/Spinner';
+import TweetFeed from './js/components/twitter/TweetFeed';
 
 class App extends Component {
   /**
@@ -29,7 +29,7 @@ class App extends Component {
           className: "quarter quarter no-padding content-box",
           title: "Twitter Feed",
           subtitle: "@ParTechIT",
-          content: <Spinner message="Fetching Twitter Feed"/>,
+          content: <TweetFeed />,
           includeKeyInClass: true,
         },
         {
