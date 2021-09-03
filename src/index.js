@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { DragDropContext, Droppable} from 'react-beautiful-dnd';
-import * as Constants from './js/constants';
 
 //Style
 import './style.scss';

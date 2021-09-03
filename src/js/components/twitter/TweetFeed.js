@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import Tweet from "./Tweet";
 import socketIOClient from "socket.io-client";
-import ErrorMessage from "./ErrorMessage";
 import Spinner from "../Spinner";
 
 const reducer = (state, action) => {
@@ -59,33 +58,12 @@ const TweetFeed = () => {
   };
 
   const reconnectMessage = () => {
-    const message = {
-      title: "Reconnecting",
-      detail: "Please wait while we reconnect to the stream.",
-    };
-
     if (error && error.detail) {
       return (
         <div>
-          <ErrorMessage key={error.title} error={error} styleType="warning" />
-          <ErrorMessage
-            key={message.title}
-            error={message}
-            styleType="success"
-          />
-          <Spinner />
+          <Spinner message="Reconnecting to Twitter..." />
         </div>
       );
-    }
-  };
-
-  const errorMessage = () => {
-    const { errors } = state;
-
-    if (errors && errors.length > 0) {
-      return errors.map((error) => (
-        <ErrorMessage key={error.title} error={error} styleType="negative" />
-      ));
     }
   };
 
@@ -116,7 +94,6 @@ const TweetFeed = () => {
   return (
     <div>
       {reconnectMessage()}
-      {errorMessage()}
       {waitingMessage()}
       {showTweets()}
     </div>
