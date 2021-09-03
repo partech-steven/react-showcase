@@ -1,0 +1,24 @@
+.spinnyboi {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 0 12px 0 32px;
+    margin: 0 auto;
+    min-height: 24px;
+    position: relative;
+    text-align: left;
+    width: fit-content;
+
+    &:before {
+        animation: perpetualSpinVerticalAlign 1s linear 0s infinite normal forwards;
+        border-radius: 24px;
+        border-left: 2px solid $twitter-blue;
+        border-right: 2px solid $twitter-blue;
+        content: "";
+        display: block;
+        height: 12px;
+        left: 8px;
+        position: absolute;
+        top: 50%;
+        width: 12px;
+    }
+}

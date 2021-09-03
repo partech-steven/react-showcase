@@ -1,6 +1,7 @@
 /* Basics */
 @import "./scss/variables.scss";
 @import "./scss/general.scss";
+@import "./scss/animations.scss";
 
 /* Components */
 /* Blocks */
@@ -14,3 +15,6 @@
 @import "./scss/components/interactive/specific/twitFeed.scss";
 @import "./scss/components/interactive/specific/twitFavourites.scss";
 @import "./scss/components/interactive/specific/stepForm.scss";
+
+/* Other */
+@import "./scss/components/spinnyboi.scss";

@@ -1,9 +1,10 @@
+import FetchService from "../tools/FetchService";
+
 export default class TwitterUtil {
-    static getTimeline(screenname) {
-        console.log(screenname)
+    static getTimeline(screenname, twitfeed) {
         return(
             <div key="twitter-timeline" className="twitter-timeline">
-                {screenname ? "Here be the Twitter timeline for : @" + screenname : "No screenname specified. Unable to retrieve Twitter timeline."}
+                Stuff
             </div>
         );
     }

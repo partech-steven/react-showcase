@@ -10,9 +10,7 @@ import './style.scss';
 
 //Components
 import DraggableComponent from './js/components/DraggableComponent';
-
-//Utils
-import TwitterUtil from './js/utils/TwitterUtil';
+import Spinner from './js/components/Spinner';
 
 class App extends Component {
   /**
@@ -24,13 +22,14 @@ class App extends Component {
     super(props);
 
     this.state = {
+      screenname: "ZubajaOfficial",
       components: [
         {
           key: "twit-feed",
           className: "quarter quarter no-padding content-box",
           title: "Twitter Feed",
           subtitle: "@ParTechIT",
-          content: TwitterUtil.getTimeline("ParTechIT"),
+          content: <Spinner message="Fetching Twitter Feed"/>,
           includeKeyInClass: true,
         },
         {
@@ -38,7 +37,7 @@ class App extends Component {
           className: "quarter no-padding content-box",
           title: "Twitter Favourites",
           subtitle: "@ParTechIT",
-          content: "Twitfavs",
+          content: "No favourites selected",
           includeKeyInClass: true
         },
         {

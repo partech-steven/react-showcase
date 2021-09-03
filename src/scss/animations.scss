@@ -1,0 +1,9 @@
+@keyframes perpetualSpinVerticalAlign {
+    0% {
+        transform: translateY(-50%) rotateZ(0deg);
+    }
+
+    100% {
+        transform: translateY(-50%) rotateZ(360deg);
+    }
+}
