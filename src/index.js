@@ -9,7 +9,7 @@ import './style.scss';
 
 //Components
 import DraggableComponent from './js/components/DraggableComponent';
-import TweetFeed from './js/components/twitter/TweetFeed';
+import Spinner from './js/components/Spinner';
 
 class App extends Component {
   /**
@@ -28,7 +28,7 @@ class App extends Component {
           className: "quarter quarter no-padding content-box",
           title: "Twitter Feed",
           subtitle: "@ParTechIT",
-          content: <TweetFeed />,
+          content: <Spinner message="Fetching Tweet Feed..." />,
           includeKeyInClass: true,
         },
         {
@@ -113,22 +113,3 @@ class App extends Component {
 if(document.getElementById('root')) {
   ReactDOM.render(<App/>, document.getElementById('root'));
 }
-
-/*
-{this.state.components.map(component => {
-  return (
-    <Draggable key={component.key} draggableId={component.key} index={component.index}>
-      {(componentProvided) => (
-        <DraggableComponent 
-          className={component.className + (component.includeKeyInClass && " " + component.key)}
-          title={component.title}
-          subtitle={component.subtitle}
-          ref={componentProvided.innerRef} 
-          {...componentProvided.draggableProps} 
-          {...componentProvided.dragHandleProps}
-        />
-      )}
-    </Draggable>
-  );
-})}
-*/
