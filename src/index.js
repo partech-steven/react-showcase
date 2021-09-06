@@ -43,9 +43,9 @@ class App extends Component {
         {
           key: "multi-step-form",
           className: "half half no-padding content-box",
+          title: "Contact Form",
           content: 
             <DynamicForm className="contact__form"
-              title={"Contact form"}
               submitText={"Send"}
               model={[
                 {
