@@ -111,7 +111,7 @@ class App extends Component {
                         options: [
                           {key: "hbo", value: "HBO", label: "HBO"},
                           {key: "mbo", value: "MBO", label: "MBO"},
-                          {key: "different", value: "different", label: "Something else..."} //TODO: Implement textbox that appears when selected
+                          {key: "different", value: "different", label: "Something else...", freeInput: true}
                         ],
                         props: {required: true}
                       }

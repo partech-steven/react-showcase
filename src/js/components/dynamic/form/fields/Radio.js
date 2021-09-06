@@ -56,23 +56,32 @@ export default class Radio extends Component
      */
     render()
     {
+        console.log(this.props.options)
         let input = this.props.options.map((o) => {
             let checked = (this.state.value && o.value === this.state.value);
+            let enablesFreeInput = o.freeInput;
             return (
                 <React.Fragment key={'fr' + o.key}>
                     <div className="radio-container">
-                        <input {...this.props.props}
-                            id={"radio-" + o.key + "-" + o.value}
-                            className={"form-input " + this.props.className}
-                            type="radio"
-                            name={this.props.name}
-                            checked={checked}
-                            value={o.value}
-                            onChange={(e) => { this.change(e, this.props.name)}}
-                            onBlur={(e) => { this.blur(e)}}
-                        />
+                        <div className="radio-container__option">
+                            <input {...this.props.props}
+                                id={"radio-" + o.key + "-" + o.value}
+                                className={"form-input " + this.props.className}
+                                type="radio"
+                                name={this.props.name}
+                                checked={checked}
+                                value={o.value}
+                                onChange={(e) => { this.change(e, this.props.name)}}
+                                onBlur={(e) => { this.blur(e)}}
+                            />
 
-                        <label htmlFor={"radio-" + o.key + "-" + o.value}> {o.label}</label>
+                            <label htmlFor={"radio-" + o.key + "-" + o.value}> {o.label}</label>
+                        </div>
+                        {(enablesFreeInput && checked) &&
+                            <div className="radio-container__free-field">
+                                Henlo
+                            </div>
+                        }   
                     </div>
                 </React.Fragment>
             );
