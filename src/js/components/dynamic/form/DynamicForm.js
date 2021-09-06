@@ -124,20 +124,10 @@ export default class DynamicForm extends React.Component {
         }
     }
 
-    previousStep() {
+    gotoStep(step) {
         this.setState(
             (prevState, props) => 
-            ({currentStep: prevState.currentStep-1}),
-            function() {
-                this.scrollFormContent();
-            }
-        )
-    }
-
-    nextStep() {
-        this.setState(
-            (prevState, props) => 
-            ({currentStep: prevState.currentStep+1}),
+            ({currentStep: step}),
             function() {
                 this.scrollFormContent();
             }
@@ -394,10 +384,17 @@ export default class DynamicForm extends React.Component {
         //TODO: Figure out a way to store this into the state for easy access across the object
         let totalSteps = 0;
         for(let index in this.props.model) {
+            let intdex = parseInt(index)+1; //Because index is a string and we're converting it to an integer. Get it?
             let obj = this.props.model[index];
             if(obj.type === "step") {
                 totalSteps++;
-                crumbpathDom.push(<div key={totalSteps} className={"form-crumbpath__crumb" + (currentStep > totalSteps ? " finished" : "") + (currentStep === totalSteps ? " current" : "")} crumbno={totalSteps}>{totalSteps}</div>);
+                crumbpathDom.push(
+                    <div 
+                        key={intdex} 
+                        className={"form-crumbpath__crumb" + (currentStep > totalSteps ? " finished" : "") + (currentStep === totalSteps ? " current" : "")} 
+                        crumbno={intdex}
+                        onClick={(e) => this.gotoStep(intdex)}>{totalSteps}</div>
+                );
             } 
         }
         
@@ -431,14 +428,14 @@ export default class DynamicForm extends React.Component {
                     {currentStep > 1 && 
                         <div 
                             className="form-action-button form-action-button--previous" 
-                            onClick={(e) => this.previousStep()}>
+                            onClick={(e) => this.gotoStep(currentStep-1)}>
                             Previous
                         </div>
                     }
                     {currentStep < totalSteps && 
                         <div 
                         className="form-action-button form-action-button--next" 
-                        onClick={(e) => this.nextStep()}>
+                        onClick={(e) => this.gotoStep(currentStep+1)}>
                             Next
                         </div>
                     }
