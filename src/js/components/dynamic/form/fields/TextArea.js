@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import JSONUtil from "./../../../Utils/JSONUtil";
 
 /**
  * Dynamic form textarea element
@@ -32,10 +31,6 @@ export default class Textarea extends Component
     {
         let newValue = event.target.value;
         let {selectionStart} = event.target;
-
-        if (this.props.json === true && newValue) {
-            newValue = JSONUtil.parseForTextarea(newValue);
-        }
 
         this.setState({value: newValue, cursorPosition: selectionStart, isChanging: true}, () => {
             this.props.change(event, this.props.name, this.state);

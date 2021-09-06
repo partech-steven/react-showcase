@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DateTimeUtil from "../../../Utils/DateTimeUtil";
+import DateTimeUtil from '../../../../utils/DateTimeUtil';
 
 import DatePicker from "react-datepicker";
 

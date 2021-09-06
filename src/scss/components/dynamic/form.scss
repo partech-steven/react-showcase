@@ -1,0 +1,15 @@
+form {
+    h4 {
+        margin: 0;
+        text-align: center;
+    }
+
+    .form-content {
+        display: flex;
+        overflow-x: hidden;
+    }
+
+    .form-step {
+        flex: 0 0 100%;
+    }
+}

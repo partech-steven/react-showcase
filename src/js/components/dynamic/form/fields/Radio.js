@@ -72,7 +72,7 @@ export default class Radio extends Component
                             onBlur={(e) => { this.blur(e)}}
                         />
 
-                        <label htmlFor={"radio-" + o.key + "-" + o.value}> {"-" + o.label}</label>
+                        <label htmlFor={"radio-" + o.key + "-" + o.value}> {o.label}</label>
                     </div>
                 </React.Fragment>
             );

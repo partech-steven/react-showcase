@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StringUtil from "../../../Utils/StringUtil";
+import StringUtil from '../../../../utils/StringUtil';
 
 /**
  * Dynamic form select element
@@ -60,13 +60,14 @@ export default class Select extends Component
         let selected = false;
 
         if(this.props.options !== undefined) {
+            console.log(this.props.options)
             let input = this.props.options.map((o) => {
                 selected = (o.value === this.state.value);
                 return (
                     <option
                             key={o.key}
                             value={o.value}>
-                        {StringUtil.uppercaseFirst(StringUtil.makeValReadable(o.label))}
+                        {StringUtil.uppercaseFirst(o.label)}
                     </option>
                 );
             });

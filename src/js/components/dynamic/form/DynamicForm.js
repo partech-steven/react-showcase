@@ -1,14 +1,11 @@
 import React from 'react';
 
-import Input from './Fields/Input';
-import Label from './Fields/Label';
-import Textarea from './Fields/TextArea';
-import Radio from './Fields/Radio';
-import Select from './Fields/Select';
-import Date from "./Fields/Date";
-import List from "./Fields/List";
-import $ from 'jquery';
-import ImageField from './Fields/ImageField';
+import Input from './fields/Input';
+import Label from './fields/Label';
+import Textarea from './fields/TextArea';
+import Radio from './fields/Radio';
+import Select from './fields/Select';
+import Date from "./fields/Date";
 
 let changed = [];
 
@@ -32,7 +29,8 @@ export default class DynamicForm extends React.Component {
         this.state = {
             ...data,
             baseData: data,
-            cachedProps: []
+            cachedProps: [],
+            currentStep: 1
         };
     }
 
@@ -75,10 +73,11 @@ export default class DynamicForm extends React.Component {
             this.props.onClear()
         ));
 
-        $.each(baseValues, function(key, val) {
-            let input = $("#f-"+key);
-            if($(input).length) {
-                $(input).val(val);
+        baseValues.forEach((key, val) => {
+            let input = !!document.getElementById("f-"+key);
+            //Purely a failsafe, just in case the element doesn't seem to exist
+            if(input) {
+                input.value = val;
                 self.change(e, key, val);
             }
         });
@@ -125,6 +124,31 @@ export default class DynamicForm extends React.Component {
         }
     }
 
+    previousStep() {
+        this.setState(
+            (prevState, props) => 
+            ({currentStep: prevState.currentStep-1}),
+            function() {
+                this.scrollFormContent();
+            }
+        )
+    }
+
+    nextStep() {
+        this.setState(
+            (prevState, props) => 
+            ({currentStep: prevState.currentStep+1}),
+            function() {
+                this.scrollFormContent();
+            }
+        )
+    }
+
+    scrollFormContent() {
+        let formContent = document.getElementById("form-content");
+        formContent.scrollLeft = formContent.clientWidth*(this.state.currentStep-1)
+    }
+
     /**
      * Renders the fields
      *
@@ -132,9 +156,8 @@ export default class DynamicForm extends React.Component {
      */
     renderForm() {
         let model = this.props.model;
-        let returnFields = {};
 
-        let fields = model.map((m) => {
+        let returnFields = model.map((m) => {
             let type = m.type || 'input';
             switch (type) {
                 default:
@@ -158,7 +181,7 @@ export default class DynamicForm extends React.Component {
                     }
                     break;
                 case 'step':
-                    if (m.inputs && m.inputs.length > 0)
+                    if ((m.inputs && m.inputs.length > 0) || (m.rows && m.rows.length > 0) || (m.groups && m.groups.length > 0))
                     {
                         return this.renderStep(m);
                     }
@@ -187,7 +210,7 @@ export default class DynamicForm extends React.Component {
         }
 
         if(m.rows && m.rows.length > 0) {
-            $.each(m.rows, function(i, row) {
+            m.rows.forEach((i, row) => {
                 if(row.inputs && row.inputs.length > 0) {
                     rows.push(self.renderRow(row));
                 }
@@ -219,11 +242,12 @@ export default class DynamicForm extends React.Component {
         );
     }
 
-    //Under construction. 1:1 renderGroup() now
+    //TODO: Expand upon setting an order for groups and rows. Maybe pass on an 'index' prop? Worries for later, I guess.
     renderStep(m)
     {
         let label;
         let rows = [];
+        let groups = [];
         let className = m.className || "";
         let self = this;
 
@@ -236,17 +260,25 @@ export default class DynamicForm extends React.Component {
         }
 
         if(m.rows && m.rows.length > 0) {
-            $.each(m.rows, function(i, row) {
+            m.rows.forEach((i, row) => {
                 if(row.inputs && row.inputs.length > 0) {
                     rows.push(self.renderRow(row));
                 }
             })
         }
 
+        if(m.groups && m.groups.length > 0) {
+            m.groups.forEach((i, group) => {
+                if(group.inputs && group.inputs.length > 0) {
+                    groups.push(self.renderGroup(group));
+                }
+            })
+        }
+
         return (
-            <div key={'group-' + m.key} className={this.props.className + `__group ` + (m.addon ? "input-group" : "form-group") + (className && " " + className)}>
+            <div key={'step-' + m.key} className={this.props.className + `__step ` + (m.addon ? "input-step" : "form-step") + (className && " " + className)}>
                 {label &&
-                    <h4 key={'g-' + m.key} className={m.addon ? "input-group__title" : "form-group__title"}>
+                    <h4 key={'g-' + m.key} className={m.addon ? "input-step__title" : "form-step__title"}>
                         {label}
                     </h4>
                 }
@@ -257,8 +289,14 @@ export default class DynamicForm extends React.Component {
                     })
                 }
 
+                {m.groups &&
+                    m.groups.map((group) => {
+                        return this.renderGroup(group);
+                    })
+                }
+
                 {m.inputs &&
-                    <div className={m.addon ? "input-group__fields" : "form-group__fields"}>
+                    <div className={m.addon ? "input-step__fields" : "form-step__fields"}>
                         {m.inputs.map((i) => {
                             return this.renderField(i);
                         })}
@@ -298,14 +336,10 @@ export default class DynamicForm extends React.Component {
         let label;
         let additionalStyle = {};
 
-        if(type === "image") {
-            additionalStyle = {width: m.props.width, height: m.props.height, backgroundImage: "url(" + m.props.backgroundimage + ")"};
-        }
-
         if(m.label) {
             label = (
                 <label className={"form-label " + labelClass} key={"f-" + key} htmlFor={'f-' + name} title={m.title}  style={additionalStyle}>
-                    {type !== "image" && m.label}
+                    {m.label}
                     {(m.props !== undefined && m.props.required) && <span>*</span>}
                     {info && <div className={"infobox"}>i<div className={"infobox__inner"}>{info}</div></div>}
                 </label>
@@ -334,15 +368,6 @@ export default class DynamicForm extends React.Component {
             case 'textarea':
                 input = <Textarea props={props} autoHeight={m.autoHeight === true} key={key} name={name} value={value} placeholder={placeholder} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
                 break;
-
-            case 'image':
-                input = <ImageField props={props} type={type} key={key} name={name} value={value} placeholder={placeholder} autocomplete={autocomplete} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
-                break;
-
-            case 'list':
-                input = <List props={props} type={type} key={key} name={name} value={value} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
-                break;
-
             default:
             case 'input':
                 input = <Input props={props} type={type} key={key} name={name} value={value} placeholder={placeholder} autocomplete={autocomplete} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
@@ -359,6 +384,14 @@ export default class DynamicForm extends React.Component {
     createFormDOM() {
         let submitText = this.props.submitText || "Submit";
         let canClear = (this.props.onClear ? true : false);
+        let currentStep = this.state.currentStep;
+
+        //TODO: Figure out a way to store this into the state for easy access across the object
+        let totalSteps = 0;
+        for(let index in this.props.model) {
+            let obj = this.props.model[index];
+            if(obj.type === "step") totalSteps++;
+        }
         
         return (
             <form id={this.props.name} className={this.props.className} onSubmit={(e) => {this.onSubmit(e)}} onKeyDown={(e) => {this.onKeyDown(e)}}>
@@ -376,13 +409,29 @@ export default class DynamicForm extends React.Component {
                     }
                     </ul>
                 }
-                {this.renderForm()}
-                {(this.props.canSubmit || this.props.canSubmit === undefined) &&
-                    <div className={`form-actions form-actions--` + this.props.className}>
+                <div id="form-content" className="form-content">
+                    {this.renderForm()}
+                </div>
+                <div className={`form-actions form-actions--` + this.props.className}>
+                    {currentStep > 1 && 
+                        <div 
+                            className="form-action-button form-action-button--previous" 
+                            onClick={(e) => this.previousStep()}>
+                            Previous
+                        </div>
+                    }
+                    {currentStep < totalSteps && 
+                        <div 
+                        className="form-action-button form-action-button--next" 
+                        onClick={(e) => this.nextStep()}>
+                            Next
+                        </div>
+                    }
+                    {((this.props.canSubmit || this.props.canSubmit === undefined) && (currentStep === totalSteps || totalSteps === 0)) &&
                         <button type="submit" id="form-submit-btn">{submitText}</button>
-                        {(canClear) && <div className="form-special-actions__clear" onClick={(e) => {this.onClear(e);}}>Reset form</div> }
-                    </div>
-                }
+                    }
+                    {(canClear) && <div className="form-special-actions__clear" onClick={(e) => {this.onClear(e);}}>Reset form</div> }
+                </div>
             </form>
         );
     }
