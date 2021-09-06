@@ -146,7 +146,11 @@ export default class DynamicForm extends React.Component {
 
     scrollFormContent() {
         let formContent = document.getElementById("form-content");
-        formContent.scrollLeft = formContent.clientWidth*(this.state.currentStep-1)
+        formContent.scrollTo({
+            top: 0,
+            left: formContent.offsetWidth*(this.state.currentStep-1),
+            behavior: "smooth" 
+        });
     }
 
     /**
@@ -385,12 +389,16 @@ export default class DynamicForm extends React.Component {
         let submitText = this.props.submitText || "Submit";
         let canClear = (this.props.onClear ? true : false);
         let currentStep = this.state.currentStep;
+        let crumbpathDom = [];
 
         //TODO: Figure out a way to store this into the state for easy access across the object
         let totalSteps = 0;
         for(let index in this.props.model) {
             let obj = this.props.model[index];
-            if(obj.type === "step") totalSteps++;
+            if(obj.type === "step") {
+                totalSteps++;
+                crumbpathDom.push(<div key={totalSteps} className={"form-crumbpath__crumb" + (currentStep > totalSteps ? " finished" : "") + (currentStep === totalSteps ? " current" : "")} crumbno={totalSteps}>{totalSteps}</div>);
+            } 
         }
         
         return (
@@ -409,8 +417,15 @@ export default class DynamicForm extends React.Component {
                     }
                     </ul>
                 }
-                <div id="form-content" className="form-content">
-                    {this.renderForm()}
+                <div className="form-container">
+                    {totalSteps > 0 && 
+                        <div className={"form-crumbpath"}>
+                            {crumbpathDom}
+                        </div>
+                    }
+                    <div id="form-content" className="form-content">
+                        {this.renderForm()}
+                    </div>
                 </div>
                 <div className={`form-actions form-actions--` + this.props.className}>
                     {currentStep > 1 && 

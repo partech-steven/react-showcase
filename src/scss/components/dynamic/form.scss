@@ -4,12 +4,96 @@ form {
         text-align: center;
     }
 
+    .form-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-crumbpath {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        margin: 0 3px -3px;
+        overflow: hidden;
+
+        &__crumb {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            flex: 1 100%;
+            padding: 4px 0;
+            text-align: center;
+
+            &.current {
+                background-color: lighten($macragge-blue, 30);
+            }
+
+            &.finished {
+                background-color: $macragge-blue;
+            }
+
+            &:not(:last-of-type) {
+                @include arrow-right-banner;
+            }
+
+            &:not(:first-of-type) {
+                margin-left: -8px;
+            }
+
+            &:first-of-type {
+                @include arrow-right-square;
+            }
+
+            &:last-of-type {
+                @include banner-left;
+            }
+        }
+    }
+
     .form-content {
         display: flex;
         overflow-x: hidden;
     }
 
     .form-step {
-        flex: 0 0 100%;
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        box-sizing: border-box;
+        flex: 0 0 calc(100% - 6px);
+        margin: 3px;
+        padding: 8px;
+
+        &:first {
+            margin-left: 0;
+        }
+
+        &:last {
+            margin-right: 0;
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .form-action-button {
+        background-color: $dark-purple;
+        border-radius: 4px;
+        color: white;
+        font-size: 0.9em;
+        margin: 0 3px;
+        padding: 4px 6px;
+        text-align: center;
+        width: 64px;
+
+        &--next {
+            @include arrow-right-square;
+        }
+
+        &--previous {
+            @include arrow-left-square;
+        }
     }
 }

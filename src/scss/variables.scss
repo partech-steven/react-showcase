@@ -5,3 +5,46 @@ $dark-gray      : #353535;
 $claret         : #811331;
 $dark-claret    : darken($claret, 15);
 $twitter-blue   : #1da1f2;
+$macragge-blue  : #0f3d7c;
+
+/* Shapes */
+@mixin arrow-right-square {
+    clip-path: polygon(
+                0 0, 
+                calc(100% - 8px) 0, 
+                100% 50%, 
+                calc(100% - 8px) 100%, 
+                0 100%
+            );
+}
+
+@mixin arrow-right-banner {
+    clip-path: polygon(
+                2px 0, 
+                calc(100% - 8px) 0, 
+                100% 50%, 
+                calc(100% - 8px) 100%, 
+                2px 100%,
+                10px 50%
+            );
+}
+
+@mixin arrow-left-square {
+    clip-path: polygon(
+                8px 0, 
+                100% 0, 
+                100% 100%, 
+                8px 100%, 
+                0 50%
+            );
+}
+
+@mixin banner-left {
+    clip-path: polygon(
+                2px 0, 
+                100% 0,
+                100% 100%, 
+                2px 100%,
+                10px 50%
+            );
+}
