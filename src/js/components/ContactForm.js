@@ -125,7 +125,7 @@ class ContactForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className="form-holder">
                 {this.state.submittedData === null ?
                     <DynamicForm 
                     className="contact__form"
@@ -135,7 +135,7 @@ class ContactForm extends Component {
                     onSubmit={this.formOnSubmit.bind(this)}
                   />
                 : 
-                    <div>
+                    <div className="form-thanks">
                         <h3>Thank you for providing us with this information!</h3>
                         <p>To recap, this is the information you provided:</p>
                         <ul>
