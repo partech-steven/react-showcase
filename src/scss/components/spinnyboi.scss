@@ -1,7 +1,7 @@
 .spinnyboi {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    padding: 0 12px 0 32px;
+    padding: 4px 12px 4px 32px;
     margin: 0 auto;
     min-height: 24px;
     position: relative;
@@ -20,5 +20,10 @@
         position: absolute;
         top: 50%;
         width: 12px;
+    }
+
+    em {
+        display: block;
+        text-align: center;
     }
 }

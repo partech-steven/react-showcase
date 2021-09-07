@@ -8,9 +8,9 @@ import { DragDropContext, Droppable} from 'react-beautiful-dnd';
 import './style.scss';
 
 //Components
-import DraggableComponent from './js/components/DraggableComponent';
-import Spinner from './js/components/Spinner';
-import ContactForm from './js/components/ContactForm';
+import DraggableComponent from './js/components/util/DraggableComponent';
+import ContactForm from './js/components/content/ContactForm';
+import TwitterFeed from './js/components/content/TwitterFeed';
 
 class App extends Component {
   /**
@@ -22,14 +22,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      screenname: "ZubajaOfficial",
       components: [
         {
           key: "twit-feed",
           className: "quarter quarter no-padding content-box",
           title: "Twitter Feed",
           subtitle: "@ParTechIT",
-          content: <Spinner message="Fetching Tweet Feed..." />,
+          content: <TwitterFeed />,
           includeKeyInClass: true,
         },
         {
