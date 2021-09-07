@@ -97,3 +97,9 @@ form {
         }
     }
 }
+
+.radio-container {
+    &__free-field {
+        max-width: 150px;
+    }
+}

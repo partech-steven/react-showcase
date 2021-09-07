@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Input from './Input';
 
 /**
  * Dynamic form radio button element
@@ -12,7 +13,7 @@ export default class Radio extends Component
      */
     constructor(props) {
         super(props);
-        this.state = {value: '', ...props};
+        this.state = {value: '', ...props, shouldReRender: true};
     }
 
     /**
@@ -22,15 +23,35 @@ export default class Radio extends Component
      */
     change(event) {
         let self = this;
-        this.setState({value: event.target.value}, function()
+        let inputType = event.target.type;
+        let shouldReRender = true;
+
+        if (inputType === "text") {
+            shouldReRender = false;
+        }
+
+        this.setState({value: event.target.value, shouldReRender: shouldReRender}, function()
         {
             self.props.change(event, self.props.name, self.state);
         });
     }
 
+    shouldComponentUpdate(prevProps, prevState) {
+        return prevState.shouldReRender;
+    }
+
     blur(event) {
         event.persist();
         if (this.props.onBlur) this.props.onBlur(event, this.props.name, this.state);
+    }
+
+    /**
+     * onFocus event
+     *
+     * @param event
+     */
+     onFocus(event) {
+        
     }
 
     componentDidMount() {
@@ -56,7 +77,6 @@ export default class Radio extends Component
      */
     render()
     {
-        console.log(this.props.options)
         let input = this.props.options.map((o) => {
             let checked = (this.state.value && o.value === this.state.value);
             let enablesFreeInput = o.freeInput;
@@ -79,7 +99,14 @@ export default class Radio extends Component
                         </div>
                         {(enablesFreeInput && checked) &&
                             <div className="radio-container__free-field">
-                                Henlo
+                                <Input 
+                                    {...this.props.props} 
+                                    type="text" 
+                                    key={o.key} 
+                                    name={this.props.name} 
+                                    change={this.change.bind(this)} 
+                                    onBlur={this.blur.bind(this)} 
+                                />
                             </div>
                         }   
                     </div>

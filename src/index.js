@@ -192,6 +192,8 @@ class App extends Component {
   };
 
   render() {
+    let currentyear = parseInt(new Date().getFullYear());
+
     return ([
       <header key="header">
         <h1>React Showcase</h1>
@@ -220,7 +222,7 @@ class App extends Component {
         </Droppable>
       </DragDropContext>,
       <footer key="footer">
-        Made by Steven Nolles @ Partech, 2021-{new Date().getFullYear()}
+        Made by Steven Nolles @ Partech, {currentyear === 2021 ? currentyear : "2021-" + currentyear}
       </footer>
     ]);
   }
