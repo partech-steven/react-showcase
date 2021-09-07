@@ -78,8 +78,10 @@ form {
         justify-content: flex-end;
     }
 
-    .form-action-button {
+    .form-action-button,
+    button {
         background-color: $dark-purple;
+        border: none;
         border-radius: 4px;
         color: white;
         font-size: 0.9em;
@@ -95,11 +97,41 @@ form {
         &--previous {
             @include arrow-left-square;
         }
-    }
-}
 
-.radio-container {
-    &__free-field {
-        max-width: 150px;
+        &:hover,
+        &:focus {
+            background-color: lighten($dark-purple, 10);
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: darken($dark-purple, 10);
+        }
+    }
+
+    button {
+        background-color: $orange;
+        width: 92px;
+        
+        &:hover,
+        &:focus {
+            background-color: lighten($orange, 10);
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: darken($orange, 10);
+        }
+    }
+
+    .radio-container {
+        &__free-field {
+            max-width: 150px;
+        }
+    }
+
+    .field-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
     }
 }

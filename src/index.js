@@ -10,7 +10,7 @@ import './style.scss';
 //Components
 import DraggableComponent from './js/components/DraggableComponent';
 import Spinner from './js/components/Spinner';
-import DynamicForm from './js/components/dynamic/form/DynamicForm';
+import ContactForm from './js/components/ContactForm';
 
 class App extends Component {
   /**
@@ -44,124 +44,12 @@ class App extends Component {
           key: "multi-step-form",
           className: "half half no-padding content-box",
           title: "Contact Form",
-          content: 
-            <DynamicForm className="contact__form"
-              submitText={"Send"}
-              model={[
-                {
-                  key: "step-one",
-                  type: "step",
-                  groups: [{
-                    key: "techniques",
-                    label: "Techiques you've worked with",
-                    type: "group",
-                    inputs: [
-                      {
-                        key: "react_js",
-                        label: "ReactJS",
-                        type: "checkbox"
-                      },
-                      {
-                        key: "react_native",
-                        label: "React Native",
-                        type: "checkbox"
-                      },
-                      {
-                        key: "dot_net",
-                        label: ".NET",
-                        type: "checkbox"
-                      }
-                    ]
-                  }]
-                },
-                {
-                  key: "step-two",
-                  type: "step",
-                  groups: [{
-                    key: "experience",
-                    label: "Years of work-experience",
-                    type: "group",
-                    inputs: [
-                      {
-                        key: "years_exp",
-                        type: "radio",
-                        options: [
-                          {key: "two_years", value: "2", label: "Two years"},
-                          {key: "two_to_four_years", value: "2-4", label: "Two to for years"},
-                          {key: "four_to_six_years", value: "4-6", label: "Four to six years"},
-                          {key: "six_to_eight_years", value: "6-8", label: "Six to eight years"},
-                          {key: "eight_years_plus", value: "8+", label: "Over eight years"}
-                        ],
-                        props: {required: true}
-                      }
-                    ]
-                  }]
-                },
-                {
-                  key: "step-three",
-                  type: "step",
-                  groups: [{
-                    key: "highest_education",
-                    label: "Highest Education completed",
-                    type: "group",
-                    inputs: [
-                      {
-                        key: "highest_edu",
-                        type: "radio",
-                        options: [
-                          {key: "hbo", value: "HBO", label: "HBO"},
-                          {key: "mbo", value: "MBO", label: "MBO"},
-                          {key: "different", value: "different", label: "Something else...", freeInput: true}
-                        ],
-                        props: {required: true}
-                      }
-                    ]
-                  }]
-                },
-                {
-                  key: "step-four",
-                  type: "step",
-                  groups: [{
-                    key: "basic_info",
-                    label: "Basic Information",
-                    type: "group",
-                    inputs: [
-                      {
-                        key: "name",
-                        label: "Name",
-                        props: {
-                          required: true
-                        }
-                      },
-                      {
-                        key: "email",
-                        label: "Email address",
-                        props: {
-                          required: true,
-                          pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-                        }
-                      }
-                    ]
-                  }]
-                }
-              ]}
-              onChange={this.formOnChange.bind(this)}
-              onSubmit={this.formOnSubmit.bind(this)}
-            />,
+          content: <ContactForm />,
           includeKeyInClass: true
         }
-      ]
+      ],
+      submittedData: null
     }
-  }
-
-  //Function used to check for changes in the form
-  formOnChange(events, state) {
-    //Put code here...
-  }
-
-  //Function to do stuff when someone submits the form
-  formOnSubmit(event) {
-    console.log(event);
   }
 
   //When people stop dragging things around
