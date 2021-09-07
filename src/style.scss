@@ -19,5 +19,9 @@
 /* Dynamic Components */
 @import './scss/components/dynamic/form.scss';
 
+/* --- Fields */
+@import './scss/components/dynamic/fields/checkbox.scss';
+@import './scss/components/dynamic/fields/radiobutton.scss';
+
 /* Other */
 @import "./scss/components/spinnyboi.scss";

@@ -91,6 +91,7 @@ export default class Radio extends Component
                                 name={this.props.name}
                                 checked={checked}
                                 value={o.value}
+                                belongstostep={this.props.belongstostep}
                                 onChange={(e) => { this.change(e, this.props.name)}}
                                 onBlur={(e) => { this.blur(e)}}
                             />

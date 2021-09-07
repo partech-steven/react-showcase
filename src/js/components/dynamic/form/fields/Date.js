@@ -105,6 +105,7 @@ export default class Date extends Component
                 selected={this.state.value ? parseISO(this.state.value) : ""}
                 dateFormat={format}
                 minDate={this.state.minValue}
+                belongstostep={this.props.belongstostep}
                 onChange={(e) => { this.change(e) }}
                 onBlur={(e) => { this.blur(e) }}
             />

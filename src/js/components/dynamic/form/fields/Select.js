@@ -84,6 +84,7 @@ export default class Select extends Component
                         id={'f-' + this.props.name}
                         selected={selected}
                         disabled={this.props.options.length <= 1}
+                        belongstostep={this.props.belongstostep}
                         onChange={(e) => { this.change(e) }}
                         onBlur={(e) => { this.blur(e) }}
                 >

@@ -37,8 +37,7 @@ class ContactForm extends Component {
                             label: ".NET",
                             type: "checkbox",
                             value: ".NET"
-                        }
-                        ]
+                        }]
                     }]
                     },
                     {
@@ -53,65 +52,63 @@ class ContactForm extends Component {
                             key: "years_exp",
                             type: "radio",
                             options: [
-                            {key: "two_years", value: "2", label: "Two years"},
-                            {key: "two_to_four_years", value: "2-4", label: "Two to for years"},
-                            {key: "four_to_six_years", value: "4-6", label: "Four to six years"},
-                            {key: "six_to_eight_years", value: "6-8", label: "Six to eight years"},
-                            {key: "eight_years_plus", value: "8+", label: "Over eight years"}
+                                {key: "two_years", value: "2", label: "Two years"},
+                                {key: "two_to_four_years", value: "2-4", label: "Two to for years"},
+                                {key: "four_to_six_years", value: "4-6", label: "Four to six years"},
+                                {key: "six_to_eight_years", value: "6-8", label: "Six to eight years"},
+                                {key: "eight_years_plus", value: "8+", label: "Over eight years"}
                             ],
                             props: {required: true}
                         }
                         ]
                     }]
-                    },
+                },
+                {
+                key: "step-three",
+                type: "step",
+                groups: [{
+                    key: "highest_education",
+                    label: "Highest Education completed",
+                    type: "group",
+                    inputs: [
                     {
-                    key: "step-three",
-                    type: "step",
-                    groups: [{
-                        key: "highest_education",
-                        label: "Highest Education completed",
-                        type: "group",
-                        inputs: [
-                        {
-                            key: "highest_edu",
-                            type: "radio",
-                            options: [
+                        key: "highest_edu",
+                        type: "radio",
+                        options: [
                             {key: "hbo", value: "HBO", label: "HBO"},
                             {key: "mbo", value: "MBO", label: "MBO"},
                             {key: "different", value: "different", label: "Something else...", freeInput: true}
-                            ],
-                            props: {required: true}
+                        ],
+                        props: {required: true}
+                    }
+                    ]
+                }]
+                },
+                {
+                key: "step-four",
+                type: "step",
+                groups: [{
+                    key: "basic_info",
+                    label: "Basic Information",
+                    type: "group",
+                    inputs: [
+                    {
+                        key: "name",
+                        label: "Name",
+                        props: {
+                            required: true
                         }
-                        ]
-                    }]
                     },
                     {
-                    key: "step-four",
-                    type: "step",
-                    groups: [{
-                        key: "basic_info",
-                        label: "Basic Information",
-                        type: "group",
-                        inputs: [
-                        {
-                            key: "name",
-                            label: "Name",
-                            props: {
-                            required: true
-                            }
-                        },
-                        {
-                            key: "email",
-                            label: "Email address",
-                            props: {
+                        key: "email",
+                        label: "Email address",
+                        props: {
                             required: true,
-                            pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
-                            }
+                        pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"
                         }
-                        ]
                     }]
-                }
-            ],
+                }]
+            }],
             submittedData: null
         }
     }
@@ -144,9 +141,10 @@ class ContactForm extends Component {
                         <ul>
                             {Object.keys(this.state.submittedData).map((key, i) => {
                                 let value = this.state.submittedData[key];
-                                //Make sure some key are excluded
                                 if(typeof value === "string") {
                                     return(<li key={key}><strong><em>{key}: </em></strong>{value}</li>);
+                                } else {
+                                    return null;
                                 }
                             })}
                         </ul>

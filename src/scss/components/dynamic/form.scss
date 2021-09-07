@@ -91,10 +91,12 @@ form {
         width: 64px;
 
         &--next {
+            text-indent: -8px;
             @include arrow-right-square;
         }
 
         &--previous {
+            text-indent: 8px;
             @include arrow-left-square;
         }
 

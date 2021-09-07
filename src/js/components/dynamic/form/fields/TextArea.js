@@ -78,6 +78,7 @@ export default class Textarea extends Component
                 id={'f-' + this.props.name}
                 value={this.state.value}
                 ref={this.cursorReference}
+                belongstostep={this.props.belongstostep}
                 onChange={(e) => { this.change(e) }}
                 onBlur={(e) => { this.blur(e) }}
             />

@@ -102,6 +102,7 @@ export default class Input extends Component
                 value={this.state.value}
                 id={'f-' + this.props.name}
                 ref={this.cursorReference}
+                belongstostep={this.props.belongstostep}
                 onChange={(e) => { this.change(e) }}
                 onFocus={(e) => {this.onFocus(e)}}
                 onBlur={(e) => { this.blur(e) }}

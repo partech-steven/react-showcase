@@ -30,7 +30,8 @@ export default class DynamicForm extends React.Component {
             ...data,
             baseData: data,
             cachedProps: [],
-            currentStep: 1
+            currentStep: 1,
+            maxAllowedStep: 1
         };
     }
 
@@ -100,6 +101,15 @@ export default class DynamicForm extends React.Component {
                 [name]: state.value
             }, function()
             {
+                let maxAllowedStep = 1;
+                Object.keys(this.state).forEach((key, val) => {
+                    let element = null;
+                    if(document.querySelector('[name="' + key + '"]')) {
+                        element = document.querySelector('[name="' + key + '"]');
+                        maxAllowedStep = parseInt(element.getAttribute("belongstostep"))+1;
+                    }
+                })
+                this.setState({maxAllowedStep: maxAllowedStep})
                 if (this.props.onChange) this.props.onChange(evt, this.state);
             });
         }
@@ -125,13 +135,15 @@ export default class DynamicForm extends React.Component {
     }
 
     gotoStep(step) {
-        this.setState(
-            (prevState, props) => 
-            ({currentStep: step}),
-            function() {
-                this.scrollFormContent();
-            }
-        )
+        if(step <= this.state.maxAllowedStep) {
+            this.setState(
+                (prevState, props) => 
+                ({currentStep: step}),
+                function() {
+                    this.scrollFormContent();
+                }
+            )
+        }
     }
 
     scrollFormContent() {
@@ -150,6 +162,7 @@ export default class DynamicForm extends React.Component {
      */
     renderForm() {
         let model = this.props.model;
+        let currentRenderStep = 0;
 
         let returnFields = model.map((m) => {
             let type = m.type || 'input';
@@ -177,7 +190,8 @@ export default class DynamicForm extends React.Component {
                 case 'step':
                     if ((m.inputs && m.inputs.length > 0) || (m.rows && m.rows.length > 0) || (m.groups && m.groups.length > 0))
                     {
-                        return this.renderStep(m);
+                        currentRenderStep++;
+                        return this.renderStep(m, currentRenderStep);
                     }
                     break;
             }
@@ -188,12 +202,10 @@ export default class DynamicForm extends React.Component {
         return returnFields;
     }
 
-    renderGroup(m)
+    renderGroup(m, currentRenderStep = 1)
     {
         let label;
-        let rows = [];
         let className = m.className || "";
-        let self = this;
 
         if (m.addon) {
             label = <div className="static-field__label" key={"f-" + m.key} htmlFor={'f-' + m.key}>
@@ -201,14 +213,6 @@ export default class DynamicForm extends React.Component {
             </div>;
         } else {
             label = m.label;
-        }
-
-        if(m.rows && m.rows.length > 0) {
-            m.rows.forEach((i, row) => {
-                if(row.inputs && row.inputs.length > 0) {
-                    rows.push(self.renderRow(row));
-                }
-            })
         }
 
         return (
@@ -221,14 +225,14 @@ export default class DynamicForm extends React.Component {
 
                 {m.rows &&
                     m.rows.map((row) => {
-                        return this.renderRow(row);
+                        return this.renderRow(row, currentRenderStep);
                     })
                 }
 
                 {m.inputs &&
                     <div className={m.addon ? "input-group__fields" : "form-group__fields"}>
                         {m.inputs.map((i) => {
-                            return this.renderField(i);
+                            return this.renderField(i, currentRenderStep);
                         })}
                     </div>
                 }
@@ -237,13 +241,10 @@ export default class DynamicForm extends React.Component {
     }
 
     //TODO: Expand upon setting an order for groups and rows. Maybe pass on an 'index' prop? Worries for later, I guess.
-    renderStep(m)
+    renderStep(m, currentRenderStep)
     {
         let label;
-        let rows = [];
-        let groups = [];
         let className = m.className || "";
-        let self = this;
 
         if (m.addon) {
             label = <div className="static-field__label" key={"f-" + m.key} htmlFor={'f-' + m.key}>
@@ -251,22 +252,6 @@ export default class DynamicForm extends React.Component {
             </div>;
         } else {
             label = m.label;
-        }
-
-        if(m.rows && m.rows.length > 0) {
-            m.rows.forEach((i, row) => {
-                if(row.inputs && row.inputs.length > 0) {
-                    rows.push(self.renderRow(row));
-                }
-            })
-        }
-
-        if(m.groups && m.groups.length > 0) {
-            m.groups.forEach((i, group) => {
-                if(group.inputs && group.inputs.length > 0) {
-                    groups.push(self.renderGroup(group));
-                }
-            })
         }
 
         return (
@@ -279,20 +264,20 @@ export default class DynamicForm extends React.Component {
 
                 {m.rows &&
                     m.rows.map((row) => {
-                        return this.renderRow(row);
+                        return this.renderRow(row, currentRenderStep);
                     })
                 }
 
                 {m.groups &&
                     m.groups.map((group) => {
-                        return this.renderGroup(group);
+                        return this.renderGroup(group, currentRenderStep);
                     })
                 }
 
                 {m.inputs &&
                     <div className={m.addon ? "input-step__fields" : "form-step__fields"}>
                         {m.inputs.map((i) => {
-                            return this.renderField(i);
+                            return this.renderField(i, currentRenderStep);
                         })}
                     </div>
                 }
@@ -300,17 +285,17 @@ export default class DynamicForm extends React.Component {
         );
     }
 
-    renderRow(m) {
+    renderRow(m, currentRenderStep = 1) {
         return (
             <div key={'form-row-' + m.key} className={"form__row form-row"}>
                 {m.inputs.map((i) => {
-                    return this.renderField(i);
+                    return this.renderField(i, currentRenderStep);
                 })}
             </div>
         )
     }
 
-    renderField(m)
+    renderField(m, currentRenderStep = 1)
     {
         let key = m.key;
         let type = m.type || 'input';
@@ -342,29 +327,29 @@ export default class DynamicForm extends React.Component {
 
         switch (type) {
             case 'radio':
-                input = <Radio props={props} key={key} name={name} options={m.options} value={value} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
+                input = <Radio props={props} key={key} name={name} options={m.options} value={value} className={className} belongstostep={currentRenderStep} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
                 break;
 
             case 'label':
-                input = <Label props={props} key={key} value={value}  className={className} />;
+                input = <Label props={props} key={key} value={value} belongstostep={currentRenderStep} className={className} />;
                 break;
 
             case 'select':
-                input = <Select props={props} key={key} name={name} options={m.options} value={value} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
+                input = <Select props={props} key={key} name={name} options={m.options} value={value} className={className} belongstostep={currentRenderStep} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
                 break;
 
             case 'date':
             case 'datetime':
-                input = <Date props={props} type={type} key={key} name={name} value={value} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
+                input = <Date props={props} type={type} key={key} name={name} value={value} className={className} belongstostep={currentRenderStep} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
                 break;
 
             case 'json':
             case 'textarea':
-                input = <Textarea props={props} autoHeight={m.autoHeight === true} key={key} name={name} value={value} placeholder={placeholder} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
+                input = <Textarea props={props} autoHeight={m.autoHeight === true} key={key} name={name} value={value} placeholder={placeholder} className={className} belongstostep={currentRenderStep} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
                 break;
             default:
             case 'input':
-                input = <Input props={props} type={type} key={key} name={name} value={value} placeholder={placeholder} autocomplete={autocomplete} className={className} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
+                input = <Input props={props} type={type} key={key} name={name} value={value} placeholder={placeholder} autocomplete={autocomplete} className={className} belongstostep={currentRenderStep} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
         }
 
         return (
@@ -380,8 +365,7 @@ export default class DynamicForm extends React.Component {
         let canClear = (this.props.onClear ? true : false);
         let currentStep = this.state.currentStep;
         let crumbpathDom = [];
-
-        //TODO: Figure out a way to store this into the state for easy access across the object
+        
         let totalSteps = 0;
         for(let index in this.props.model) {
             let intdex = parseInt(index)+1; //Because index is a string and we're converting it to an integer. Get it?
@@ -393,7 +377,7 @@ export default class DynamicForm extends React.Component {
                         key={intdex} 
                         className={"form-crumbpath__crumb" + (currentStep > totalSteps ? " finished" : "") + (currentStep === totalSteps ? " current" : "")} 
                         crumbno={intdex}
-                        onClick={(e) => this.gotoStep(intdex)}>{totalSteps}</div>
+                        onClick={(e) => {intdex <= this.state.maxAllowedStep && this.gotoStep(intdex)}}>{totalSteps}</div>
                 );
             } 
         }
@@ -434,7 +418,7 @@ export default class DynamicForm extends React.Component {
                     }
                     {currentStep < totalSteps && 
                         <div 
-                        className="form-action-button form-action-button--next" 
+                        className={"form-action-button form-action-button--next"}
                         onClick={(e) => this.gotoStep(currentStep+1)}>
                             Next
                         </div>
