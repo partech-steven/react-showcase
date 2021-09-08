@@ -8,8 +8,8 @@ export default class DraggableComponent extends Component {
             <Draggable key={this.props.uniqueKey} draggableId={this.props.uniqueKey} index={this.props.index}>
                 {(provided) => (
                     <div className={"draggable-component " + this.props.className} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                        <div className={"draggable-component__header"}>
-                            <div className="draggable-component__icon">
+                        <div className={"draggable-component__header draggable-header"}>
+                            <div className="draggable-component__icon draggable-icon">
                                 <img src={dots} alt="Dots! More dots!" />
                             </div>
                             {this.props.title &&
@@ -21,7 +21,7 @@ export default class DraggableComponent extends Component {
                                 </div> 
                             }
                         </div>
-                        <div className="draggable-component__content">
+                        <div className="draggable-component__content draggable-content">
                             {this.props.content ? this.props.content : "No content was specified for this component"}
                         </div>
                     </div>

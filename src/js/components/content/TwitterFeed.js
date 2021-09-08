@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Spinner from '../util/Spinner';
 import { DragDropContext, Droppable} from 'react-beautiful-dnd';
 import DateTimeUtil from "../../utils/DateTimeUtil";
+import DraggableComponent from "../util/DraggableComponent";
 
 class TwitterFeed extends Component {
     /**
@@ -104,32 +105,27 @@ class TwitterFeed extends Component {
         }
     }
 
-    //When people stop dragging things around
-  onDragEnd(result) {
-    // dropped outside the list
-    if (!result.destination) {
-      return;
+    createTweetDom(tweet) {
+        return(
+            <div key={tweet.id} className="twitter-feed__tweet tweet">
+                <div className="tweet__profile-img">
+                    <img src={this.state.tweets.includes.users[0].profile_image_url} alt="profile-img" />
+                </div>
+                <div className="tweet__info">
+                    <div className="tweet__names"><strong>{this.state.tweets.includes.users[0].name}</strong><em>@{this.state.screenname}</em></div>
+                    <div className="tweet__created-at"><em>{DateTimeUtil.getDate(tweet.created_at)}</em></div>
+                </div>
+                <div className="tweet__content">
+                    {tweet.text}
+                </div>
+            </div>
+        )
     }
 
-    let components = this.reorder(
-      this.state.components,
-      result.source.index,
-      result.destination.index
-    );
-
-    this.setState({
-      components,
-    });
-  }
-
-  //Update the state for the main draggables
-  reorder(list, startIndex, endIndex) {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-  };
+    //When people stop dragging things around
+    onDragEnd(result) {
+        //Code goes here
+    }
 
     render() {
         return (
@@ -141,22 +137,20 @@ class TwitterFeed extends Component {
                         :
                         <Droppable droppableId="tweets" direction="vertical">
                             {(provided) => (
-                                this.state.tweets.data.map((tweet, key) => {
-                                    return(
-                                        <div key={tweet.id} className="twitter-feed__tweet tweet"  {...provided.droppableProps} ref={provided.innerRef}>
-                                            <div className="tweet__profile-img">
-                                                <img src={this.state.tweets.includes.users[0].profile_image_url} alt="profile-img" />
-                                            </div>
-                                            <div className="tweet__info">
-                                                <div className="tweet__names"><strong>{this.state.tweets.includes.users[0].name}</strong><em>@{this.state.screenname}</em></div>
-                                                <div className="tweet__created-at"><em>{DateTimeUtil.getDate(tweet.created_at)}</em></div>
-                                            </div>
-                                            <div className="tweet__content">
-                                                {tweet.text}
-                                            </div>
-                                        </div>
-                                    )
-                                })
+                                <div className="twitter-feed"  {...provided.droppableProps} ref={provided.innerRef}>
+                                    {this.state.tweets.data.map((tweet, key) => {
+                                        return(
+                                            <DraggableComponent 
+                                                key={key}
+                                                uniqueKey={key.toString()}
+                                                className={"draggable-tweet"}
+                                                content={this.createTweetDom(tweet)}
+                                                index={key}
+                                            />
+                                        )
+                                    })}
+                                    {provided.placeholder}
+                                </div>
                             )}
                         </Droppable>
                     }

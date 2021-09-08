@@ -5,11 +5,9 @@
 
 .tweet {
     background-color: white;
-    border-radius: 4px;
     display: grid;
     grid-template-columns: [left-col] 48px [right-col] 1fr;
     grid-template-rows: [header] 48px [content] 1fr;
-    margin-bottom: 6px;
     overflow: hidden;
 
     &__profile-img,
@@ -54,5 +52,18 @@
         grid-column: left-col / none;
         grid-row-start: content;
         padding: 0 6px 6px;
+    }
+}
+
+.draggable-tweet {
+    border-radius: 4px;
+    margin-bottom: 6px;
+
+    .draggable-icon {
+        background-color: $twitter-blue;
+    }
+
+    .draggable-content {
+        padding: 0;
     }
 }
