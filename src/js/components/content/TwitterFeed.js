@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Spinner from '../util/Spinner';
+import { DragDropContext, Droppable} from 'react-beautiful-dnd';
+import DateTimeUtil from "../../utils/DateTimeUtil";
 
 class TwitterFeed extends Component {
     /**
@@ -102,34 +104,64 @@ class TwitterFeed extends Component {
         }
     }
 
+    //When people stop dragging things around
+  onDragEnd(result) {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
+    }
+
+    let components = this.reorder(
+      this.state.components,
+      result.source.index,
+      result.destination.index
+    );
+
+    this.setState({
+      components,
+    });
+  }
+
+  //Update the state for the main draggables
+  reorder(list, startIndex, endIndex) {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
     render() {
         return (
-            <div className="twitter-feed">
-                {this.state.tweets === null 
-                    ? <Spinner message="Fetching Twitter-feed"/>
-                    :
-                    this.state.tweets.data.map((tweet, key) => {
-                        console.log(tweet)
-                        return(
-                            <div key={tweet.id} className="twitter-feed__tweet tweet">
-                                <div className="tweet__left-col">
-                                    <img src={this.state.tweets.includes.users[0].profile_image_url} />
-                                </div>
-                                <div className="tweet__right-col">
-                                    <div className="tweet__header">
-                                        <div className="tweet__header-name">{this.state.tweets.includes.users[0].name}</div>
-                                        <div className="tweet__header-handle">{this.state.screenname}</div>
-                                        <div className="tweet__header-created_at">{tweet.created_at}</div>
-                                    </div>
-                                    <div className="tweet__text">
-                                        {tweet.text}
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            <DragDropContext key={"draggable-context"} onDragEnd={this.onDragEnd.bind(this)}>
+                <div className="twitter-feed">
+                    {
+                        this.state.tweets === null 
+                        ? <Spinner message="Fetching Twitter-feed"/>
+                        :
+                        <Droppable droppableId="tweets" direction="vertical">
+                            {(provided) => (
+                                this.state.tweets.data.map((tweet, key) => {
+                                    return(
+                                        <div key={tweet.id} className="twitter-feed__tweet tweet"  {...provided.droppableProps} ref={provided.innerRef}>
+                                            <div className="tweet__profile-img">
+                                                <img src={this.state.tweets.includes.users[0].profile_image_url} alt="profile-img" />
+                                            </div>
+                                            <div className="tweet__info">
+                                                <div className="tweet__names"><strong>{this.state.tweets.includes.users[0].name}</strong><em>@{this.state.screenname}</em></div>
+                                                <div className="tweet__created-at"><em>{DateTimeUtil.getDate(tweet.created_at)}</em></div>
+                                            </div>
+                                            <div className="tweet__content">
+                                                {tweet.text}
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            )}
+                        </Droppable>
+                    }
+                </div>
+            </DragDropContext>
         );
     }
 };

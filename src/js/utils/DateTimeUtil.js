@@ -49,17 +49,11 @@ export default class DateTimeUtil {
      * @param adjustment
      * @returns {string}
      */
-    static getDate(format = "yyyy-MM-dd", adjustment) {
-        let date = new Date();
+    static getDate(date = new Date(), formatOptions = {day: '2-digit', month: 'short', year: 'numeric'}, adjustment = 0) {
+        if(typeof date === "string") date = new Date(date);
         date.setDate(date.getDate() + adjustment);
 
-        let dateString = format.replace("yyyy", date.getFullYear())
-                               .replace("MM", this.prependDigit(date.getMonth() + 1))
-                               .replace("dd", this.prependDigit(date.getDate()))
-                               .replace("kk", this.prependDigit(date.getHours()))
-                               .replace("mm", this.prependDigit(date.getMinutes()))
-                               .replace("ss", this.prependDigit(date.getSeconds()))
-                               .replace("A", this.prependDigit(date.getMilliseconds()))
+        let dateString = date.toLocaleString('en-GB', formatOptions)
 
         return dateString;
     }

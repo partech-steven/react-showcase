@@ -18,6 +18,7 @@ body {
 .content {
     display: flex;
     flex: 1;
+    height: 0%; //For some odd reason this fixes overflow issues
     margin: 0 -6px;
 }
 
@@ -52,4 +53,6 @@ body {
 .content-box {
     background-color: $gray;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
 }

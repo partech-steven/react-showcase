@@ -1,5 +1,6 @@
 .draggable-component {
     cursor:default !important; //Ugly, but it's to enforce the illusion that only the top bar of the component enables drag-n-drop
+    overflow: hidden;
 
     &__header {
         width: 100%;
@@ -34,6 +35,8 @@
     }
 
     &__content {
-        padding: 6px;
+        height: 100%;
+        padding: 0 6px;
+        overflow: hidden auto;
     }
 }
