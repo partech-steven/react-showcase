@@ -28,7 +28,7 @@ class App extends Component {
           className: "quarter quarter no-padding content-box",
           title: "Twitter Feed",
           subtitle: "@ParTechIT",
-          content: <TwitterFeed />,
+          content: <TwitterFeed screenName="ParTechIT" />,
           includeKeyInClass: true,
         },
         {

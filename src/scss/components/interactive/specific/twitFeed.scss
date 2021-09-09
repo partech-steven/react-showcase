@@ -56,7 +56,10 @@
 }
 
 .draggable-tweet {
-    border-radius: 4px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     margin-bottom: 6px;
 
     .draggable-icon {
@@ -64,6 +67,12 @@
     }
 
     .draggable-content {
+        background: #1575b0;
         padding: 0;
     }
+}
+
+.twitter-tweet-rendered {
+    margin-bottom: 0 !important; //Styling is inline via the plugin. Good stuff.
+    margin-top: 0 !important; //Styling is inline via the plugin. Good stuff.
 }
