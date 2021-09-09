@@ -5,29 +5,12 @@ import { TwitterTweetEmbed } from "react-twitter-embed";
 import Notification from "../util/Notification";
 
 class TwitterFavourites extends Component {
-    //When people stop dragging things around
-    onDragEnd(result) {
-        const { source, destination, type } = result;
-        let components = this.state.components;
-        console.log(result)
-        // dropped outside the list
-        if (!destination) {
-        return;
+    shouldComponentUpdate(prevProps, prevState) {
+        let shouldUpdate = false;
+        if(prevProps.tweets !== this.props.tweets) {
+            shouldUpdate = true;
         }
-
-        if(source.droppableId === destination.droppableId) {
-        if(type === "CONTENT") {
-            components = this.reorder(
-            this.state.components,
-            source.index,
-            destination.index
-            );
-        }
-        }
-
-        this.setState({
-        components,
-        });
+        return shouldUpdate;
     }
 
     render() {
@@ -35,13 +18,14 @@ class TwitterFavourites extends Component {
             <Droppable droppableId="tweets-favourites" direction="vertical" type="TWEETS">
                 {(provided) => (
                     <div className="twitter-feed"  {...provided.droppableProps} ref={provided.innerRef}>
-                        {!this.props.tweets 
+                        {this.props.tweets.length === 0 
                             ? <Notification message={"No favourites selected yet"} />
-                            : this.props.tweets.data.map((tweet, key) => {
+                            : this.props.tweets.map((tweet, key) => {
+                                console.log(tweet.id)
                                 return(
                                     <DraggableComponent 
-                                        key={key}
-                                        uniqueKey={key.toString()}
+                                        key={key + "-favourite"}
+                                        uniqueKey={key.toString() + "-favourite"}
                                         className={"draggable-tweet"}
                                         content={<TwitterTweetEmbed tweetId={tweet.id}/>}
                                         index={key}
