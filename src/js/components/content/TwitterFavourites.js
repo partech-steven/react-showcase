@@ -1,17 +1,42 @@
 import React, { Component } from "react";
-import Spinner from '../util/Spinner';
 import { Droppable } from 'react-beautiful-dnd';
 import DraggableComponent from "../util/DraggableComponent";
 import { TwitterTweetEmbed } from "react-twitter-embed";
+import Notification from "../util/Notification";
 
-class TwitterFeed extends Component {
+class TwitterFavourites extends Component {
+    //When people stop dragging things around
+    onDragEnd(result) {
+        const { source, destination, type } = result;
+        let components = this.state.components;
+        console.log(result)
+        // dropped outside the list
+        if (!destination) {
+        return;
+        }
+
+        if(source.droppableId === destination.droppableId) {
+        if(type === "CONTENT") {
+            components = this.reorder(
+            this.state.components,
+            source.index,
+            destination.index
+            );
+        }
+        }
+
+        this.setState({
+        components,
+        });
+    }
+
     render() {
         return (
-            <Droppable droppableId="tweets" direction="vertical" type="TWEETS">
+            <Droppable droppableId="tweets-favourites" direction="vertical" type="TWEETS">
                 {(provided) => (
                     <div className="twitter-feed"  {...provided.droppableProps} ref={provided.innerRef}>
                         {!this.props.tweets 
-                            ? <Spinner message={"Fetching tweets for @" + this.props.screenName} />
+                            ? <Notification message={"No favourites selected yet"} />
                             : this.props.tweets.data.map((tweet, key) => {
                                 return(
                                     <DraggableComponent 
@@ -32,4 +57,4 @@ class TwitterFeed extends Component {
     }
 };
 
-export default TwitterFeed;
+export default TwitterFavourites;

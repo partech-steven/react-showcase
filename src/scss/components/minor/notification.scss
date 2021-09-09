@@ -1,0 +1,15 @@
+.notification {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 4px 12px;
+    margin: 0 auto;
+    min-height: 24px;
+    position: relative;
+    text-align: left;
+    width: fit-content;
+
+    em {
+        display: block;
+        text-align: center;
+    }
+}

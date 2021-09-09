@@ -14,7 +14,6 @@
 
 /* --- Specific */
 @import "./scss/components/interactive/specific/twitFeed.scss";
-@import "./scss/components/interactive/specific/twitFavourites.scss";
 @import "./scss/components/interactive/specific/stepForm.scss";
 
 /* Dynamic Components */
@@ -25,4 +24,5 @@
 @import './scss/components/dynamic/fields/radiobutton.scss';
 
 /* Other */
-@import "./scss/components/spinnyboi.scss";
+@import "./scss/components/minor/spinnyboi.scss";
+@import "./scss/components/minor/notification.scss";
