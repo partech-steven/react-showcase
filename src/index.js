@@ -1,7 +1,6 @@
 //Dependencies
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { DragDropContext, Droppable} from 'react-beautiful-dnd';
 
 //Style
@@ -49,6 +48,7 @@ class App extends Component {
         }
       ],
       submittedData: null,
+      screenName: "ZubajaOfficial",
       tweets: [
         {
             "id": "1435528397975920642",
