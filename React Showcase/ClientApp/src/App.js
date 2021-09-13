@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Pages/Home';
-import { Showcases } from './components/Pages/Showcases';
-
-/*React showcases*/
-import { ReactShowcases } from './components/Pages/Showcases/ReactShowcases';
-import { Twitter } from './components/Pages/Showcases/React/Twitter';
+import { Layout } from './js/components/Layout';
+import { Home } from './js/components/Pages/Home';
+import { Showcases } from './js/components/Pages/Showcases';
+import { ReactShowcases } from './js/components/Pages/Showcases/ReactShowcases';
+import { Twitter } from './js/components/Pages/Showcases/React/Twitter';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -17,7 +15,7 @@ export default class App extends Component {
                 <Route exact path='/' component={Home} />
                 <Route exact path='/showcases' component={Showcases} />
                 <Route exact path='/showcases/react' component={ReactShowcases} />
-                <Route exact path='/showcases/react/twitter-dragdrop' component={Twitter}/>
+                <Route exact path='/showcases/react/twitter-dragdrop' component={Twitter} />
             </Layout>
         );
     }

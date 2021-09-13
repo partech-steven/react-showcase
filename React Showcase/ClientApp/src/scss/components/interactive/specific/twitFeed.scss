@@ -1,0 +1,79 @@
+.twitter-feed {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.tweet {
+    background-color: white;
+    display: grid;
+    grid-template-columns: [left-col] 48px [right-col] 1fr;
+    grid-template-rows: [header] 48px [content] 1fr;
+    overflow: hidden;
+
+    &__profile-img,
+    &__info {
+        background-color: $twitter-blue;
+        border-bottom: 1px solid darken($twitter-blue, 20);
+        grid-row-start: header;
+    }
+
+    &__profile-img {
+        position: relative;
+
+        img {
+            border-radius: 48px;
+            clip-path: circle(48px);
+            height: 2.5em;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 2.5em;
+        }
+    }
+
+    &__info {
+        padding-left: 6px;
+    }
+
+    &__names {
+        em {
+            font-size: 0.8em;
+            margin-left: 6px;
+        }
+    }
+
+    &__created-at {
+        font-size: 0.8em;
+    }
+
+    &__content {
+        border-top: 1px solid darken(white, 10);
+        grid-column: left-col / none;
+        grid-row-start: content;
+        padding: 0 6px 6px;
+    }
+}
+
+.draggable-tweet {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-bottom: 6px;
+
+    .draggable-icon {
+        background-color: $twitter-blue;
+    }
+
+    .draggable-content {
+        background: #1575b0;
+        padding: 0;
+    }
+}
+
+.twitter-tweet-rendered {
+    margin-bottom: 0 !important; //Styling is inline via the plugin. Good stuff.
+    margin-top: 0 !important; //Styling is inline via the plugin. Good stuff.
+}
