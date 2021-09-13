@@ -46,13 +46,10 @@ export class NavMenu extends Component {
                                     </DropdownToggle>
                                     <DropdownMenu>
                                         <DropdownItem header>React</DropdownItem>
-                                        <DropdownItem tag={Link} to="/showcases">Overview</DropdownItem>
-                                        <DropdownItem tag={Link} to="/showcases/twitter-dragdrop">Twitter + Drag & Drop</DropdownItem>
+                                        <DropdownItem tag={Link} to="/showcases/react">Overview</DropdownItem>
+                                        <DropdownItem tag={Link} to="/showcases/react/twitter-dragdrop">Twitter + Drag & Drop</DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/showcases">Showcases</NavLink>
-                                </NavItem>
                             </ul>
                         </Collapse>
                     </Container>
