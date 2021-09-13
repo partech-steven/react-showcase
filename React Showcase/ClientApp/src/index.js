@@ -5,11 +5,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+//Style
+import './style.css';
+
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
-
-//Style
-import './style.scss';
 
 ReactDOM.render(
   <BrowserRouter basename={baseUrl}>
