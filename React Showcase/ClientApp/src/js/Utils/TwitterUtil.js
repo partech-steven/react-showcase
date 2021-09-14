@@ -20,7 +20,7 @@ export default class TwitterUtil {
                 return (
                     <DraggableComponent
                         key={key}
-                        uniqueKey={key.toString()}
+                        uniqueKey={tweet.id}
                         className={"draggable-tweet"}
                         content={tweetDom}
                         index={key}

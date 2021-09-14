@@ -1,7 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { ContactForm } from '../../../Content/ContactForm';
-import TwitterFavourites from '../../../Content/TwitterFavourites';
 import TwitterFeed from '../../../Content/TwitterFeed';
 import DraggableComponent from '../../../Util/DraggableComponent';
 
@@ -20,7 +19,6 @@ export class Twitter extends Component {
                     key: "twit-feed",
                     className: "quarter quarter no-padding content-box",
                     title: "Twitter Feed",
-                    subtitle: "@ParTechIT",
                     content: null,
                     includeKeyInClass: true,
                 },
@@ -28,7 +26,6 @@ export class Twitter extends Component {
                     key: "twit-favs",
                     className: "quarter no-padding content-box",
                     title: "Twitter Favourites",
-                    subtitle: "@ParTechIT",
                     content: null,
                     includeKeyInClass: true
                 },
@@ -41,7 +38,7 @@ export class Twitter extends Component {
                 }
             ],
             submittedData: null,
-            screenName: "ZubajaOfficial",
+            screenName: "",
             tweets: [
                 {
                     "id": "1435528397975920642",
@@ -88,27 +85,45 @@ export class Twitter extends Component {
         }
     }
 
+    componentDidMount() {
+        this.getTwitterFeed();
+    }
+
     //When people stop dragging things around
     onDragEnd(result) {
         const { source, destination, type } = result;
         let components = this.state.components;
+        let tweetFavs = this.state['tweets-favourites'];
         // dropped outside the list
         if (!destination) {
             return;
         }
 
         if (source.droppableId === destination.droppableId) {
-            if (type === "CONTENT") {
-                components = this.reorder(
-                    this.state.components,
-                    source.index,
-                    destination.index
-                );
+            switch (type) {
+                case "CONTENT":
+                    components = this.reorder(
+                        this.state.components,
+                        source.index,
+                        destination.index
+                    );
+                    break;
+
+                case "TWEETS":
+                    if (source.droppableId === "tweets-favourites") {
+                        tweetFavs = this.reorder(
+                            this.state['tweets-favourites'],
+                            source.index,
+                            destination.index
+                        );
+                    }
+                    break
             }
 
             this.setState({
                 components,
-            });
+                tweetFavs
+            }, function () { console.log(this.state); });
         } else {
             const result = this.move(
                 this.getList(source.droppableId),
@@ -116,8 +131,6 @@ export class Twitter extends Component {
                 source,
                 destination
             );
-
-            console.log(result)
 
             this.setState({
                 tweets: result.tweets,
@@ -160,10 +173,11 @@ export class Twitter extends Component {
                     {(provided) => (
                         <div key="content" className="content" {...provided.droppableProps} ref={provided.innerRef}>
                             {this.state.components.map((component, index) => {
-                                if (component.key === "twit-feed") {
-                                    component.content = <TwitterFeed screenName="ParTechIT" tweets={this.state.tweets} />;
-                                } else if (component.key === "twit-favs") {
-                                    component.content = <TwitterFavourites screenName="ParTechIT" tweets={this.state["tweets-favourites"]} />
+                                if (component.key === "twit-feed" || component.key === "twit-favs") {
+                                    let tweets = (component.key === "twit-feed") ? this.state.tweets : this.state['tweets-favourites'];
+                                    component.title = (component.key === "twit-feed") ? "Twitter feed" : "Twitter favourites";
+                                    component.subtitle = "@" + this.state.screenName;
+                                    component.content = <TwitterFeed screenName={this.state.screenName} tweets={tweets} droppableId={(component.key === "twit-feed") ? "tweets" : "tweets-favourites"} />;
                                 }
 
                                 return (
@@ -185,5 +199,14 @@ export class Twitter extends Component {
                 </Droppable>
             </DragDropContext>
         );
+    }
+
+    async getTwitterFeed() {
+        const data = await fetch('/twitter/get/feed')
+            .then((response) => response.text())
+            .then((user) => {
+                return user;
+            });
+        this.setState({ screenName: data});
     }
 }
