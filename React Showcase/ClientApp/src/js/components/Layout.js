@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
 import { NavMenu } from './Layout/NavMenu';
 import { Footer } from './Layout/Footer';
 
