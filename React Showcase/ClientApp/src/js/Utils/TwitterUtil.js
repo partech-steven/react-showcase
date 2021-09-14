@@ -12,15 +12,15 @@ export default class TwitterUtil {
      * @returns {string}
      */
     static createTwitterFeedDom(tweets, areDraggable = false) {
-        return tweets = tweets.map((tweet, key) => {
-            let tweetDom = <Tweet tweetId={tweet.id}/>;
+        return tweets = tweets.map((tweetId, key) => {
+            let tweetDom = <Tweet tweetId={tweetId}/>;
             if(!areDraggable) {
                 return tweetDom;
             } else {
                 return (
                     <DraggableComponent
                         key={key}
-                        uniqueKey={tweet.id}
+                        uniqueKey={tweetId}
                         className={"draggable-tweet"}
                         content={tweetDom}
                         index={key}

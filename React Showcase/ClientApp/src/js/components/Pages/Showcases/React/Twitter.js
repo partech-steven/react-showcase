@@ -39,14 +39,14 @@ export class Twitter extends Component {
                 }
             ],
             submittedData: null,
-            screenName: "",
+            user: "",
             tweets: [],
             "tweets-favourites": []
         }
     }
 
     componentDidMount() {
-        this.getTwitterFeed();
+        this.getTwitterUser("ParTechIT");
     }
 
     //When people stop dragging things around
@@ -127,7 +127,7 @@ export class Twitter extends Component {
     }
 
     render() {
-        return (<Spinner className="initial-spinner" message="Fetching initial data..." />);
+        if(this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching initial data..." />);
         return (
             <DragDropContext key={"draggable-context"} onDragEnd={this.onDragEnd.bind(this)}>
                 <Droppable droppableId="content" direction="horizontal" type="CONTENT">
@@ -137,8 +137,8 @@ export class Twitter extends Component {
                                 if (component.key === "twit-feed" || component.key === "twit-favs") {
                                     let tweets = (component.key === "twit-feed") ? this.state.tweets : this.state['tweets-favourites'];
                                     component.title = (component.key === "twit-feed") ? "Twitter feed" : "Twitter favourites";
-                                    component.subtitle = "@" + this.state.screenName;
-                                    component.content = <TwitterFeed screenName={this.state.screenName} tweets={tweets} droppableId={(component.key === "twit-feed") ? "tweets" : "tweets-favourites"} />;
+                                    component.subtitle = "@" + this.state.user.screenName;
+                                    component.content = <TwitterFeed screenName={this.state.user.screenName} tweets={tweets} droppableId={(component.key === "twit-feed") ? "tweets" : "tweets-favourites"} />;
                                 }
 
                                 return (
@@ -162,12 +162,28 @@ export class Twitter extends Component {
         );
     }
 
-    async getTwitterFeed() {
-        const data = await fetch('/twitter/get/feed')
-            .then((response) => response.text())
+    async getTwitterUser(screenName) {
+        let user = await fetch('/twitter/get/user/' + screenName)
+            .then((response) => response.json())
             .then((user) => {
                 return user;
             });
-        this.setState({ screenName: data});
+
+        this.setState(
+            { user: user },
+            function () {
+                this.getTweetsByUser(this.state.user.screenName)
+            }
+        );
+    }
+
+    async getTweetsByUser(screenName) {
+        let tweets = await fetch('/twitter/get/tweets/by/user/' + screenName)
+            .then((response) => response.json())
+            .then((tweets) => {
+                return tweets;
+            });
+
+        this.setState({ tweets: tweets });
     }
 }
