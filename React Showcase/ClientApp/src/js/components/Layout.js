@@ -10,9 +10,7 @@ export class Layout extends Component {
         return (
             <div className="le-content">
                 <NavMenu />
-                <Container>
-                    {this.props.children}
-                </Container>
+                {this.props.children}
                 <Footer />
             </div>
         );
