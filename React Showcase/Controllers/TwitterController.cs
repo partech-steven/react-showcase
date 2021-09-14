@@ -15,10 +15,17 @@ namespace React_Showcase.Controllers
     public class TwitterController : ControllerBase
     {
         private readonly ILogger<TwitterController> _logger;
+        private TwitterClient _twitterClient;
 
         public TwitterController(ILogger<TwitterController> logger)
         {
             _logger = logger;
+            _twitterClient = new TwitterClient(
+                "nKnZ0bsAoh1yEUyhS3rX80CXj",
+                "zUyhpprguk7CaAKx9hLc7H2GVirnYxiY5bDeTFlYHqODdD9yhU",
+                "2227154571-4C1uI5ezWElzxG4CryuyzIFcpdybQfjPsu89v21",
+                "r5PivBPp3WowpAF51a6Z64CXjkfN5wrS3Qv33oDPMwxqh"
+                );
         }
 
         /**
@@ -28,14 +35,7 @@ namespace React_Showcase.Controllers
         [Route("/twitter/get/auth-user")]
         public async Task<string> GetAuthUser()
         {
-            var userClient = new TwitterClient(
-                "nKnZ0bsAoh1yEUyhS3rX80CXj",
-                "zUyhpprguk7CaAKx9hLc7H2GVirnYxiY5bDeTFlYHqODdD9yhU",
-                "2227154571-4C1uI5ezWElzxG4CryuyzIFcpdybQfjPsu89v21",
-                "r5PivBPp3WowpAF51a6Z64CXjkfN5wrS3Qv33oDPMwxqh"
-                );
-
-            var user = await userClient.Users.GetAuthenticatedUserAsync();
+            var user = await _twitterClient.Users.GetAuthenticatedUserAsync();
             return user.ScreenName;
         }
 
@@ -46,14 +46,7 @@ namespace React_Showcase.Controllers
         [Route("/twitter/get/user/{screenName}")]
         public async Task<string> GetSpecificUser(string screenName)
         {
-            var userClient = new TwitterClient(
-                "nKnZ0bsAoh1yEUyhS3rX80CXj",
-                "zUyhpprguk7CaAKx9hLc7H2GVirnYxiY5bDeTFlYHqODdD9yhU",
-                "2227154571-4C1uI5ezWElzxG4CryuyzIFcpdybQfjPsu89v21",
-                "r5PivBPp3WowpAF51a6Z64CXjkfN5wrS3Qv33oDPMwxqh"
-                );
-
-            var user = await userClient.Users.GetUserAsync(screenName);
+            var user = await _twitterClient.Users.GetUserAsync(screenName);
             var returnData = new
             {
                 ID = user.IdStr,
@@ -71,15 +64,8 @@ namespace React_Showcase.Controllers
         [Route("/twitter/get/tweets/by/user/{screenName}")]
         public async Task<string> GetTweetsByUser(string screenName, int limit = 10)
         {
-            var userClient = new TwitterClient(
-                "nKnZ0bsAoh1yEUyhS3rX80CXj",
-                "zUyhpprguk7CaAKx9hLc7H2GVirnYxiY5bDeTFlYHqODdD9yhU",
-                "2227154571-4C1uI5ezWElzxG4CryuyzIFcpdybQfjPsu89v21",
-                "r5PivBPp3WowpAF51a6Z64CXjkfN5wrS3Qv33oDPMwxqh"
-                );
-
-            var tweets = await userClient.Timelines.GetUserTimelineAsync(screenName);
-            var tweetIds = tweets.Select(tweet => tweet.IdStr);
+            var tweets = await _twitterClient.Timelines.GetUserTimelineAsync(screenName);
+            var tweetIds = tweets.Select(tweet => tweet.IdStr).Take(limit);
 
             return JsonConvert.SerializeObject(tweetIds);
         }
