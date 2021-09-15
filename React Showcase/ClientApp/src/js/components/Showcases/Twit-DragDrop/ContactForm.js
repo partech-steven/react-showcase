@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DynamicForm from "../Dynamic/form/DynamicForm";
+import DynamicForm from "../../Dynamic/form/DynamicForm";
 
 export class ContactForm extends Component {
     /**

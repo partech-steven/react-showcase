@@ -22,10 +22,9 @@ body {
 }
 
 .content {
-    display: flex;
+    color: white;
     flex: 1 1;
     height: 0%;
-    margin: 0 -6px;
 }
 
 .half,
@@ -133,17 +132,21 @@ footer {
     padding: 6px 12px;
 }
 
-header h1 {
-    background: linear-gradient(130deg, #3e0918, #3e0918 7%, #811331 0, #811331 8%, #3e0918 0, #3e0918 10%, #811331 0, #811331 11%, #3e0918 0, #3e0918 11.5%, #811331 0);
-    -webkit-clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
-    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+header {
+    background: #811331;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0 0 rgb(0 0 0 / 50%);
     color: #fff;
     margin: 12px 0;
     padding: 8px 0;
-    text-align: center;
+}
+
+.navbar-brand {
+    color: white !important;
 }
 
 .draggable-component {
+    color: #282828; 
     cursor: default !important;
     overflow: hidden;
 }
@@ -592,4 +595,86 @@ input[type="radio"] {
         display: block;
         text-align: center;
     }
-/*# sourceMappingURL=main.1869fb29.chunk.css.map */
+
+.showcase-tiles {
+    margin: 0;
+}
+
+.interactive-tile {
+    height: 240px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+    .interactive-tile:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+
+.interactive-tile__content {
+    background-color: white;
+    border-radius: 4px;
+    color: #606060;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.interactive-tile__title,
+.interactive-tile__subtitle {
+    background: rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.interactive-tile__title {
+    margin-bottom: 0;
+}
+
+.interactive-tile__subtitle {
+    font-size: 0.8em;
+    padding-bottom: 6px;
+}
+
+.interactive-tile__overlay {
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    left:0;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+}
+
+.interactive-tile__description {
+    padding: 4px 12px;
+}
+
+.interactive-tile__title,
+.interactive-tile__subtitle,
+.interactive-tile__description {
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+
+.interactive-tile__overlay,
+.interactive-tile__title,
+.interactive-tile__subtitle,
+.interactive-tile__description {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.interactive-tile:hover .interactive-tile__overlay,
+.interactive-tile:hover .interactive-tile__title,
+.interactive-tile:hover .interactive-tile__subtitle,
+.interactive-tile:hover .interactive-tile__description {
+    opacity: 1;
+}
+
+.interactive-tile__background {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}

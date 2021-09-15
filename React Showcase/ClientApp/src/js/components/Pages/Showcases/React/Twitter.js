@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { ContactForm } from '../../../Content/ContactForm';
-import TwitterFeed from '../../../Content/TwitterFeed';
+import TwitterFeed from '../../../Showcases/Twit-DragDrop/TwitterFeed';
+import { ContactForm } from '../../../Showcases/Twit-DragDrop/ContactForm';
 import DraggableComponent from '../../../Util/DraggableComponent';
 import Spinner from '../../../Util/Spinner';
 
@@ -134,7 +134,7 @@ export class Twitter extends Component {
             <DragDropContext key={"draggable-context"} onDragEnd={this.onDragEnd.bind(this)}>
                 <Droppable droppableId="content" direction="horizontal" type="CONTENT">
                     {(provided) => (
-                        <div key="content" className="content" {...provided.droppableProps} ref={provided.innerRef}>
+                        <div key="content" className="content row flex-nowrap" {...provided.droppableProps} ref={provided.innerRef}>
                             {this.state.components.map((component, index) => {
                                 if (component.key === "twit-feed" || component.key === "twit-favs") {
                                     let tweets = (component.key === "twit-feed") ? this.state.tweets : this.state['tweets-favourites'];

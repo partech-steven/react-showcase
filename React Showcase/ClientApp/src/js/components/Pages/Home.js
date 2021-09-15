@@ -3,7 +3,7 @@
 export class Home extends Component {
     render() {
         return (
-            <div>
+            <div className="content">
                 Ok doei
             </div>
         );

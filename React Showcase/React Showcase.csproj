@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\public\images\showcase-tile-backgrounds\react\" />
     <Folder Include="ClientApp\src\scss\components\blocks\" />
     <Folder Include="Models\" />
   </ItemGroup>

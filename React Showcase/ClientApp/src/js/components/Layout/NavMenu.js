@@ -31,10 +31,9 @@ export class NavMenu extends Component {
     render() {
         return (
             <header>
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+                <Navbar className="navbar-expand-sm" light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/">React Showcase</NavbarBrand>
-                        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                        <NavbarBrand tag={Link} to="/">Showcase</NavbarBrand>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
@@ -45,9 +44,7 @@ export class NavMenu extends Component {
                                         Showcases
                                     </DropdownToggle>
                                     <DropdownMenu>
-                                        <DropdownItem header>React</DropdownItem>
-                                        <DropdownItem tag={Link} to="/showcases/react">Overview</DropdownItem>
-                                        <DropdownItem tag={Link} to="/showcases/react/twitter-dragdrop">Twitter + Drag & Drop</DropdownItem>
+                                        <DropdownItem tag={Link} to="/showcases/react">React</DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
                             </ul>
