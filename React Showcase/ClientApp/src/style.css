@@ -780,3 +780,7 @@ input[type="radio"] {
 .no-background {
     background: none;
 }
+
+.twitter-filters {
+    width: fit-content;
+}

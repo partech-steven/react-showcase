@@ -4,6 +4,7 @@ import TwitterFeed from '../../../Showcases/Twit-DragDrop/TwitterFeed';
 import { ContactForm } from '../../../Showcases/Twit-DragDrop/ContactForm';
 import DraggableComponent from '../../../Util/DraggableComponent';
 import Spinner from '../../../Util/Spinner';
+import DynamicForm from '../../../Dynamic/form/DynamicForm';
 
 export class Twitter extends Component {
     /**
@@ -41,12 +42,14 @@ export class Twitter extends Component {
             submittedData: null,
             user: "",
             tweets: [],
-            "tweets-favourites": []
+            "tweets-favourites": [],
+            tweetsLimit: 10
         }
     }
 
     componentDidMount() {
         this.getTwitterUser("ParTechIT");
+        this.getTweetsByUser("ParTechIT", 10);
     }
 
     //When people stop dragging things around
@@ -61,14 +64,6 @@ export class Twitter extends Component {
 
         if (source.droppableId === destination.droppableId) {
             switch (type) {
-                case "CONTENT":
-                    components = this.reorder(
-                        this.state.components,
-                        source.index,
-                        destination.index
-                    );
-                    break;
-
                 case "TWEETS":
                     if (source.droppableId === "tweets-favourites") {
                         console.log(source.index, destination.index)
@@ -78,10 +73,17 @@ export class Twitter extends Component {
                             destination.index
                         );
                     }
-                    break
+                    break;
+                case "CONTENT":
+                default:
+                    components = this.reorder(
+                        this.state.components,
+                        source.index,
+                        destination.index
+                    );
+                    break;
             }
 
-            console.log(tweetFavs)
             this.setState({
                 components,
                 tweetFavs
@@ -128,9 +130,56 @@ export class Twitter extends Component {
         return result;
     }
 
+    filterSubmit(event) {
+        let screenName = this.state.user.screenName;
+        let tweetsLimit = this.state.tweetsLimit;
+
+        if (event['twitter-handle']) screenName = event['twitter-handle'];
+        if (event['tweets-limit']) tweetsLimit = event['tweets-limit'];
+        if (event['twitter-handle'] || event['tweets-limit']) this.setState({ tweets: null, "tweets-favourites": [] },
+            function () {
+                this.getTwitterUser(screenName, true, tweetsLimit);
+            }
+        );
+        
+    }
+
     render() {
-        if(this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching initial data..." />);
-        return (
+        if(this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching data..." />);
+        return ([
+            <div className="twitter-filters" key="twitter-filters">
+                <DynamicForm
+                    className="twitter-filters__form"
+                    submitText={"Refresh data"}
+                    model={[
+                        {
+                            key: "twitter-filters",
+                            type: "row",
+                            inputs: [
+                                {
+                                    key: "twitter-handle",
+                                    label: "Twitter Handle",
+                                    value: this.state.user.screenName,
+                                    props: {
+                                        required: true,
+                                        prefix: "@"
+                                    }
+                                },
+                                {
+                                    key: "tweets-limit",
+                                    label: "Tweets limit",
+                                    value: this.state.tweetsLimit,
+                                    type: "number",
+                                    pprops: {
+                                        required: true,
+                                        prefix: "#"
+                                    }
+                                }
+                            ]
+                        }]}
+                    onSubmit={this.filterSubmit.bind(this)}
+                />
+            </div>,
             <DragDropContext key={"draggable-context"} onDragEnd={this.onDragEnd.bind(this)}>
                 <Droppable droppableId="content" direction="horizontal" type="CONTENT">
                     {(provided) => (
@@ -161,26 +210,25 @@ export class Twitter extends Component {
                     )}
                 </Droppable>
             </DragDropContext>
-        );
+        ]);
     }
 
-    async getTwitterUser(screenName) {
+    async getTwitterUser(screenName, fetchTweets = false, tweetsLimit = 10) {
         let user = await fetch('/twitter/get/user/' + screenName)
             .then((response) => response.json())
             .then((user) => {
                 return user;
             });
 
-        this.setState(
-            { user: user },
-            function () {
-                this.getTweetsByUser(this.state.user.screenName)
+        this.setState({ user: user }, function () {
+            if (fetchTweets) {
+                this.getTweetsByUser(this.state.user.screenName, tweetsLimit)
             }
-        );
+        });
     }
 
-    async getTweetsByUser(screenName) {
-        let tweets = await fetch('/twitter/get/tweets/by/user/' + screenName)
+    async getTweetsByUser(screenName, limit = 10) {
+        let tweets = await fetch('/twitter/get/tweets/by/user/' + screenName + '?limit=' + limit)
             .then((response) => response.json())
             .then((tweets) => {
                 return tweets;
