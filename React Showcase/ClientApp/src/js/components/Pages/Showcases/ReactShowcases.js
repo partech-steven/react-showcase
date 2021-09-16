@@ -13,17 +13,23 @@ export class ReactShowcases extends Component {
         this.state = {
             tiles: [
                 {
-                    title: "Twitter API",
+                    title: "Twitter API Integration",
                     subtitle: "With drag-and-drop",
                     hotlink: "/showcases/react/twitter-dragdrop",
-                    description: "Lorem Ipsum and stuff"
+                    description: "A small in-house assignment to initially create a showcase with: A simple Twitter-API integration using ASP.Net and a frontend made with React.",
+                    backgroundImage: "/images/showcase-tile-backgrounds/react/twitter_bg.png",
+                    releaseDate: "13-09-2021",
+                    version: "1.0.0"
                 },
                 {
                     title: "TCGBox",
                     subtitle: "Create and print MtG Proxies",
                     hotlink: "https://tcgbox.stevennolles.nl",
-                    description: "Stuff and stuff and stuff",
-                    backgroundImage: "/images/showcase-tile-backgrounds/react/tcgbox_bg.png"
+                    description: "Originally created when my go-to MtG Proxy website hadn't received an update in almost a year: TCGBox is a small app that allows Magic: The Gathering players to create proxies for cards they wish to try in their decks before buying them. \
+                                  The frontend is made in React/jQuery and the backend was done using PHP with Symfony/Doctrine",
+                    backgroundImage: "/images/showcase-tile-backgrounds/react/tcgbox_bg.png",
+                    releaseDate: "24-04-2021",
+                    version: "1.2.1"
                 }
             ]
         }
@@ -41,11 +47,7 @@ export class ReactShowcases extends Component {
                     {this.state.tiles.map((item, key) =>
                         <InteractiveTile
                             key={key}
-                            title={item.title}
-                            subtitle={(item.subtitle ? item.subtitle : "")}
-                            description={(item.description ? item.description : "")}
-                            hotlink={(item.hotlink ? item.hotlink : "")}
-                            backgroundImage={(item.backgroundImage ? item.backgroundImage : "")}
+                            props={item}
                             className={"col-sm-12 col-md-4"}
                         />
                     )}
