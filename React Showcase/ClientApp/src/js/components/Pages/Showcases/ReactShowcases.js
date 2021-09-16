@@ -38,11 +38,13 @@ export class ReactShowcases extends Component {
     render() {
         return (
             <div className="content">
-                <h1>React Showcase</h1>
-                <p>
-                    Below is a gallery of all the different showcases and tiny projects I've worked on.
-                    <br />Hover over a tile to see a short description, click on it to go to the corresponding page.
-                </p>
+                <h1 className="page-title">React Showcase</h1>
+                <div className="page-text">
+                    <p>
+                        Below is a gallery of all the different showcases and tiny projects I've worked on.
+                        <br />Hover over a tile to see a short description, click on it to go to the corresponding page.
+                    </p>
+                </div>
                 <div className="showcase-tiles row">
                     {this.state.tiles.map((item, key) =>
                         <InteractiveTile
