@@ -601,7 +601,7 @@ input[type="radio"] {
 }
 
 .interactive-tile {
-    height: 240px;
+    min-height: 240px;
     position: relative;
     transition: all 0.3s;
 }
@@ -731,3 +731,17 @@ input[type="radio"] {
         background-color: #551425;
         cursor: pointer;
     }
+
+
+.dropdown-menu.show {
+    border-radius: 0;
+    clip-path: polygon(0% 0.5rem, calc(50% - 0.5rem) 0.5rem, 50% 0%, calc(50% + 0.5rem) 0.5rem, 100% 0.5rem, 100% 100%, 0% 100%);
+    left: 50% !important;
+    padding: 1rem 0 0.5rem;
+    transform: translate3d(-50%, 34px, 0) !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #828282;
+}
