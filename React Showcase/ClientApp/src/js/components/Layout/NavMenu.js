@@ -33,7 +33,7 @@ export class NavMenu extends Component {
             <header>
                 <Navbar className="navbar-expand-sm" light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/">Showcase</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/">Steven Nolles' Showcase</NavbarBrand>
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
