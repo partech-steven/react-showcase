@@ -403,7 +403,7 @@ form button {
     margin: 0 3px;
     padding: 4px 6px;
     text-align: center;
-    width: 64px;
+    width: 92px;
 }
 
 form .form-action-button--next,
@@ -762,8 +762,11 @@ input[type="radio"] {
 
 
 .dropdown-menu.show {
+    background-color: #f8f8f8;
+    border: none;
     border-radius: 0;
-    clip-path: polygon(0% 0.5rem, calc(50% - 0.5rem) 0.5rem, 50% 0%, calc(50% + 0.5rem) 0.5rem, 100% 0.5rem, 100% 100%, 0% 100%);
+    box-shadow: 4px 4px 7px -5px black;
+    clip-path: polygon( 0% 0.5rem, calc(50% - 0.5rem) 0.5rem, 50% 0%, calc(50% + 0.5rem) 0.5rem, calc(100% + 1rem) 0.5rem, calc(100% + 1rem) calc(100% + 1rem), 0% calc(100% + 1rem) );
     left: 50% !important;
     padding: 1rem 0 0.5rem;
     transform: translate3d(-50%, 34px, 0) !important;
@@ -772,4 +775,8 @@ input[type="radio"] {
 .dropdown-item.active,
 .dropdown-item:active {
     background-color: #828282;
+}
+
+.no-background {
+    background: none;
 }
