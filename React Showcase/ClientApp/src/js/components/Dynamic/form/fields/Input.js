@@ -105,6 +105,6 @@ export default class Input extends Component {
                 onBlur={(e) => { this.blur(e) }}
                 style={style}
             />
-        )
+        );
     }
 }

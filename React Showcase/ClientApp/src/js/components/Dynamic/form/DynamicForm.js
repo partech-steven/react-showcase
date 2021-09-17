@@ -296,11 +296,12 @@ export default class DynamicForm extends React.Component {
         let labelClass = m.labelClass || "";
         let info = m.info || "";
         let autocomplete = m.autocomplete || "off";
+        let prefix = m.prefix || "";
 
         let placeholder = (props !== undefined) ? props.placeholder : "";
 
         let input = null;
-        let label, prefix;
+        let label;
         let additionalStyle = {};
 
         if (m.label) {
@@ -311,10 +312,6 @@ export default class DynamicForm extends React.Component {
                     {info && <div className={"infobox"}>i<div className={"infobox__inner"}>{info}</div></div>}
                 </label>
             );
-        }
-
-        if (m.prefix) {
-            prefix = <div className="prefix">{m.prefix}</div>;
         }
 
         switch (type) {
@@ -344,9 +341,13 @@ export default class DynamicForm extends React.Component {
                 input = <Input props={props} type={type} key={key} name={name} value={value} placeholder={placeholder} autocomplete={autocomplete} className={className} belongstostep={currentRenderStep} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
         }
 
+        let inputDef = (prefix)
+            ? <div className="field-wrapper__wrapper"><div className="prefix">{prefix}</div>{input}</div>
+            : input;
+
         return (
             <div key={'row-' + key} className={this.props.className + '__field-wrapper field-wrapper field-wrapper--' + name + ' ' + wrapperClass + ((props.hastinylabel) ? " tiny-label" : "")}>
-                {input}
+                {inputDef}
                 {label}
             </div>
         );
