@@ -49,7 +49,7 @@ export class Twitter extends Component {
 
     componentDidMount() {
         this.getTwitterUser("ParTechIT");
-        this.getTweetsByUser("ParTechIT", 10);
+        this.getTweetsByUser("ParTechIT", this.state.tweetsLimit);
     }
 
     //When people stop dragging things around
@@ -234,6 +234,6 @@ export class Twitter extends Component {
                 return tweets;
             });
 
-        this.setState({ tweets: tweets });
+        this.setState({ tweets: tweets, tweetsLimit: limit });
     }
 }
