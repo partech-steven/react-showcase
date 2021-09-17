@@ -1,5 +1,4 @@
 ﻿import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 export class InteractiveTile extends Component {
     render() {
@@ -16,7 +15,7 @@ export class InteractiveTile extends Component {
             >
                 <div className="interactive-tile__content">
                     {(this.props.props.backgroundImage &&
-                        <img src={this.props.props.backgroundImage} className="interactive-tile__background" />
+                        <img src={this.props.props.backgroundImage} className="interactive-tile__background" alt="tile-bg" />
                     )}
                     <div className="interactive-tile__overlay"></div>
                     {(this.props.props.title &&

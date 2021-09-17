@@ -141,7 +141,7 @@ export default class DynamicForm extends React.Component {
     }
 
     scrollFormContent() {
-        let formContent = document.getElementById("form-content");
+        let formContent = document.getElementById("form-content " + this.props.className);
         formContent.scrollTo({
             top: 0,
             left: formContent.offsetWidth * (this.state.currentStep - 1),
@@ -296,6 +296,7 @@ export default class DynamicForm extends React.Component {
         let labelClass = m.labelClass || "";
         let info = m.info || "";
         let autocomplete = m.autocomplete || "off";
+        let prefix = m.prefix || "";
 
         let placeholder = (props !== undefined) ? props.placeholder : "";
 
@@ -340,9 +341,13 @@ export default class DynamicForm extends React.Component {
                 input = <Input props={props} type={type} key={key} name={name} value={value} placeholder={placeholder} autocomplete={autocomplete} className={className} belongstostep={currentRenderStep} change={this.change.bind(this)} onBlur={this.blur.bind(this)} />;
         }
 
+        let inputDef = (prefix)
+            ? <div className="field-wrapper__wrapper"><div className="prefix">{prefix}</div>{input}</div>
+            : input;
+
         return (
             <div key={'row-' + key} className={this.props.className + '__field-wrapper field-wrapper field-wrapper--' + name + ' ' + wrapperClass + ((props.hastinylabel) ? " tiny-label" : "")}>
-                {input}
+                {inputDef}
                 {label}
             </div>
         );
@@ -392,7 +397,7 @@ export default class DynamicForm extends React.Component {
                             {crumbpathDom}
                         </div>
                     }
-                    <div id="form-content" className="form-content">
+                    <div id={"form-content " + this.props.className} className={"form-content " + this.props.className}>
                         {this.renderForm()}
                     </div>
                 </div>
