@@ -19,7 +19,7 @@ export class ReactShowcases extends Component {
                     description: "A small in-house assignment to initially create a showcase with: A simple Twitter-API integration using ASP.Net and a frontend made with React.",
                     backgroundImage: "/images/showcase-tile-backgrounds/react/twitter_bg.png",
                     releaseDate: "13-09-2021",
-                    version: "1.0.0"
+                    version: "1.1.0"
                 },
                 {
                     title: "TCGBox",
