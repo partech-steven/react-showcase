@@ -66,7 +66,6 @@ export class Twitter extends Component {
             switch (type) {
                 case "TWEETS":
                     if (source.droppableId === "tweets-favourites") {
-                        console.log(source.index, destination.index)
                         tweetFavs = this.reorder(
                             this.state['tweets-favourites'],
                             source.index,
@@ -86,8 +85,8 @@ export class Twitter extends Component {
 
             this.setState({
                 components,
-                tweetFavs
-            }, function () { console.log(this.state); });
+                "tweets-favourites": tweetFavs
+            });
         } else {
             const result = this.move(
                 this.getList(source.droppableId),
