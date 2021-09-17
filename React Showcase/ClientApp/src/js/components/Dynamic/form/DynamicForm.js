@@ -141,7 +141,7 @@ export default class DynamicForm extends React.Component {
     }
 
     scrollFormContent() {
-        let formContent = document.getElementById("form-content");
+        let formContent = document.getElementById("form-content " + this.props.className);
         formContent.scrollTo({
             top: 0,
             left: formContent.offsetWidth * (this.state.currentStep - 1),
@@ -300,7 +300,7 @@ export default class DynamicForm extends React.Component {
         let placeholder = (props !== undefined) ? props.placeholder : "";
 
         let input = null;
-        let label;
+        let label, prefix;
         let additionalStyle = {};
 
         if (m.label) {
@@ -311,6 +311,10 @@ export default class DynamicForm extends React.Component {
                     {info && <div className={"infobox"}>i<div className={"infobox__inner"}>{info}</div></div>}
                 </label>
             );
+        }
+
+        if (m.prefix) {
+            prefix = <div className="prefix">{m.prefix}</div>;
         }
 
         switch (type) {
@@ -392,7 +396,7 @@ export default class DynamicForm extends React.Component {
                             {crumbpathDom}
                         </div>
                     }
-                    <div id="form-content" className="form-content">
+                    <div id={"form-content " + this.props.className} className={"form-content " + this.props.className}>
                         {this.renderForm()}
                     </div>
                 </div>

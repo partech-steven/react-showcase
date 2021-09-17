@@ -457,6 +457,21 @@ form .field-wrapper {
     flex-direction: column-reverse;
 }
 
+form .field-wrapper__wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+    form .field-wrapper__wrapper .prefix {
+        background-color: #ccc;
+        border-bottom: 1px solid #5d5d5d;
+        border-left: 1px solid #5d5d5d;
+        border-top: 1px solid #5d5d5d;
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px;
+        padding: 0 4px;
+    }
+
 .form-thanks {
     background: hsla(0, 0%, 100%, 0.8);
     border-radius: 4px;
@@ -782,5 +797,28 @@ input[type="radio"] {
 }
 
 .twitter-filters {
+    background-color: #bbb;
+    border-radius: 4px;
+    margin: 0 8px 8px;
+    padding: 6px;
     width: fit-content;
+}
+
+.twitter-filters .form-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.twitter-filters__form__field-wrapper {
+    margin: 0 4px;
+}
+
+    .twitter-filters__form__field-wrapper input,
+    .twitter-filters__form__field-wrapper label {
+        font-size: 0.8em;
+    }
+
+.form-actions--twitter-filters__form button {
+    font-size: 0.7em;
+    margin: 6px 4px 0 0;
 }

@@ -160,9 +160,9 @@ export class Twitter extends Component {
                                     key: "twitter-handle",
                                     label: "Twitter Handle",
                                     value: this.state.user.screenName,
+                                    prefix: "@",
                                     props: {
-                                        required: true,
-                                        prefix: "@"
+                                        required: true
                                     }
                                 },
                                 {
@@ -170,9 +170,9 @@ export class Twitter extends Component {
                                     label: "Tweets limit",
                                     value: this.state.tweetsLimit,
                                     type: "number",
+                                    prefix: "#",
                                     pprops: {
-                                        required: true,
-                                        prefix: "#"
+                                        required: true
                                     }
                                 }
                             ]
