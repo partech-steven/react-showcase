@@ -32,6 +32,15 @@ export class ReactShowcases extends Component {
                     backgroundImage: "/images/showcase-tile-backgrounds/react/tcgbox_bg.png",
                     releaseDate: "24-04-2021",
                     version: "1.2.1"
+                },
+                {
+                    title: "Motivational Tasks",
+                    subtitle: "Let the pressure of a passing timebar motivate you",
+                    hotlink: "/showcases/react/motivational-tiles",
+                    description: "<Under Construction>",
+                    backgroundImage: "/images/showcase-tile-backgrounds/react/motivational-tiles_bg.png",
+                    releaseDate: "T.B.D.",
+                    version: "1.0.0"
                 }
             ]
         }
