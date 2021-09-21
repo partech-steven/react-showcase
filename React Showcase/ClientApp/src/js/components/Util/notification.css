@@ -1,4 +1,4 @@
-.notification {
+﻿.notification {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     padding: 4px 12px;
@@ -6,10 +6,12 @@
     min-height: 24px;
     position: relative;
     text-align: left;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
+}
 
-    em {
+    .notification em {
         display: block;
         text-align: center;
     }
-}

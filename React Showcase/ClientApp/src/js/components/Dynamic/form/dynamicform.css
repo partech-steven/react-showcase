@@ -1,0 +1,274 @@
+﻿form h4 {
+    margin: 0;
+    text-align: center;
+}
+
+form .form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+form .form-crumbpath {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 3px -3px;
+    overflow: hidden;
+}
+
+form .form-crumbpath__crumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    flex: 1 1 100%;
+    padding: 4px 0;
+    text-align: center;
+}
+
+    form .form-crumbpath__crumb.current {
+        background-color: #3d85e7;
+    }
+
+    form .form-crumbpath__crumb.finished {
+        background-color: #0f3d7c;
+    }
+
+    form .form-crumbpath__crumb:not(:last-of-type) {
+        -webkit-clip-path: polygon(2px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 2px 100%, 10px 50%);
+        clip-path: polygon(2px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 2px 100%, 10px 50%);
+    }
+
+    form .form-crumbpath__crumb:not(:first-of-type) {
+        margin-left: -8px;
+    }
+
+    form .form-crumbpath__crumb:first-of-type {
+        -webkit-clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+        clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+    }
+
+    form .form-crumbpath__crumb:last-of-type {
+        -webkit-clip-path: polygon(2px 0, 100% 0, 100% 100%, 2px 100%, 10px 50%);
+        clip-path: polygon(2px 0, 100% 0, 100% 100%, 2px 100%, 10px 50%);
+    }
+
+form .form-content {
+    display: flex;
+    overflow-x: hidden;
+}
+
+form .form-step {
+    background: hsla(0, 0%, 100%, 0.8);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(100% - 6px);
+    margin: 3px;
+    padding: 8px;
+}
+
+    form .form-step:first {
+        margin-left: 0;
+    }
+
+    form .form-step:last {
+        margin-right: 0;
+    }
+
+form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+form .form-action-button,
+form button {
+    background-color: #321b41;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.9em;
+    margin: 0 3px;
+    padding: 4px 6px;
+    text-align: center;
+    width: 92px;
+}
+
+form .form-action-button--next,
+form button--next {
+    text-indent: -8px;
+    -webkit-clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+}
+
+form .form-action-button--previous,
+form button--previous {
+    text-indent: 8px;
+    -webkit-clip-path: polygon(8px 0, 100% 0, 100% 100%, 8px 100%, 0 50%);
+    clip-path: polygon(8px 0, 100% 0, 100% 100%, 8px 100%, 0 50%);
+}
+
+form .form-action-button:focus,
+form .form-action-button:hover,
+form button:focus,
+form button:hover {
+    background-color: #4e2a65;
+    cursor: pointer;
+}
+
+form .form-action-button:active,
+form button:active {
+    background-color: #160c1d;
+}
+
+form button {
+    background-color: #e27900;
+    width: 92px;
+}
+
+    form button:focus,
+    form button:hover {
+        background-color: #ff9316;
+        cursor: pointer;
+    }
+
+    form button:active {
+        background-color: #af5e00;
+    }
+
+form .radio-container__free-field {
+    max-width: 150px;
+}
+
+form .field-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+form .field-wrapper__wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+    form .field-wrapper__wrapper .prefix {
+        background-color: #ccc;
+        border-bottom: 1px solid #5d5d5d;
+        border-left: 1px solid #5d5d5d;
+        border-top: 1px solid #5d5d5d;
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px;
+        padding: 0 4px;
+    }
+
+.form-thanks {
+    background: hsla(0, 0%, 100%, 0.8);
+    border-radius: 4px;
+    padding: 8px;
+}
+
+    .form-thanks h3 {
+        margin: 0;
+        text-align: center;
+    }
+
+input[type="checkbox"] {
+    display: none;
+}
+
+    input[type="checkbox"] + label {
+        margin-left: 20px;
+        position: relative;
+    }
+
+        input[type="checkbox"] + label:after,
+        input[type="checkbox"] + label:before {
+            content: "";
+            display: block;
+            position: absolute;
+        }
+
+        input[type="checkbox"] + label:before {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            height: 12px;
+            left: -20px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 12px;
+        }
+
+        input[type="checkbox"] + label:focus,
+        input[type="checkbox"] + label:hover {
+            cursor: pointer;
+        }
+
+    input[type="checkbox"]:checked + label:before {
+        border-color: #0f3d7c;
+    }
+
+    input[type="checkbox"]:checked + label:after {
+        -webkit-animation: animatedCheckIcon 0.2s linear 0s normal forwards;
+        animation: animatedCheckIcon 0.2s linear 0s normal forwards;
+        background-color: #61b727;
+        height: 20px;
+        left: -24px;
+        top: -8px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        width: 20px;
+    }
+
+input[type="radio"] {
+    display: none;
+}
+
+    input[type="radio"] + label {
+        margin-left: 20px;
+        position: relative;
+    }
+
+        input[type="radio"] + label:after,
+        input[type="radio"] + label:before {
+            border-radius: 20px;
+            background-color: #fff;
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            transition: all 0.3s;
+        }
+
+        input[type="radio"] + label:before {
+            border: 1px solid #ccc;
+            height: 12px;
+            left: -20px;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 12px;
+        }
+
+        input[type="radio"] + label:after {
+            background: radial-gradient(circle, #88da51, #40781a);
+            height: 12px;
+            left: -19px;
+            -webkit-transform: translateY(-50%) scale(0);
+            transform: translateY(-50%) scale(0);
+            width: 12px;
+        }
+
+        input[type="radio"] + label:focus,
+        input[type="radio"] + label:hover {
+            cursor: pointer;
+        }
+
+    input[type="radio"]:checked + label:before {
+        border-color: #0f3d7c;
+    }
+
+    input[type="radio"]:checked + label:after {
+        -webkit-transform: translateY(-50%) scale(1);
+        transform: translateY(-50%) scale(1);
+    }

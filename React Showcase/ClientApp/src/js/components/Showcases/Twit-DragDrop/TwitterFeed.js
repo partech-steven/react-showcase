@@ -4,6 +4,8 @@ import TwitterUtil from "../../../Utils/TwitterUtil";
 import Notification from "../../Util/Notification";
 import Spinner from "../../Util/Spinner";
 
+import './twitterfeed.css';
+
 class TwitterFeed extends Component {
     render() {
         return (

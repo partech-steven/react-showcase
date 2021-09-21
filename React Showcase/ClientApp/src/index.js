@@ -6,7 +6,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 //Style
-import './style.css';
+import './general.css';
+import './animation.css';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');

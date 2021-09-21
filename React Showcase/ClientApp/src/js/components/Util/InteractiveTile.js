@@ -1,5 +1,7 @@
 ﻿import React, { Component } from "react";
 
+import './interactive-tile.css';
+
 export class InteractiveTile extends Component {
     render() {
         return (

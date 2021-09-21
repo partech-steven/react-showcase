@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { InteractiveTile } from '../../Util/InteractiveTile';
 
+import './react-showcases.css';
+
 export class ReactShowcases extends Component {
     /**
   * Constructor
