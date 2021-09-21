@@ -36,7 +36,7 @@ export class ReactShowcases extends Component {
                 {
                     title: "Motivational Tasks",
                     subtitle: "Let the pressure of a passing timebar motivate you",
-                    hotlink: "/showcases/react/motivational-tiles",
+                    hotlink: "/showcases/react/motivational-tasks",
                     description: "<Under Construction>",
                     backgroundImage: "/images/showcase-tile-backgrounds/react/motivational-tiles_bg.png",
                     releaseDate: "T.B.D.",

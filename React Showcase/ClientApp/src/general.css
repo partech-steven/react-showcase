@@ -25,6 +25,10 @@ body {
     background-color: white;
     border-radius: 4px;
     flex: 1 1;
+    padding: 0 0.5em 1.5em;
+}
+
+.content--twitter {
     min-height: 0%;
     padding: 0 0.5em;
 }
