@@ -7,6 +7,8 @@ import Radio from './fields/Radio';
 import Select from './fields/Select';
 import Date from "./fields/Date";
 
+import './dynamicform.css';
+
 let changed = [];
 
 /**

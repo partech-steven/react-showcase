@@ -1,0 +1,43 @@
+﻿.draggable-component {
+    color: #282828;
+    cursor: default !important;
+    overflow: hidden;
+}
+
+.draggable-component__header {
+    width: 100%;
+}
+
+.draggable-component__icon {
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+    height: 12px;
+    padding: 4px 0;
+}
+
+    .draggable-component__icon img {
+        display: block;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .draggable-component__icon:hover {
+        cursor: grab;
+    }
+
+.draggable-component__title-container {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 4px;
+    text-align: center;
+    width: 100%;
+}
+
+.draggable-component__subtitle {
+    font-size: 0.7em;
+}
+
+.draggable-component__content {
+    height: 100%;
+    padding: 0 6px;
+    overflow: hidden auto;
+}
