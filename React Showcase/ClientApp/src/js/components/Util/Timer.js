@@ -26,7 +26,7 @@ export class Timer extends Component {
             console.log("Henlo")
             setInterval(function () {
                 if (self.state.timerRunning && self.state.passedTime < self.props.totalTime) self.setState({ passedTime: self.state.passedTime + 1 });
-            }, 3600000)
+            }, 60000)
         }
 
         return true;
