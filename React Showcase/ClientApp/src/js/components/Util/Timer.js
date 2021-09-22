@@ -4,9 +4,27 @@ import TimeUtil from "../../Utils/TimeUtil";
 import './timer.css';
 
 export class Timer extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            timerRunning: false,
+            passedTime: 0
+        };
+    }
+
+    componentDidMount() {
+        this.setState({ passedTime: this.props.passedTime });
+    }
+
+    toggleProgress() {
+        this.setState({ timerRunning: !this.state.timerRunning });
+    }
+
     render() {
         let mode = this.props.mode || "fill";
-        let progressPercentage = (this.props.passedTime / this.props.totalTime) * 100;
+        let progressPercentage = (this.state.passedTime / this.props.totalTime) * 100;
         let goalTimePercentage = (this.props.goalTime) ? (this.props.goalTime / this.props.totalTime) * 100 : 0;
         let barColour = "#3aac00";
 
@@ -23,20 +41,26 @@ export class Timer extends Component {
         return (
             <div className={"timer timer--" + mode}>
                 <div className="timer__controls">
-                    
-                </div>
-                <div className="timer__bar">
-                    <div className="timer__progress" style={{ width: progressPercentage + "%", backgroundColor: barColour }}></div>
-                    <div className="timer__indicator">
-                        {TimeUtil.minutesToHoursMinutes(this.props.passedTime, "visual") + " / " + TimeUtil.minutesToHoursMinutes(this.props.totalTime, "visual")}
-                    </div>
-                    {this.props.goalTime &&
-                        <div className="timer__goal" style={{ left: goalTimePercentage + "%" }} >
-
-                        </div>
+                    {!this.state.timerRunning
+                        ? <div className="timer-control timer-control--start" onClick={(e) => this.toggleProgress()}></div>
+                        : <div className="timer-control timer-control--pause" onClick={(e) => this.toggleProgress()}></div>
                     }
                 </div>
-            </div>
+                <div className="timer__bar">
+                    <div className="timer__progress" style={{ width: (progressPercentage + 2) + "%", backgroundColor: barColour }}></div>
+                    <div className="timer__indicator">
+                        {TimeUtil.minutesToHoursMinutes(this.state.passedTime, "visual") + " / " + TimeUtil.minutesToHoursMinutes(this.props.totalTime, "visual")}
+                    </div>
+                    {(this.props.goalTime && goalTimePercentage > 0) && [
+                        <div key="goal" className="timer__goal" style={{ left: "calc(" + goalTimePercentage + "% - 1em)" }} >
+
+                        </div>,
+                        <div key="goal-info" className="timer__goal-info" style={{ left: "calc(" + (goalTimePercentage + "% + " + 8 + "px)")}} >
+                            {"Expected goal: " + TimeUtil.minutesToHoursMinutes(this.props.goalTime, "visual")}
+                        </div>
+                    ]}
+                </div>
+            </div >
         );
     }
 };
