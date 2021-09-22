@@ -148,6 +148,7 @@ export class Twitter extends Component {
     render() {
         if(this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching data..." />);
         return ([
+            <h1 className="page-title">Twitter, Drag-n-Drop and a form! - A showcase</h1>,
             <div className="twitter-filters" key="twitter-filters">
                 <DynamicForm
                     className="twitter-filters__form"
@@ -184,7 +185,7 @@ export class Twitter extends Component {
             <DragDropContext key={"draggable-context"} onDragEnd={this.onDragEnd.bind(this)}>
                 <Droppable droppableId="content" direction="horizontal" type="CONTENT">
                     {(provided) => (
-                        <div key="content" className="content row flex-nowrap no-background" {...provided.droppableProps} ref={provided.innerRef}>
+                        <div key="content" className="content content--twitter row flex-nowrap no-background" {...provided.droppableProps} ref={provided.innerRef}>
                             {this.state.components.map((component, index) => {
                                 if (component.key === "twit-feed" || component.key === "twit-favs") {
                                     let tweets = (component.key === "twit-feed") ? this.state.tweets : this.state['tweets-favourites'];
