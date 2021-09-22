@@ -1,21 +1,9 @@
 ﻿import React, { Component } from "react";
+import { Timer } from "../../Util/Timer";
 
 import './task.css';
 
 export class Task extends Component {
-
-    completeTask(event) {
-        this.props.completeTask(event);
-    }
-
-    pauseTask(event) {
-        this.props.pauseTask(event);
-    }
-
-    cancelTask(event) {
-        this.props.cancelTask(event);
-    }
-
     render() {
         let assignee = this.props.assignee;
         let task = this.props.details;
@@ -41,12 +29,12 @@ export class Task extends Component {
                         {task.description}
                     </div>
                     <div className="task__timer">
-                        Here be timer
-                    </div>
-                    <div className="task__actions row">
-                        <button className="task__action task__action--complete col-sm-12" onClick={(e) => this.completeTask(e)}>It's done. It's finally over.</button>
-                        <button className="task__action task__action--pause col-sm-12 col-md-6" onClick={(e) => this.pauseTask(e)}>Just a small break...</button>
-                        <button className="task__action task__action--cancel col-sm-12 col-md-6" onClick={(e) => this.cancelTask(e)}>I give up!</button>
+                        <Timer
+                            totalTime={task.timer['total-time']}
+                            goalTime={task.timer['goal-time']}
+                            passedTime={task.timer['passed-time']}
+                            mode={"empty-out"}
+                        />
                     </div>
                 </div>
             </div>

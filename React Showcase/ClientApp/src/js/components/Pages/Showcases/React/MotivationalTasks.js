@@ -32,7 +32,7 @@ export class MotivationalTasks extends Component {
                         timer: {
                             "total-time": 18000, //Time is in minutes
                             "goal-time": 10800, //Also in minutes
-                            "passed-time": 3600, //Do I really have to tell you by this point?
+                            "passed-time": 0, //Do I really have to tell you by this point?
                         },
                         status: "active"
                     }
@@ -52,8 +52,8 @@ export class MotivationalTasks extends Component {
                         title: "Fix Desync issues",
                         description: "Clipping issues, long-distance grabs, sudden eliminations; all contribute to the chagrin of the players. It's high time we fix the issue!",
                         timer: {
-                            "total-time": 18000, //Time is in minutes
-                            "goal-time": 10800, //Also in minutes
+                            "total-time": 1209600, //Time is in minutes
+                            "goal-time": 864000, //Also in minutes
                             "passed-time": 3600, //Do I really have to tell you by this point?
                         },
                         status: "inactive"
@@ -74,8 +74,8 @@ export class MotivationalTasks extends Component {
                         title: "Port game to the Nintendo Switch",
                         description: "It's about damn time!",
                         timer: {
-                            "total-time": 18000, //Time is in minutes
-                            "goal-time": 10800, //Also in minutes
+                            "total-time": 2678400, //Time is in minutes
+                            "goal-time": 2160000, //Also in minutes
                             "passed-time": 3600, //Do I really have to tell you by this point?
                         },
                         status: "active"
@@ -83,79 +83,72 @@ export class MotivationalTasks extends Component {
                 },
                 {
                     assignee: {
-                        name: "Golden Hotdog",
-                        profileImg: "/images/profile-images/golden-hotdog.png",
-                        role: "Glizzy Gang Member",
-                        status: "online"
+                        name: "Cloud Bean",
+                        profileImg: "/images/profile-images/cloud-bean.png",
+                        role: "Someone else's PC",
+                        status: "away"
                     },
                     task: {
                         project: {
-                            name: "Achieve 'Infallible' status",
+                            name: "Data accretion",
                             icon: "/images/project-icons/infallible.png"
                         },
-                        title: "Practise Main Show",
-                        description: "To better prepare for the ultimate achievement one must learn how to depend only on themselves. Get at least one win on Main Show.",
+                        title: "Observe players",
+                        description: "We must have all of the metrics!",
                         timer: {
-                            "total-time": 18000, //Time is in minutes
-                            "goal-time": 10800, //Also in minutes
-                            "passed-time": 3600, //Do I really have to tell you by this point?
+                            "total-time": 3600, //Time is in minutes
+                            "goal-time": 3000, //Also in minutes
+                            "passed-time": 3300, //Do I really have to tell you by this point?
                         },
                         status: "active"
                     }
                 },
                 {
                     assignee: {
-                        name: "Golden Hotdog",
-                        profileImg: "/images/profile-images/golden-hotdog.png",
-                        role: "Glizzy Gang Member",
+                        name: "Peachy Knight",
+                        profileImg: "/images/profile-images/peachy-knight.png",
+                        role: "Knight of the Bean table",
                         status: "online"
                     },
                     task: {
                         project: {
-                            name: "Achieve 'Infallible' status",
+                            name: "Server Security",
                             icon: "/images/project-icons/infallible.png"
                         },
-                        title: "Practise Main Show",
-                        description: "To better prepare for the ultimate achievement one must learn how to depend only on themselves. Get at least one win on Main Show.",
+                        title: "Hold the door!",
+                        description: "Obvious reference.",
                         timer: {
-                            "total-time": 18000, //Time is in minutes
-                            "goal-time": 10800, //Also in minutes
-                            "passed-time": 3600, //Do I really have to tell you by this point?
+                            "total-time": 3600000000, //Time is in minutes
+                            "goal-time": 3600000000, //Also in minutes
+                            "passed-time": 1800000000, //Do I really have to tell you by this point?
                         },
                         status: "active"
                     }
                 },
                 {
                     assignee: {
-                        name: "Golden Hotdog",
-                        profileImg: "/images/profile-images/golden-hotdog.png",
-                        role: "Glizzy Gang Member",
-                        status: "online"
+                        name: "Pooh Bean",
+                        profileImg: "/images/profile-images/pooh-bean.png",
+                        role: "Rookie",
+                        status: "offline"
                     },
                     task: {
                         project: {
-                            name: "Achieve 'Infallible' status",
+                            name: "Learn the game",
                             icon: "/images/project-icons/infallible.png"
                         },
                         title: "Practise Main Show",
-                        description: "To better prepare for the ultimate achievement one must learn how to depend only on themselves. Get at least one win on Main Show.",
+                        description: "Learn the ropes of the game by playing solo. No need to annoy people in Squad games.",
                         timer: {
-                            "total-time": 18000, //Time is in minutes
-                            "goal-time": 10800, //Also in minutes
-                            "passed-time": 3600, //Do I really have to tell you by this point?
+                            "total-time": 36000, //Time is in minutes
+                            "goal-time": 30000, //Also in minutes
+                            "passed-time": 24000, //Do I really have to tell you by this point?
                         },
                         status: "active"
                     }
                 }
             ]
         }
-    }
-
-    adjustTasksStatus(index, newStatus, event) {
-        let tasks = this.state.tasks;
-        tasks[index].task.status = newStatus;
-
-        this.setState({ tasks: tasks });
     }
 
     render() {
@@ -170,9 +163,6 @@ export class MotivationalTasks extends Component {
                                     key={index}
                                     assignee={item.assignee}
                                     details={item.task}
-                                    completeTask={this.adjustTasksStatus.bind(this, index, "complete")}
-                                    pauseTask={this.adjustTasksStatus.bind(this, index, "inactive")}
-                                    cancelTask={this.adjustTasksStatus.bind(this, index, "cancelled")}
                                 />
                             );
                         })
