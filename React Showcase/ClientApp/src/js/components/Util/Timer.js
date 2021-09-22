@@ -10,16 +10,32 @@ export class Timer extends Component {
 
         this.state = {
             timerRunning: false,
-            passedTime: 0
+            passedTime: 0,
+            intervalSet: false
         };
     }
 
     componentDidMount() {
-        this.setState({ passedTime: this.props.passedTime });
+        this.setState({ passedTime: this.props.passedTime, intervalSet: true });
+    }
+
+    shouldComponentUpdate(newProps, newState) {
+        let self = this;
+
+        if (this.state.intervalSet !== newState.intervalSet && this.state.intervalSet === false) {
+            console.log("Henlo")
+            setInterval(function () {
+                if (self.state.timerRunning && self.state.passedTime < self.props.totalTime) self.setState({ passedTime: self.state.passedTime + 1 });
+            }, 3600000)
+        }
+
+        return true;
     }
 
     toggleProgress() {
-        this.setState({ timerRunning: !this.state.timerRunning });
+        this.setState({
+            timerRunning: !this.state.timerRunning
+        });
     }
 
     render() {
