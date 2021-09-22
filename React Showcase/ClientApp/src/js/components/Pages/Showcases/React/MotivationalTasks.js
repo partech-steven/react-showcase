@@ -47,7 +47,7 @@ export class MotivationalTasks extends Component {
                     task: {
                         project: {
                             name: "Bug Fixing",
-                            icon: "/images/project-icons/infallible.png"
+                            icon: "/images/project-icons/maintenance.png"
                         },
                         title: "Fix Desync issues",
                         description: "Clipping issues, long-distance grabs, sudden eliminations; all contribute to the chagrin of the players. It's high time we fix the issue!",
@@ -69,7 +69,7 @@ export class MotivationalTasks extends Component {
                     task: {
                         project: {
                             name: "Porting",
-                            icon: "/images/project-icons/infallible.png"
+                            icon: "/images/project-icons/maintenance.png"
                         },
                         title: "Port game to the Nintendo Switch",
                         description: "It's about damn time!",
@@ -91,7 +91,7 @@ export class MotivationalTasks extends Component {
                     task: {
                         project: {
                             name: "Data accretion",
-                            icon: "/images/project-icons/infallible.png"
+                            icon: "/images/project-icons/headstand.png"
                         },
                         title: "Observe players",
                         description: "We must have all of the metrics!",
@@ -113,7 +113,7 @@ export class MotivationalTasks extends Component {
                     task: {
                         project: {
                             name: "Server Security",
-                            icon: "/images/project-icons/infallible.png"
+                            icon: "/images/project-icons/security.png"
                         },
                         title: "Hold the door!",
                         description: "Obvious reference.",
@@ -135,7 +135,7 @@ export class MotivationalTasks extends Component {
                     task: {
                         project: {
                             name: "Learn the game",
-                            icon: "/images/project-icons/infallible.png"
+                            icon: "/images/project-icons/basic.png"
                         },
                         title: "Practise Main Show",
                         description: "Learn the ropes of the game by playing solo. No need to annoy people in Squad games.",
@@ -155,6 +155,17 @@ export class MotivationalTasks extends Component {
         if (this.state.tasks === null) return (<Spinner className="initial-spinner" message="Increasing pressure..." />);
         return (
             <div className="content no-background">
+                <h1 className="page-title">Motivational Tasks - A showcase</h1>
+                <p>
+                    Each card represents a task that displays the following:
+
+                </p>
+                <ul>
+                    <li>User information, such as their name and role/function and if they're online or not</li>
+                    <li>The task <strong>(bold)</strong> and project <em>(italic)</em> over a banner</li>
+                    <li>A description</li>
+                    <li>A timebar which can be (de)activated. Also displays a line which shows the preferable target-time for a task. Changes colour depending how depleted the bar is.</li>
+                </ul>
                 <div className="tasklist row">
                     {
                         this.state.tasks.map((item, index) => {

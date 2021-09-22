@@ -27,15 +27,13 @@
     font-size: 0.6em;
     padding: 4px 6px;
     text-align: center;
+    width: 35%;
 }
 
 .task__user-img {
     margin: 0 auto;
+    position: relative;
     width: 50%;
-}
-
-.task__user {
-    width: 35%;
 }
 
 .task__user img {
@@ -43,12 +41,31 @@
     width: 100%;
 }
 
-.task__details {
-    clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 3.5em, 0 3.5em);
-    flex: 1;
-    font-size: 0.7em;
-    padding: 0 1.5em 0 0.5em;
+.task__user-status {
+    background-color: #ccc;
+    border: 1px solid #313131;
+    border-radius: 12px;
+    height: 12px;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    width: 12px;
 }
+
+.task__user-status--online {
+    background-color: #2acf2a;
+}
+
+.task__user-status--away {
+    background-color: darkorange;
+}
+
+    .task__details {
+        clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 3.5em, 0 3.5em);
+        flex: 1;
+        font-size: 0.7em;
+        padding: 0 1.5em 0 0.5em;
+    }
 
 .task__user,
 .task__details {
@@ -63,23 +80,8 @@
     transform: translateY(-50%);
 }
 
-.task--active .task__details {
+.task .task__details {
     background-color: #a3c3ff;
-}
-
-.task--complete .task__details {
-    background-color: #057623;
-    color: white;
-}
-
-.task--inactive .task__details {
-    background-color: #cf8600;
-    color: white;
-}
-
-.task--cancelled .task__details {
-    background-color: #c90000;
-    color: white;
 }
 
 .task__content {
@@ -106,19 +108,4 @@
     clip-path: polygon(0% 0.5em, 0.5em 0%, 100% 0%, 100% calc(100% - 0.5em), calc(100% - 0.5em) 100%, 0% 100%);
     color: white;
     padding: 0 8px;
-}
-
-.task__action--complete {
-    background-color: #057623;
-    flex: 1 100%;
-}
-
-.task__action--pause {
-    background-color: #cf8600;
-    flex: 1 50%;
-}
-
-.task__action--cancel {
-    background-color: #c90000;
-    flex: 1 50%;
 }

@@ -148,6 +148,7 @@ export class Twitter extends Component {
     render() {
         if(this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching data..." />);
         return ([
+            <h1 className="page-title">Twitter, Drag-n-Drop and a form! - A showcase</h1>,
             <div className="twitter-filters" key="twitter-filters">
                 <DynamicForm
                     className="twitter-filters__form"

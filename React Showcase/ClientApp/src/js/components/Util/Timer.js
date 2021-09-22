@@ -23,10 +23,9 @@ export class Timer extends Component {
         let self = this;
 
         if (this.state.intervalSet !== newState.intervalSet && this.state.intervalSet === false) {
-            console.log("Henlo")
             setInterval(function () {
                 if (self.state.timerRunning && self.state.passedTime < self.props.totalTime) self.setState({ passedTime: self.state.passedTime + 1 });
-            }, 60000)
+            }, 10)
         }
 
         return true;

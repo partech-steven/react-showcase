@@ -5,7 +5,6 @@ import './interactive-tile.css';
 export class InteractiveTile extends Component {
     render() {
         return (
-            console.log(this.props),
             <div
                 className={"interactive-tile" + (this.props.className ? " " + this.props.className : "")}
                 onClick={(e) =>

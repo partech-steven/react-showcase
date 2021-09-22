@@ -37,9 +37,9 @@ export class ReactShowcases extends Component {
                     title: "Motivational Tasks",
                     subtitle: "Let the pressure of a passing timebar motivate you",
                     hotlink: "/showcases/react/motivational-tasks",
-                    description: "<Under Construction>",
+                    description: "Nothing motivates a person more than seeing a timebar fill, or empty out, at breakneck speed (note: depends on the time available). Hence these little cards are there to motivate one to finish their tasks before the timer runs out.",
                     backgroundImage: "/images/showcase-tile-backgrounds/react/motivational-tiles_bg.png",
-                    releaseDate: "T.B.D.",
+                    releaseDate: "22-09-2021",
                     version: "1.0.0"
                 }
             ]
