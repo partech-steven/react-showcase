@@ -5,6 +5,7 @@ import { Home } from './js/components/Pages/Home';
 import { ReactShowcases } from './js/components/Pages/Showcases/ReactShowcases';
 import { Twitter } from './js/components/Pages/Showcases/React/Twitter';
 import { MotivationalTasks } from './js/components/Pages/Showcases/React/MotivationalTasks';
+import { StarSystemPage } from './js/components/Pages/Showcases/React/StarSystemPage';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -16,6 +17,7 @@ export default class App extends Component {
                 <Route exact path='/showcases/react' component={ReactShowcases} />
                 <Route exact path='/showcases/react/twitter-dragdrop' component={Twitter} />
                 <Route exact path='/showcases/react/motivational-tasks' component={MotivationalTasks} />
+                <Route exact path='/showcases/react/star-system' component={StarSystemPage} />
             </Layout>
         );
     }

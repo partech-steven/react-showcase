@@ -1,12 +1,12 @@
 ﻿import React, { Component } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import TwitterFeed from '../../../Showcases/Twit-DragDrop/TwitterFeed';
 import { ContactForm } from '../../../Showcases/Twit-DragDrop/ContactForm';
 import DraggableComponent from '../../../Util/DraggableComponent';
 import Spinner from '../../../Util/Spinner';
 import DynamicForm from '../../../Dynamic/form/DynamicForm';
 
 import './twitter.css';
+import { TwitterFeed } from '../../../Showcases/Twit-DragDrop/TwitterFeed';
 
 export class Twitter extends Component {
     /**

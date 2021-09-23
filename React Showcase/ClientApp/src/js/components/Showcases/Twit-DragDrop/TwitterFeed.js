@@ -6,7 +6,7 @@ import Spinner from "../../Util/Spinner";
 
 import './twitterfeed.css';
 
-class TwitterFeed extends Component {
+export class TwitterFeed extends Component {
     render() {
         return (
             <Droppable droppableId={this.props.droppableId} direction="vertical" type="TWEETS">
@@ -23,5 +23,3 @@ class TwitterFeed extends Component {
         );
     }
 };
-
-export default TwitterFeed;

@@ -1,11 +1,13 @@
 ﻿.spinnyboi {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    padding: 4px 12px 4px 32px;
-    margin: 0 auto;
+    left: 50%;
     min-height: 24px;
-    position: relative;
+    padding: 4px 12px 4px 32px;
+    position: absolute;
     text-align: left;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;

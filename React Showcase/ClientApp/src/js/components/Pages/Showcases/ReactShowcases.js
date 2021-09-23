@@ -41,6 +41,15 @@ export class ReactShowcases extends Component {
                     backgroundImage: "/images/showcase-tile-backgrounds/react/motivational-tiles_bg.png",
                     releaseDate: "22-09-2021",
                     version: "1.0.0"
+                },
+                {
+                    title: "Procedurally Generated Star System",
+                    subtitle: "SPAAAAAACEEE~!",
+                    hotlink: "/showcases/react/star-system",
+                    description: "<Under Construction>",
+                    backgroundImage: "/images/showcase-tile-backgrounds/react/star-system_bg.png",
+                    releaseDate: "T.B.D",
+                    version: "1.0.0"
                 }
             ]
         }

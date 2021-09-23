@@ -26,6 +26,7 @@ body {
     border-radius: 4px;
     flex: 1 1;
     padding: 0 0.5em 1.5em;
+    position: relative;
 }
 
 .content--twitter {
