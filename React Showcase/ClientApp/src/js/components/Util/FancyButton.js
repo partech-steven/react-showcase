@@ -15,11 +15,14 @@ export class FancyButton extends Component {
         let labelStyle = (this.props.icon) ? { padding: "0 0.5em 0 1.75em" } : "";
 
         return (
-            <div className={className} style={{ backgroundColor: backgroundColor }} onClick={(e) => this.click(e)}>
-                <div className="fancy-button__gradient-overlay"></div>
-                {this.props.icon && <img className="fancy-button__icon" src={this.props.icon} alt="icon" />}
-                {label && <div className="fancy-button__label" style={labelStyle}>{label}</div>}
-                <div className="fancy-button__shade"></div>
+            <div className="fancy-button__wrapper">
+                <div className={className} style={{ backgroundColor: backgroundColor }} onClick={(e) => this.click(e)}>
+                    <div className="fancy-button__gradient-overlay"></div>
+                    {this.props.icon && <img className="fancy-button__icon" src={this.props.icon} alt="icon" />}
+                    {label && <div className="fancy-button__label" style={labelStyle}>{label}</div>}
+                    <div className="fancy-button__shade"></div>
+                </div>
+                {this.props.tooltip && <div className="fancy-button__tooltip">{this.props.tooltip}</div>}
             </div>
         );
     }

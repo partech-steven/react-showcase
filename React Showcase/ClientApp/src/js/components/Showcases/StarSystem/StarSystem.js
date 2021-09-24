@@ -3,7 +3,7 @@ import { Spinner } from '../../Util/Spinner';
 import 'seedrandom';
 
 import './star-system.css';
-import { FancyButton } from '../../Util/FancyButton';
+import { Toolbar } from './Toolbar';
 
 export class StarSystem extends Component {
     /**
@@ -21,6 +21,14 @@ export class StarSystem extends Component {
             zoomLevel: 1,
             simulationRunning: true
         }
+    }
+
+    shouldComponentUpdate(newProps, newState) {
+        let shouldUpdate = true;
+
+        if (this.state.seed !== newState.seed && newState.seedChangedByUser) shouldUpdate = false;
+
+        return shouldUpdate;
     }
 
     generateStarBackground(min = 256, max = 640) {
@@ -50,82 +58,39 @@ export class StarSystem extends Component {
     }
 
     //Generate a new randomised string
-    refreshSystem(generateNewSeed = true) {
-        var result = '';
-        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%^&*()[]{}:;';
-        var charactersLength = characters.length;
-        for (var i = 0; i < Math.round(Math.random() * 100); i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
+    refreshSystem(e) {
+        let generateNewSeed = !this.state.seedChangedByUser;
+        let newState = { seedChangedByUser: false };
+        if (generateNewSeed) {
+            let result = '';
+            let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%^&*()[]{}:;';
+            let charactersLength = characters.length;
+            for (let i = 0; i < Math.round(Math.random() * 100); i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
 
-        this.setState({ seed: result });
+            newState.seed = result
+        }
+        
+        this.setState(newState);
+    }
+
+    seedChange(e, seed, seedChangedByUser) {
+        if (this.state.seed !== seed) {
+            this.setState({ seed: seed, seedChangedByUser: seedChangedByUser });
+        }
     }
 
     getToolbar() {
         return (
             <div className="star-system__toolbar">
-                <div className="star-system__toolbar-item">
-                    <div className="star-system__toolbar-input">
-                        <label htmlFor="seed"><strong><em>Seed </em></strong></label>
-                        <input name="seed" value={this.state.seed} onChange={(e) => { }} />
-                    </div>
-                    <div className="star-system__toolbar-actions">
-                        {!this.state.seedChangedByUser
-                            ? <FancyButton
-                                className="star-system__action star-system__action--regen-and-refresh"
-                                backgroundColor="#2b88d9"
-                                icon="/images/button-icons/refresh.png"
-                                onClick={(e) => this.refreshSystem()}
-                            />
-                            : <FancyButton
-                                className="star-system__action star-system__action--refresh"
-                                backgroundColor="#2b88d9"
-                                icon="/images/button-icons/refresh.png"
-                                onClick={(e) => this.refreshSystem(false)}
-                            />
-                        }
-                    </div>
-                </div>
-                <div className="star-system__toolbar-item">
-                    <div className="star-system__toolbar-actions">
-                        <div className="star-system__action star-system__action--restart">
-                            <div className="star-system__action-tooltip">
-                                Restart simulation
-                            </div>
-                        </div>
-                        {this.state.seedChangedByUser
-                            ? <div className="star-system__action star-system__action--pause">
-                                <div className="star-system__action-tooltip">
-                                    Pause simulation
-                                </div>
-                            </div>
-                            : <div className="star-system__action star-system__action--resume">
-                                <div className="star-system__action-tooltip">
-                                    Resume simulation
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-                <div className="star-system__toolbar-item">
-                    <div className="star-system__toolbar-input">
-                        <label htmlFor="seed"><strong><em>Zoom </em></strong></label>
-                        <div className="star-system__action star-system__action--zoom-out">
-                            <div className="star-system__action-tooltip">
-                                -
-                            </div>
-                        </div>
-                        <div className="star-system__toolbar-input">
-
-                            <input name="seed" value={this.state.zoomLevel} onChange={(e) => { }} />
-                        </div>
-                        <div className="star-system__action star-system__action--zoom-in">
-                            <div className="star-system__action-tooltip">
-                                +
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Toolbar
+                    seed={this.state.seed}
+                    seedChangedByUser={this.state.seedChangedByUser}
+                    zoomLevel={this.state.zoomLevel}
+                    onSeedChange={(e, seed, seedChangedByUser) => this.seedChange(e, seed, seedChangedByUser)}
+                    refreshSystem={(e) => this.refreshSystem(e) }
+                />
             </div>
         );
     }

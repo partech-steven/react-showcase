@@ -7,6 +7,10 @@
     position: relative;
 }
 
+.fancy-button__wrapper {
+    position: relative;
+}
+
 .fancy-button__icon {
     height: 1.05em;
     left: 0.2em;
@@ -28,9 +32,13 @@
         background: linear-gradient(to bottom, rgb(0 0 0 / 30%) 0%,rgb(255 255 255 / 10%) 50%,rgb(0 0 0 / 20%) 51%,rgb(255 255 255 / 40%) 100%);
     }
 
-.fancy-button:active .fancy-button__gradient-overlay {
-    background: linear-gradient(to bottom, rgb(0 0 0 / 55%) 0%,rgb(0 0 0 / 20%) 50%,rgb(0 0 0 / 45%) 51%,rgb(0 0 0 / 10%) 100%);
-}
+    .fancy-button:hover + .fancy-button__tooltip {
+        display: block;
+    }
+
+    .fancy-button:active .fancy-button__gradient-overlay {
+        background: linear-gradient(to bottom, rgb(0 0 0 / 55%) 0%,rgb(0 0 0 / 20%) 50%,rgb(0 0 0 / 45%) 51%,rgb(0 0 0 / 10%) 100%);
+    }
 
 .fancy-button:active .fancy-button__shade {
     display: block;
@@ -52,4 +60,24 @@
     box-shadow: inset 0 0 4px 1px black;
     display: none;
     width: 100%;
+}
+
+.fancy-button__tooltip {
+    background: rgba(255, 255, 255, 0.8);
+    clip-path: polygon(
+            0 1em, 0.5em 0.5em, /*Top-left corner*/ 
+            calc(50% - 0.5em) 0.5em, 50% 0, calc(50% + 0.5em) 0.5em, /*Arrow point*/
+            100% 0.5em, /*Top-right corner*/
+            100% calc(100% - 0.5em), calc(100% - 0.5em) 100%, /*Bottom-right corner*/
+            0 100% /*Bottom-left corner*/
+    );
+    display: none;
+    font-size: 0.6em;
+    left: 50%;
+    min-width: 15em;
+    padding: 1em 0.5em 0.5em;
+    position: absolute;
+    text-align: center;
+    top: calc(100% + 0.25em);
+    transform: translateX(-50%);
 }

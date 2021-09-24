@@ -6,66 +6,6 @@
     width: 100%;
 }
 
-.star-system__toolbar {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    left: 0.3em;
-    position: absolute;
-    top: 0.3em;
-    z-index: 100;
-}
-
-.star-system__toolbar-item {
-    background: linear-gradient(to bottom, #321054 0%,#5c116b 50%,#420f51 51%,#7f64ba 100%);
-    border-radius: 4px;
-    box-sizing: content-box;
-    display: flex;
-    flex-wrap: nowrap;
-    height: fit-content;
-    overflow: hidden;
-    padding: 0.3em;
-}
-
-    .star-system__toolbar-item:not(:last-child) {
-        margin-right: 0.5em;
-    }
-
-.star-system__toolbar-input {
-    display: flex;
-    flex-wrap: nowrap;
-    margin: 0 0.15em;
-}
-
-    .star-system__toolbar-input label {
-        color: white;
-        font-size: 0.8em;
-        line-height: 1.8em;
-        margin: 0 0.15em;
-        padding-right: 0.3em;
-        text-transform: uppercase;
-    }
-
-.star-system__toolbar input {
-    background-color: #1a0e4b;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-size: 0.7em;
-    padding: 0.3em 1em;
-    width: 20em;
-}
-
-.star-system__toolbar-actions {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-    .star-system__action-tooltip {
-        display: none;
-        position: absolute;
-    }
-
 .star-system__background {
     height: 200%;
     left: 50%;
