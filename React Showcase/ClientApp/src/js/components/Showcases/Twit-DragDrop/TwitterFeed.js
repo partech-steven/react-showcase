@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Droppable } from 'react-beautiful-dnd';
 import TwitterUtil from "../../../Utils/TwitterUtil";
 import Notification from "../../Util/Notification";
-import Spinner from "../../Util/Spinner";
+import { Spinner } from "../../Util/Spinner";
 
 import './twitterfeed.css';
 

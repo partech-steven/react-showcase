@@ -2,11 +2,11 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { ContactForm } from '../../../Showcases/Twit-DragDrop/ContactForm';
 import DraggableComponent from '../../../Util/DraggableComponent';
-import Spinner from '../../../Util/Spinner';
 import DynamicForm from '../../../Dynamic/form/DynamicForm';
 
 import './twitter.css';
 import { TwitterFeed } from '../../../Showcases/Twit-DragDrop/TwitterFeed';
+import { Spinner } from '../../../Util/Spinner';
 
 export class Twitter extends Component {
     /**
@@ -146,7 +146,7 @@ export class Twitter extends Component {
     }
 
     render() {
-        if(this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching data..." />);
+        if (this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching data..." />);
         return ([
             <h1 className="page-title">Twitter, Drag-n-Drop and a form! - A showcase</h1>,
             <div className="twitter-filters" key="twitter-filters">

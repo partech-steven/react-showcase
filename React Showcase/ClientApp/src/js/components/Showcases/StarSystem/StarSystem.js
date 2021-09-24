@@ -1,8 +1,9 @@
 ﻿import React, { Component } from 'react';
-import Spinner from '../../Util/Spinner';
+import { Spinner } from '../../Util/Spinner';
 import 'seedrandom';
 
 import './star-system.css';
+import { FancyButton } from '../../Util/FancyButton';
 
 export class StarSystem extends Component {
     /**
@@ -26,8 +27,6 @@ export class StarSystem extends Component {
         let totalStars = Math.round(min + (Math.random() * 100));
         if (totalStars > max) totalStars = max;
 
-        console.log(totalStars);
-
         let stars = [];
 
         for (let i = 0; i < totalStars; i++) {
@@ -50,6 +49,18 @@ export class StarSystem extends Component {
         );
     }
 
+    //Generate a new randomised string
+    refreshSystem(generateNewSeed = true) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%^&*()[]{}:;';
+        var charactersLength = characters.length;
+        for (var i = 0; i < Math.round(Math.random() * 100); i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        this.setState({ seed: result });
+    }
+
     getToolbar() {
         return (
             <div className="star-system__toolbar">
@@ -59,17 +70,19 @@ export class StarSystem extends Component {
                         <input name="seed" value={this.state.seed} onChange={(e) => { }} />
                     </div>
                     <div className="star-system__toolbar-actions">
-                        {this.state.seedChangedByUser
-                            ? <div className="star-system__action star-system__action--regen-and-refresh">
-                                <div className="star-system__action-tooltip">
-                                    Regenerate new seed & refresh
-                                </div>
-                            </div>
-                            : <div className="star-system__action star-system__action--refresh">
-                                <div className="star-system__action-tooltip">
-                                    Refresh
-                                </div>
-                            </div>
+                        {!this.state.seedChangedByUser
+                            ? <FancyButton
+                                className="star-system__action star-system__action--regen-and-refresh"
+                                backgroundColor="#2b88d9"
+                                icon="/images/button-icons/refresh.png"
+                                onClick={(e) => this.refreshSystem()}
+                            />
+                            : <FancyButton
+                                className="star-system__action star-system__action--refresh"
+                                backgroundColor="#2b88d9"
+                                icon="/images/button-icons/refresh.png"
+                                onClick={(e) => this.refreshSystem(false)}
+                            />
                         }
                     </div>
                 </div>
@@ -95,19 +108,21 @@ export class StarSystem extends Component {
                     </div>
                 </div>
                 <div className="star-system__toolbar-item">
-                    <label htmlFor="seed"><strong><em>Zoom </em></strong></label>
-                    <div className="star-system__action star-system__action--zoom-out">
-                        <div className="star-system__action-tooltip">
-                            -
-                        </div>
-                    </div>
                     <div className="star-system__toolbar-input">
-                        
-                        <input name="seed" value={this.state.zoomLevel} onChange={(e) => { }} />
-                    </div>
-                    <div className="star-system__action star-system__action--zoom-in">
-                        <div className="star-system__action-tooltip">
-                            +
+                        <label htmlFor="seed"><strong><em>Zoom </em></strong></label>
+                        <div className="star-system__action star-system__action--zoom-out">
+                            <div className="star-system__action-tooltip">
+                                -
+                            </div>
+                        </div>
+                        <div className="star-system__toolbar-input">
+
+                            <input name="seed" value={this.state.zoomLevel} onChange={(e) => { }} />
+                        </div>
+                        <div className="star-system__action star-system__action--zoom-in">
+                            <div className="star-system__action-tooltip">
+                                +
+                            </div>
                         </div>
                     </div>
                 </div>

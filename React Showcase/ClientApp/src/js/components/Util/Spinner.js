@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import './spinner.css';
 
-class Spinner extends Component {
+export class Spinner extends Component {
     render() {
         return (
             <div className={"spinnyboi" + (this.props.className ? " " + this.props.className : "")}>
@@ -11,5 +11,3 @@ class Spinner extends Component {
         );
     }
 };
-
-export default Spinner;

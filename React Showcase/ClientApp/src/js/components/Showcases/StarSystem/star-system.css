@@ -22,20 +22,26 @@
     box-sizing: content-box;
     display: flex;
     flex-wrap: nowrap;
-    height: 2.5em;
+    height: fit-content;
     overflow: hidden;
-    padding: 0 0.3em;
+    padding: 0.3em;
 }
 
     .star-system__toolbar-item:not(:last-child) {
         margin-right: 0.5em;
     }
 
+.star-system__toolbar-input {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 0.15em;
+}
+
     .star-system__toolbar-input label {
         color: white;
-        height: 2.5em;
-        line-height: 2.25em;
-        margin: 0;
+        font-size: 0.8em;
+        line-height: 1.8em;
+        margin: 0 0.15em;
         padding-right: 0.3em;
         text-transform: uppercase;
     }
@@ -46,25 +52,19 @@
     border-radius: 4px;
     color: white;
     font-size: 0.7em;
-    height: 2.5em;
-    line-height: 2.5em;
     padding: 0.3em 1em;
     width: 20em;
 }
 
-.star-system__action {
-    background: linear-gradient(to bottom, #3b679e 0%,#2b88d9 50%,#207cca 51%,#7db9e8 100%);
-    border-radius: 4px;
-    height: 2em;
-    margin-left: 0.25em;
-    margin-top: 0.25em;
-    width: 2em;
+.star-system__toolbar-actions {
+    display: flex;
+    flex-wrap: nowrap;
 }
 
-.star-system__action-tooltip {
-    opacity: 0;
-    position: absolute;
-}
+    .star-system__action-tooltip {
+        display: none;
+        position: absolute;
+    }
 
 .star-system__background {
     height: 200%;

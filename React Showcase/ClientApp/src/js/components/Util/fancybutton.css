@@ -1,0 +1,55 @@
+﻿.fancy-button {
+    border-radius: 4px;
+    height: 1.45em;
+    margin: 0 0.15em;
+    min-width: 1.45em;
+    overflow: hidden;
+    position: relative;
+}
+
+.fancy-button__icon {
+    height: 1.05em;
+    left: 0.2em;
+    position: absolute;
+    top: 0.2em;
+    width: 1.05em;
+}
+
+.fancy-button__gradient-overlay {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 35%) 0%,rgb(255 255 255 / 5%) 50%,rgb(0 0 0 / 25%) 51%,rgb(255 255 255 / 10%) 100%);
+    width: 100%;
+}
+
+.fancy-button:hover {
+    cursor: pointer;
+}
+
+    .fancy-button:hover .fancy-button__gradient-overlay {
+        background: linear-gradient(to bottom, rgb(0 0 0 / 30%) 0%,rgb(255 255 255 / 10%) 50%,rgb(0 0 0 / 20%) 51%,rgb(255 255 255 / 40%) 100%);
+    }
+
+.fancy-button:active .fancy-button__gradient-overlay {
+    background: linear-gradient(to bottom, rgb(0 0 0 / 55%) 0%,rgb(0 0 0 / 20%) 50%,rgb(0 0 0 / 45%) 51%,rgb(0 0 0 / 10%) 100%);
+}
+
+.fancy-button:active .fancy-button__shade {
+    display: block;
+}
+
+.fancy-button__gradient-overlay,
+.fancy-button__shade {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.fancy-button__label {
+    line-height: 1.35em;
+}
+
+.fancy-button__shade {
+    box-shadow: inset 0 0 4px 1px black;
+    display: none;
+    width: 100%;
+}

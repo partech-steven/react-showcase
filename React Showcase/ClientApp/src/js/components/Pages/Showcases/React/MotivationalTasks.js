@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Task } from '../../../Showcases/MotivationalTasks/Task';
-import Spinner from '../../../Util/Spinner';
+import { Spinner } from '../../../Util/Spinner';
 
 import './motivational-tasks.css';
 
