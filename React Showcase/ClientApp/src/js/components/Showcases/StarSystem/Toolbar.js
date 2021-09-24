@@ -53,22 +53,13 @@ export class Toolbar extends Component {
                         <input name="seed" value={this.state.seed} onChange={(e) => { this.onSeedChange(e) }} />
                     </div>
                     <div className="star-system__toolbar-actions">
-                        {!this.state.seedChangedByUser
-                            ? <FancyButton
-                                className="star-system__action star-system__action--regen-and-refresh"
-                                backgroundColor="#2b88d9"
-                                icon="/images/button-icons/refresh.png"
-                                tooltip="Regenerate seed and refresh"
-                                onClick={(e) => this.refreshSystem(e)}
-                            />
-                            : <FancyButton
-                                className="star-system__action star-system__action--refresh"
-                                backgroundColor="#2b88d9"
-                                icon="/images/button-icons/refresh.png"
-                                tooltip="Refresh based on input"
-                                onClick={(e) => this.refreshSystem(e)}
-                            />
-                        }
+                        <FancyButton
+                            className="star-system__action star-system__action--regen-and-refresh"
+                            backgroundColor="#2b88d9"
+                            icon={this.state.seedChangedByUser ? "/images/button-icons/go.png" : "/images/button-icons/refresh.png"}
+                            tooltip={this.state.seedChangedByUser ? "Refresh based on input" : "Regenerate seed and refresh"}
+                            onClick={(e) => this.refreshSystem(e)}
+                        />
                     </div>
                 </div>
                 <div className="star-system__toolbar-item">
