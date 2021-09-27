@@ -31,7 +31,7 @@ export class StarSystem extends Component {
         return shouldUpdate;
     }
 
-    generateStarBackground(min = 256, max = 640) {
+    generateStarBackground(min = 512, max = 1280) {
         let totalStars = Math.round(min + (Math.random() * 100));
         if (totalStars > max) totalStars = max;
 
@@ -81,6 +81,10 @@ export class StarSystem extends Component {
         }
     }
 
+    adjustZoomLevel(e, zoomLevel) {
+        this.setState({ zoomLevel: zoomLevel });
+    }
+
     getToolbar() {
         return (
             <div className="star-system__toolbar">
@@ -89,7 +93,8 @@ export class StarSystem extends Component {
                     seedChangedByUser={this.state.seedChangedByUser}
                     zoomLevel={this.state.zoomLevel}
                     onSeedChange={(e, seed, seedChangedByUser) => this.seedChange(e, seed, seedChangedByUser)}
-                    refreshSystem={(e) => this.refreshSystem(e) }
+                    refreshSystem={(e) => this.refreshSystem(e)}
+                    adjustZoomLevel={(e, zoomLevel) => this.adjustZoomLevel(e, zoomLevel)}
                 />
             </div>
         );

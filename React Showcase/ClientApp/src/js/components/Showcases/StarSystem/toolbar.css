@@ -47,7 +47,18 @@
     width: 20em;
 }
 
-.star-system__toolbar-actions {
-    display: flex;
-    flex-wrap: nowrap;
-}
+    .star-system__toolbar input.zoom-level {
+        text-align: center;
+        width: 3.5em;
+    }
+
+        .star-system__toolbar input.zoom-level::-webkit-outer-spin-button,
+        .star-system__toolbar input.zoom-level::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+    .star-system__toolbar-actions {
+        display: flex;
+        flex-wrap: nowrap;
+    }
