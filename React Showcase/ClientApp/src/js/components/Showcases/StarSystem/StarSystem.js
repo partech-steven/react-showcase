@@ -58,8 +58,7 @@ export class StarSystem extends Component {
     }
 
     //Generate a new randomised string
-    refreshSystem(e) {
-        let generateNewSeed = !this.state.seedChangedByUser;
+    refreshSystem(e, generateNewSeed = !this.state.seedChangedByUser) {
         let newState = { seedChangedByUser: false };
         if (generateNewSeed) {
             let result = '';
@@ -85,6 +84,10 @@ export class StarSystem extends Component {
         this.setState({ zoomLevel: zoomLevel });
     }
 
+    toggleSimulation() {
+        this.setState({ simulationRunning: !this.state.simulationRunning });
+    }
+
     getToolbar() {
         return (
             <div className="star-system__toolbar">
@@ -93,8 +96,9 @@ export class StarSystem extends Component {
                     seedChangedByUser={this.state.seedChangedByUser}
                     zoomLevel={this.state.zoomLevel}
                     onSeedChange={(e, seed, seedChangedByUser) => this.seedChange(e, seed, seedChangedByUser)}
-                    refreshSystem={(e) => this.refreshSystem(e)}
+                    refreshSystem={(e, generateNewSeed) => this.refreshSystem(e, generateNewSeed)}
                     adjustZoomLevel={(e, zoomLevel) => this.adjustZoomLevel(e, zoomLevel)}
+                    toggleSimulation={(e) => this.toggleSimulation()}
                 />
             </div>
         );

@@ -16,8 +16,7 @@ export class Toolbar extends Component {
             seed: "Generate me a Star System!",
             seedChangedByUser: false,
             zoomLevel: 1,
-            simulationRunning: true,
-            receivingNewProps: false
+            simulationRunning: true
         }
     }
 
@@ -40,8 +39,8 @@ export class Toolbar extends Component {
         })
     }
 
-    refreshSystem(e) {
-        this.props.refreshSystem(e);
+    refreshSystem(e, generateNewSeed = !this.state.seedChangedByUser) {
+        this.props.refreshSystem(e, generateNewSeed);
     }
 
     adjustZoomLevel(adjustment = 0, e) {
@@ -55,12 +54,22 @@ export class Toolbar extends Component {
 
         /*
          * toFixed returns a string with [x] decimals, thus we're converting it back to a float afterwards
-         * Make sure this is the final adjustment to the 'newZoom' adjustment.
+         * Make sure this is the final adjustment to the 'newZoom' variable.
          * */
         newZoom = parseFloat(newZoom.toFixed(1));
 
         this.setState({ zoomLevel: newZoom }, function () {
             this.props.adjustZoomLevel(e, newZoom);
+        });
+    }
+
+    restartSimulation(e) {
+        this.props.refreshSystem(e, false);
+    }
+
+    toggleSimulation() {
+        this.setState({ simulationRunning: !this.state.simulationRunning }, function () {
+            this.props.toggleSimulation();
         });
     }
 
@@ -84,23 +93,20 @@ export class Toolbar extends Component {
                 </div>
                 <div className="star-system__toolbar-item">
                     <div className="star-system__toolbar-actions">
-                        <div className="star-system__action star-system__action--restart">
-                            <div className="star-system__action-tooltip">
-                                Restart simulation
-                            </div>
-                        </div>
-                        {this.state.seedChangedByUser
-                            ? <div className="star-system__action star-system__action--pause">
-                                <div className="star-system__action-tooltip">
-                                    Pause simulation
-                                </div>
-                            </div>
-                            : <div className="star-system__action star-system__action--resume">
-                                <div className="star-system__action-tooltip">
-                                    Resume simulation
-                                </div>
-                            </div>
-                        }
+                        <FancyButton
+                            className="star-system__action star-system__action--restart"
+                            backgroundColor="#2b88d9"
+                            icon="/images/button-icons/restart.png"
+                            tooltip="Restart simulation"
+                            onClick={(e) => this.restartSimulation(e)}
+                        />
+                        <FancyButton
+                            className={this.state.simulationRunning ? "star-system__action star-system__action--pause" : "star-system__action star-system__action--resume"}
+                            backgroundColor="#2b88d9"
+                            icon={this.state.simulationRunning ? "/images/button-icons/pause.png" : "/images/button-icons/resume.png"}
+                            tooltip={this.state.simulationRunning ? "Pause simulation" : "Resume simulation"}
+                            onClick={(e) => this.toggleSimulation()}
+                        />
                     </div>
                 </div>
                 <div className="star-system__toolbar-item">
