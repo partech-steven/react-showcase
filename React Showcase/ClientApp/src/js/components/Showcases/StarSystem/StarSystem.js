@@ -4,6 +4,7 @@ import 'seedrandom';
 
 import './star-system.css';
 import { Toolbar } from './Toolbar';
+import { Star } from './Star';
 
 export class StarSystem extends Component {
     /**
@@ -21,6 +22,10 @@ export class StarSystem extends Component {
             zoomLevel: 1,
             simulationRunning: true
         }
+    }
+
+    componentDidMount() {
+        this.generateSystem();
     }
 
     shouldComponentUpdate(newProps, newState) {
@@ -51,7 +56,7 @@ export class StarSystem extends Component {
         }
 
         return (
-            <div className="star-system__background" style={{ transform: "translateY(-50%) translateX(-50%) scale(" + this.state.zoomLevel + ")" }}>
+            <div className="star-system__background">
                 {stars}
             </div>
         );
@@ -70,8 +75,11 @@ export class StarSystem extends Component {
 
             newState.seed = result
         }
-        
-        this.setState(newState);
+
+        newState.stellarObjects = null;
+        this.setState({ ...newState }, function () {
+            this.generateSystem();
+        });
     }
 
     seedChange(e, seed, seedChangedByUser) {
@@ -104,14 +112,30 @@ export class StarSystem extends Component {
         );
     }
 
+    generateSystem() {
+        let stellarObjects = [];
+
+        stellarObjects.push(<Star />);
+
+        this.setState({ stellarObjects: stellarObjects });
+    }
+
     render() {
         let seedrandom = require('seedrandom');
-        seedrandom(this.state.seed, { global: true })
+        seedrandom(this.state.seed, { global: true });
+
         return (
             <div className="star-system">
                 {this.getToolbar()}
-                {this.generateStarBackground()}
-                {this.state.stellarObjects === null && <Spinner className="initial-spinner" message="Generating space..." />}
+                <div className="star-system__container" style={{ transform: "translateY(-50%) translateX(-50%) scale(" + this.state.zoomLevel + ")" }}>
+                    {this.generateStarBackground()}
+                    {this.state.stellarObjects === null
+                        ? < Spinner key="load-spinner" className="initial-spinner" message="Generating space..." />
+                        : <div className="star-system__objects" key="star-system-objects">
+                            {this.state.stellarObjects}
+                        </div>
+                    }
+                </div>
             </div>
         );
     }

@@ -1,2 +1,9 @@
-﻿body {
+﻿.star {
+    clip-path: circle();
+    height: 128px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 128px;
+    z-index: 10;
 }

@@ -6,12 +6,17 @@
     width: 100%;
 }
 
-.star-system__background {
+.star-system__container {
     height: 500%;
     left: 50%;
     position: absolute;
     top: 50%;
     width: 500%;
+}
+
+.star-system__background {
+    height: 100%;
+    width: 100%;
 }
 
 .bg-star {
