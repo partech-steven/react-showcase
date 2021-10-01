@@ -2,6 +2,99 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 12px;
+
+    &__details {
+        background-color: #a3c3ff;
+    }
+
+    &__header {
+        box-shadow: 0 -8px 12px 6px black;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__user {
+        background-color: #5d5d5d;
+        color: white;
+        font-size: 0.6em;
+        padding: 4px 6px;
+        text-align: center;
+        width: 35%;
+        z-index: 10;
+
+        img {
+            border-radius: 100px;
+            width: 100%;
+        }
+    }
+
+    &__user-img {
+        margin: 0 auto;
+        position: relative;
+        width: 50%;
+    }
+
+    &__user-status {
+        background-color: #ccc;
+        border: 1px solid #313131;
+        border-radius: 12px;
+        height: 12px;
+        position: absolute;
+        right: 0;
+        top: 4px;
+        width: 12px;
+
+        &--online {
+            background-color: #2acf2a;
+        }
+
+        &--away {
+            background-color: darkorange;
+        }
+    }
+
+    &__details {
+        clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 3.5em, 0 3.5em);
+        flex: 1;
+        font-size: 0.7em;
+        padding: 0 1.5em 0 0.5em;
+        z-index: 10;
+    }
+
+    &__logo {
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &__content {
+        flex: 1;
+        font-size: 0.8em;
+        padding: 12px;
+    }
+
+    &__timer {
+        background-color: #8b8b8b;
+        box-shadow: 0 12px 12px 6px black;
+        padding: 4px 12px;
+    }
+
+    &__actions {
+        background-color: #5d5d5d;
+        font-size: 0.8em;
+        justify-content: space-around;
+        padding: 6px 0;
+    }
+
+    &__action {
+        border: none;
+        clip-path: polygon(0% 0.5em, 0.5em 0%, 100% 0%, 100% calc(100% - 0.5em), calc(100% - 0.5em) 100%, 0% 100%);
+        color: white;
+        padding: 0 8px;
+    }
 }
 
 .task-container {
@@ -12,100 +105,4 @@
     flex: 1;
     flex-direction: column;
     overflow: hidden;
-}
-
-.task__header {
-    box-shadow: 0 -8px 12px 6px black;
-    display: flex;
-    overflow: hidden;
-    position: relative
-}
-
-.task__user {
-    background-color: #5d5d5d;
-    color: white;
-    font-size: 0.6em;
-    padding: 4px 6px;
-    text-align: center;
-    width: 35%;
-}
-
-.task__user-img {
-    margin: 0 auto;
-    position: relative;
-    width: 50%;
-}
-
-.task__user img {
-    border-radius: 100px;
-    width: 100%;
-}
-
-.task__user-status {
-    background-color: #ccc;
-    border: 1px solid #313131;
-    border-radius: 12px;
-    height: 12px;
-    position: absolute;
-    right: 0;
-    top: 4px;
-    width: 12px;
-}
-
-.task__user-status--online {
-    background-color: #2acf2a;
-}
-
-.task__user-status--away {
-    background-color: darkorange;
-}
-
-    .task__details {
-        clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 3.5em, 0 3.5em);
-        flex: 1;
-        font-size: 0.7em;
-        padding: 0 1.5em 0 0.5em;
-    }
-
-.task__user,
-.task__details {
-    z-index: 10;
-}
-
-.task__logo {
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.task .task__details {
-    background-color: #a3c3ff;
-}
-
-.task__content {
-    flex: 1;
-    font-size: 0.8em;
-    padding: 12px;
-}
-
-.task__timer {
-    background-color: #8b8b8b;
-    box-shadow: 0 12px 12px 6px black;
-    padding: 4px 12px;
-}
-
-.task__actions {
-    background-color: #5d5d5d;
-    font-size: 0.8em;
-    justify-content: space-around;
-    padding: 6px 0;
-}
-
-.task__action {
-    border: none;
-    clip-path: polygon(0% 0.5em, 0.5em 0%, 100% 0%, 100% calc(100% - 0.5em), calc(100% - 0.5em) 100%, 0% 100%);
-    color: white;
-    padding: 0 8px;
 }

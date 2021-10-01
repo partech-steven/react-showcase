@@ -2,6 +2,9 @@
 @import 'general.scss';
 @import 'animation.scss';
 
+/* Dynamic */
+@import 'components/dynamic/dynamicform.scss';
+
 /* Layout */
 @import './components/layout/footer.scss';
 @import './components/layout/navmenu.scss';
@@ -15,7 +18,6 @@
 @import './components/showcases/twit-dragdrop/twitterfeed.scss';
 
 // -- Motivational Tasks
-@import './components/showcases/motivationaltasks/motivational-tasks.scss';
 @import './components/showcases/motivationaltasks/task.scss';
 
 /* Utils */
