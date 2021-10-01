@@ -6,8 +6,6 @@ import DraggableComponent from '../../../Util/DraggableComponent';
 import Spinner from '../../../Util/Spinner';
 import DynamicForm from '../../../Dynamic/form/DynamicForm';
 
-import './twitter.css';
-
 export class Twitter extends Component {
     /**
   * Constructor

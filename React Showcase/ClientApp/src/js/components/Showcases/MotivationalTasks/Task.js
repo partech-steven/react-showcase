@@ -1,8 +1,6 @@
 ﻿import React, { Component } from "react";
 import { Timer } from "../../Util/Timer";
 
-import './task.css';
-
 export class Task extends Component {
     render() {
         let assignee = this.props.assignee;

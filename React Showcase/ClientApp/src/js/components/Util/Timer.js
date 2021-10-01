@@ -1,8 +1,6 @@
 ﻿import React, { Component } from "react";
 import TimeUtil from "../../Utils/TimeUtil";
 
-import './timer.css';
-
 export class Timer extends Component {
 
     constructor(props) {
