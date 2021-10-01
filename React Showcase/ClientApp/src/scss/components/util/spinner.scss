@@ -1,0 +1,36 @@
+﻿.spinnyboi {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 4px 12px 4px 32px;
+    margin: 0 auto;
+    min-height: 24px;
+    position: relative;
+    text-align: left;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+
+    &:before {
+        -webkit-animation: perpetualSpinVerticalAlign 1s linear 0s infinite normal forwards;
+        animation: perpetualSpinVerticalAlign 1s linear 0s infinite normal forwards;
+        border-radius: 24px;
+        border-left: 2px solid #1da1f2;
+        border-right: 2px solid #1da1f2;
+        content: "";
+        display: block;
+        height: 12px;
+        left: 8px;
+        position: absolute;
+        top: 50%;
+        width: 12px;
+    }
+
+    em {
+        display: block;
+        text-align: center;
+    }
+
+    &.initial-spinner {
+        background: rgba(255, 255, 255, 0.7);
+    }
+}

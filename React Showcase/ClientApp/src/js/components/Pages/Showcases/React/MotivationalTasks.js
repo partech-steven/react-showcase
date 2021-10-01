@@ -2,8 +2,6 @@
 import { Task } from '../../../Showcases/MotivationalTasks/Task';
 import Spinner from '../../../Util/Spinner';
 
-import './motivational-tasks.css';
-
 export class MotivationalTasks extends Component {
     /**
   * Constructor

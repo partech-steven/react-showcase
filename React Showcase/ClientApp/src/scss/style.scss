@@ -1,0 +1,28 @@
+﻿/* General stuff */
+@import 'general.scss';
+@import 'animation.scss';
+
+/* Dynamic */
+@import 'components/dynamic/dynamicform.scss';
+
+/* Layout */
+@import './components/layout/footer.scss';
+@import './components/layout/navmenu.scss';
+
+/* Pages */
+@import './components/pages/showcases/react-showcases.scss';
+
+/* Showcases */
+// -- Twitter
+@import './components/showcases/twit-dragdrop/twitter-dragdrop.scss';
+@import './components/showcases/twit-dragdrop/twitterfeed.scss';
+
+// -- Motivational Tasks
+@import './components/showcases/motivationaltasks/task.scss';
+
+/* Utils */
+@import './components/util/draggable-component.scss';
+@import './components/util/interactive-tile.scss';
+@import './components/util/notification.scss';
+@import './components/util/spinner.scss';
+@import './components/util/timer.scss';

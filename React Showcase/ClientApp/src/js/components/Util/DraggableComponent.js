@@ -1,7 +1,6 @@
 ﻿import React, { Component } from 'react';
 import dots from '../../../draggable-dots.svg';
 import { Draggable } from 'react-beautiful-dnd';
-import './draggable-component.css';
 
 export default class DraggableComponent extends Component {
     render() {
