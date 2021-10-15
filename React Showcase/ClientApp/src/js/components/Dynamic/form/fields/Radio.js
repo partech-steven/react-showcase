@@ -22,16 +22,18 @@ export default class Radio extends Component {
      */
     change(event) {
         let self = this;
-        let inputType = event.target.type;
-        let shouldReRender = true;
+        if (event.target !== null) {
+            let inputType = event.target.type;
+            let shouldReRender = true;
 
-        if (inputType === "text") {
-            shouldReRender = false;
+            if (inputType === "text") {
+                shouldReRender = false;
+            }
+
+            this.setState({ value: event.target.value, shouldReRender: shouldReRender }, function () {
+                self.props.change(event, self.props.name, self.state);
+            });
         }
-
-        this.setState({ value: event.target.value, shouldReRender: shouldReRender }, function () {
-            self.props.change(event, self.props.name, self.state);
-        });
     }
 
     shouldComponentUpdate(prevProps, prevState) {
@@ -102,8 +104,8 @@ export default class Radio extends Component {
                                     type="text"
                                     key={o.key}
                                     name={this.props.name}
-                                    change={this.change.bind(this)}
-                                    onBlur={this.blur.bind(this)}
+                                    change={(e) => { this.change(e, this.props.name) }}
+                                    blur={(e) => { this.blur(e) }}
                                 />
                             </div>
                         }

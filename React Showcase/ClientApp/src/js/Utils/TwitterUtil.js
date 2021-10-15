@@ -21,10 +21,15 @@ export default class TwitterUtil {
                     <DraggableComponent
                         key={key}
                         uniqueKey={tweetId}
-                        className={"draggable-tweet"}
-                        content={tweetDom}
-                        index={key}
-                    />
+                        props={
+                            {
+                                index: key,
+                                className: "draggable-tweet"
+                            }
+                        }
+                    >
+                        {tweetDom}
+                    </DraggableComponent>
                 )
             }
         })
