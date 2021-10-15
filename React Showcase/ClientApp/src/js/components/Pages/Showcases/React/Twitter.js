@@ -5,7 +5,6 @@ import { ContactForm } from '../../../Showcases/Twit-DragDrop/ContactForm';
 import DraggableComponent from '../../../Util/DraggableComponent';
 import Spinner from '../../../Util/Spinner';
 import DynamicForm from '../../../Dynamic/form/DynamicForm';
-import TwitterUtil from '../../../../Utils/TwitterUtil';
 
 export class Twitter extends Component {
     /**
@@ -168,13 +167,17 @@ export class Twitter extends Component {
                 this.getTwitterUser(screenName, true, tweetsLimit);
             }
         );
-        
+    }
+
+    onSubtitleChange(e, name, state) {
+        let screenName = state.value;
+        this.getTwitterUser(screenName, true);
     }
 
     render() {
         if(this.state.tweets === null) return (<Spinner className="initial-spinner" message="Fetching data..." />);
         return ([
-            <h1 className="page-title">Twitter, Drag-n-Drop and a form! - A showcase</h1>,
+            <h1 className="page-title" key="page-title">Twitter, Drag-n-Drop and a form! - A showcase</h1>,
             <div className="twitter-filters" key="twitter-filters">
                 <DynamicForm
                     className="twitter-filters__form"
@@ -216,7 +219,7 @@ export class Twitter extends Component {
                                 if (component.key === "twit-feed" || component.key === "twit-favs") {
                                     let tweets = (component.key === "twit-feed") ? this.state.tweets : this.state['tweets-favourites'];
                                     component.title = (component.key === "twit-feed") ? "Twitter feed" : "Twitter favourites";
-                                    component.subtitle = "@" + this.state.user.screenName;
+                                    component.subtitle = this.state.user.screenName;
                                     component.content = <TwitterFeed screenName={this.state.user.screenName} tweets={tweets} droppableId={(component.key === "twit-feed") ? "tweets" : "tweets-favourites"} />;
                                 }
 
@@ -224,12 +227,20 @@ export class Twitter extends Component {
                                     <DraggableComponent
                                         key={component.key}
                                         uniqueKey={component.key}
-                                        className={component.className + (component.includeKeyInClass && " " + component.key)}
                                         title={component.title}
                                         subtitle={component.subtitle}
-                                        content={component.content}
-                                        index={index}
-                                    />
+                                        props={
+                                            {
+                                                index: index,
+                                                className: component.className + (component.includeKeyInClass && " " + component.key),
+                                                subtitlePrefix: (component.key === "twit-feed" || component.key === "tweet-favourites") ? "@" : "",
+                                                subtitleEditable: component.key === "twit-feed"
+                                            }
+                                        }
+                                        onSubtitleChange={(e, name, state) => { this.onSubtitleChange(e, name, state) }}
+                                    >
+                                        {component.content}
+                                    </DraggableComponent>
                                 )
                             })
                             }
