@@ -26,20 +26,20 @@ body {
     border-radius: 4px;
     flex: 1 1;
     padding: 0 0.5em 1.5em;
-}
+    position: relative;
 
-.content--twitter {
-    min-height: 0%;
-    padding: 0 0.5em;
+    &--twitter {
+        min-height: 0%;
+        padding: 0 0.5em;
+    }
 }
 
 .page-title {
     padding: 0.3em 0 0.1em;
     position: relative;
     text-indent: 0.3em;
-}
 
-    .page-title::after {
+    &::after {
         background: linear-gradient(to right, #353535, transparent);
         bottom: 0;
         content: "";
@@ -49,6 +49,7 @@ body {
         position: absolute;
         width: 100%;
     }
+}
 
 .page-text {
     border-left: 4px solid #5a73b9;
@@ -56,10 +57,9 @@ body {
     padding: 0.5em;
 }
 
-    .page-text p:last-of-type {
-        margin-bottom: 0;
-    }
-
+.page-text p:last-of-type {
+    margin-bottom: 0;
+}
 
 .half,
 .quarter {
@@ -67,16 +67,14 @@ body {
     box-sizing: border-box;
     margin: 0 6px;
     padding: 8px;
-}
 
-.half--no-left,
-.quarter--no-left {
-    margin-left: 0;
-}
+    &--no-left {
+        margin-left: 0;
+    }
 
-.half--no-right,
-.quarter--no-right {
-    margin-right: 0;
+    &--no-right {
+        margin-right: 0;
+    }
 }
 
 .quarter {
