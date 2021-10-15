@@ -5,6 +5,7 @@ import { ContactForm } from '../../../Showcases/Twit-DragDrop/ContactForm';
 import DraggableComponent from '../../../Util/DraggableComponent';
 import Spinner from '../../../Util/Spinner';
 import DynamicForm from '../../../Dynamic/form/DynamicForm';
+import TwitterUtil from '../../../../Utils/TwitterUtil';
 
 export class Twitter extends Component {
     /**
@@ -47,22 +48,30 @@ export class Twitter extends Component {
         }
     }
 
+    //Check if the component (i.e. this page) has mounted
+    //TODO: Put this function in the TwitterUtil class
     componentDidMount() {
-        this.getTwitterUser("ParTechIT");
-        this.getTweetsByUser("ParTechIT", this.state.tweetsLimit);
+        this.getTwitterUser("ParTechIT", true);
     }
 
-    //When people stop dragging things around
+    /**
+     * When people stop dragging things around
+     * 
+     * @param {any} result
+     */
     onDragEnd(result) {
         const { source, destination, type } = result;
         let components = this.state.components;
         let tweetFavs = this.state['tweets-favourites'];
-        // dropped outside the list
+
+        // If an item is dropped outside of a destination-component, make sure the app doesn't break.
         if (!destination) {
             return;
         }
 
+        //If the source and destination are the same...
         if (source.droppableId === destination.droppableId) {
+            //...Check what the type of the d-n-d'd component was and change their order.
             switch (type) {
                 case "TWEETS":
                     if (source.droppableId === "tweets-favourites") {
@@ -88,6 +97,7 @@ export class Twitter extends Component {
                 "tweets-favourites": tweetFavs
             });
         } else {
+            //If the destination is different from the source, move it
             const result = this.move(
                 this.getList(source.droppableId),
                 this.getList(destination.droppableId),
@@ -102,7 +112,7 @@ export class Twitter extends Component {
         }
     }
 
-    //Update the state for the main draggables
+    //Change the order of components if the source matches the destination after a d-n-d
     reorder(list, startIndex, endIndex) {
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
@@ -111,10 +121,14 @@ export class Twitter extends Component {
         return result;
     };
 
-    getList(id) {
-        return this.state[id];
-    }
-
+    /**
+     * Move a DraggableComponent to a new destination
+     * 
+     * @param {any} source
+     * @param {any} destination
+     * @param {any} droppableSource
+     * @param {any} droppableDestination
+     */
     move(source, destination, droppableSource, droppableDestination) {
         const sourceClone = Array.from(source);
         const destClone = Array.from(destination);
@@ -129,6 +143,20 @@ export class Twitter extends Component {
         return result;
     }
 
+    /**
+     * Get a proper list from the state with the given id
+     * 
+     * @param {any} id
+     */
+    getList(id) {
+        return this.state[id];
+    }
+
+    /**
+     * Handle any changes to the filters
+     * 
+     * @param {any} event
+     */
     filterSubmit(event) {
         let screenName = this.state.user.screenName;
         let tweetsLimit = this.state.tweetsLimit;
@@ -213,7 +241,14 @@ export class Twitter extends Component {
         ]);
     }
 
-    async getTwitterUser(screenName, fetchTweets = false, tweetsLimit = 10) {
+    /**
+     * Get a twitter-user. Also able to provide params for eventual tweet limitations
+     * 
+     * @param {any} screenName
+     * @param {any} fetchTweets
+     * @param {any} tweetsLimit
+     */
+    async getTwitterUser(screenName, fetchTweets = false, tweetsLimit = this.state.tweetsLimit) {
         let user = await fetch('/twitter/get/user/' + screenName)
             .then((response) => response.json())
             .then((user) => {
@@ -227,7 +262,13 @@ export class Twitter extends Component {
         });
     }
 
-    async getTweetsByUser(screenName, limit = 10) {
+    /**
+     * Get the tweets for a user with the given screenName
+     * 
+     * @param {any} screenName
+     * @param {any} limit
+     */
+    async getTweetsByUser(screenName, limit = this.state.tweetsLimit) {
         let tweets = await fetch('/twitter/get/tweets/by/user/' + screenName + '?limit=' + limit)
             .then((response) => response.json())
             .then((tweets) => {

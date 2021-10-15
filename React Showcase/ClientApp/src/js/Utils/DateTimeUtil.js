@@ -118,6 +118,11 @@ export default class DateTimeUtil {
         }
     }
 
+    /**
+     * Convert a date to ISO String
+     * 
+     * @param {any} dateString
+     */
     static toIso(dateString)
     {
         let date = new Date(dateString);
@@ -126,6 +131,11 @@ export default class DateTimeUtil {
         }
     }
 
+    /**
+     * Check if the given date is the first of the month
+     * 
+     * @param {any} dateString
+     */
     static isFirstOfMonth(dateString)
     {
         var date = new Date(dateString);
@@ -134,6 +144,11 @@ export default class DateTimeUtil {
         }
     }
 
+    /**
+     * Set the date to the first of the month by the provided date (e.g. 03-11-2021 becomes 01-11-2021)
+     * 
+     * @param {any} dateString
+     */
     static setFirstOfMonth(dateString)
     {
         var date = new Date(dateString);
@@ -142,6 +157,7 @@ export default class DateTimeUtil {
         }
     }
 
+    //Check if the date provided is valid
     static checkValidDate(date, dateSourceString = "") {
         if(date.toString().toLowerCase() !== "invalid date") {
             return true;

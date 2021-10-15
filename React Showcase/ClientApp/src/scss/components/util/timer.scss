@@ -13,11 +13,20 @@
     }
 
     &__progress {
+        background-color: #3aac00;
         clip-path: polygon(0 0, 100% 0, calc(100% - 0.5em) 100%, 0 100%);
         height: 100%;
         left: 0;
         position: absolute;
         top: 0;
+
+        &--close {
+            background-color: #d9a93c;
+        }
+
+        &--overtime {
+            background-color: #d30000;
+        }
     }
 
     &__indicator {
@@ -32,7 +41,7 @@
         top: 0;
         z-index: 10;
         width: 2em;
-        
+
         &::after {
             background: rgba(0, 0, 0, 0.3);
             content: "";
@@ -63,7 +72,7 @@
         position: absolute;
         transform: translateY(-50%);
         z-index: 5;
-        
+
         &::before {
             background: rgba(0, 0, 0, 0.8);
             clip-path: polygon(0 50%, 100% 0, 100% 100%);

@@ -2,11 +2,11 @@ import React from 'react';
 import { Tweet } from 'react-twitter-widgets';
 import DraggableComponent from '../components/Util/DraggableComponent';
 
-/** String Utility */
+/** Twitter Utility */
 export default class TwitterUtil {
 
     /**
-     * Uppercase only the first character of a string
+     * Create the DOM elements for the twitter-feed
      *
      * @param string
      * @returns {string}

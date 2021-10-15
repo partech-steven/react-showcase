@@ -113,12 +113,21 @@ export class ContactForm extends Component {
         }
     }
 
-    //Function used to check for changes in the form
+    /**
+     * Function used to check for changes in the form
+     * 
+     * @param {any} events
+     * @param {any} state
+     */
     formOnChange(events, state) {
-        //Put code here...
+        //Put code here if you want this function to do something...
     }
 
-    //Function to do stuff when someone submits the form
+    /**
+     * When the form is submitted
+     * 
+     * @param {any} event
+     */
     formOnSubmit(event) {
         this.setState({ submittedData: event });
     }

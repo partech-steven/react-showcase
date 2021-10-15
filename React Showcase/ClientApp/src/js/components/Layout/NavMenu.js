@@ -8,20 +8,15 @@ export class NavMenu extends Component {
     constructor(props) {
         super(props);
 
-        this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
-            collapsed: true,
             dropdownOpen: false
         };
     }
 
-    toggleNavbar() {
-        this.setState({
-            collapsed: !this.state.collapsed
-        });
-    }
-
-    //TODO: Expand for the use of multiple dropdown menus
+    /**
+     * Toggles the dropdown menu
+     * TODO: Expand for use with multiple dropdowns
+     * */
     toggle() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
@@ -34,7 +29,7 @@ export class NavMenu extends Component {
                 <Navbar className="navbar-expand-sm" light>
                     <Container>
                         <NavbarBrand tag={Link} to="/">Steven Nolles' Showcase</NavbarBrand>
-                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" navbar>
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
