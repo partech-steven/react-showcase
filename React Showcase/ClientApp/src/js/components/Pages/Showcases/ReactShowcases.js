@@ -27,8 +27,7 @@ export class ReactShowcases extends Component {
                     title: "TCGBox",
                     subtitle: "Create and print MtG Proxies",
                     hotlink: "https://tcgbox.stevennolles.nl",
-                    description: "Originally created when my go-to MtG Proxy website hadn't received an update in almost a year: TCGBox is a small app that allows Magic: The Gathering players to create proxies for cards they wish to try in their decks before buying them. \
-                                  The frontend is made in React/jQuery and the backend was done using PHP with Symfony/Doctrine",
+                    description: "Originally created when my go-to MtG Proxy website hadn't received an update in almost a year: TCGBox is a small app that allows Magic: The Gathering players to create proxies for cards they wish to try in their decks before buying them. \nThe frontend is made in React/jQuery and the backend was done using PHP with Symfony/Doctrine",
                     backgroundImage: "/images/showcase-tile-backgrounds/react/tcgbox_bg.png",
                     releaseDate: "24-04-2021",
                     version: "1.2.1"

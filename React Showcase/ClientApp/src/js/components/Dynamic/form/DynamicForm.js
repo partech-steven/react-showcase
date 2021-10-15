@@ -94,6 +94,7 @@ export default class DynamicForm extends React.Component {
      * @param state
      */
     change(evt, name, state) {
+        console.log(name, state)
         if (state.value !== this.state[name]) {
             if (!changed[name]) changed[name] = true;
 

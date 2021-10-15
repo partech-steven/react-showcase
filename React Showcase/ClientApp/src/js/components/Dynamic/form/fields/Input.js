@@ -43,15 +43,17 @@ export default class Input extends Component {
      * @param event
      */
     change(event) {
-        let val = event.target.value;
-        let { selectionStart } = event.target;
+        if (this.props.change) {
+            let val = event.target.value;
+            let { selectionStart } = event.target;
 
-        this.setState({ value: val, cursorPosition: selectionStart, isChanging: true }, function () {
-            this.props.change(event, this.props.name, this.state);
-            if (this.cursorReference.current.type === "text") {
-                this.cursorReference.current.selectionStart = this.cursorReference.current.selectionEnd = this.state.cursorPosition;
-            }
-        });
+            this.setState({ value: val, cursorPosition: selectionStart, isChanging: true }, function () {
+                this.props.change(event, this.props.name, this.state);
+                if (this.cursorReference.current.type === "text") {
+                    this.cursorReference.current.selectionStart = this.cursorReference.current.selectionEnd = this.state.cursorPosition;
+                }
+            });
+        }
     }
 
     /**
@@ -69,6 +71,7 @@ export default class Input extends Component {
      * @param event
      */
     blur(event) {
+        console.log("blurred")
         event.persist();
 
         if (this.props.onBlur) {
