@@ -14,7 +14,7 @@ export default class Main extends FetchService {
   }
 
   async componentDidMount() {
-    const pageData = await this.request("landing");
+    const pageData = await this.request("home");
     this.setState({
       pageData: pageData.props
     });

@@ -15,7 +15,6 @@ storyblokInit({
 });
 
 function MyApp({ Component, pageProps }) {
-  console.log(process.env.NEXT_PUBLIC_STORYBLOK_KEY)
   return (
     <Layout>
       <Component {...pageProps} />
