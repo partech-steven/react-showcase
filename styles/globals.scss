@@ -1,0 +1,75 @@
+// ----- [ Includes
+@import "variables"; // Variables
+@import "helpers"; // Helpers
+@import "mixins"; // Mixins
+
+// ----- [ Components
+@import "components/atoms";
+@import "components/molecules";
+@import "components/organisms";
+@import "components/templates";
+
+// ----- [ Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#__next {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: $color-purple;
+}
+
+input,
+textarea,
+select,
+label,
+a {
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  padding: $font-size-base;
+
+  @media screen and (min-width: $screen-size-medium) {
+    padding: 0 calc($font-size-large * 5);
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 100vh;
+  width: 100vw;
+
+  &__content {
+    flex: 1;
+  }
+
+  @media screen and (min-width: $screen-size-large) {
+    flex-direction: row;
+    width: $max-content-size;
+  }
+}

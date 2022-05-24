@@ -1,0 +1,52 @@
+// ---------- [ Colours ] ---------- \\
+$color-purple: #2D132C;
+$color-red-dark: #801336;
+$color-red-main: #C72C41;
+$color-red-light: #EE4540;
+$color-terminal-green: #00BF00;
+$color-terminal-yellow: #BFBF00;
+$color-terminal-error: #ff7575;
+$color-terminal-process: #9b8382;
+$color-dark-gray: #222222;
+
+// ---------- [ Fonts ] ---------- \\
+$font-size-base : 1rem;
+$font-size-micro : calc($font-size-base * 0.25);
+$font-size-tiny : calc($font-size-base * 0.5);
+$font-size-small : calc($font-size-base * 0.75);
+$font-size-large : calc($font-size-base * 1.25);
+
+$font-weight-base : 500;
+$font-weight-light : 300;
+$font-weight-heavy : 700;
+
+// ---------- [ Sizes ] ---------- \\
+// -----[ Screen sizes
+$screen-size-small : 575px;
+$screen-size-medium : 768px;
+$screen-size-large : 992px;
+$screen-size-xl : 1200px;
+$screen-size-xxl : 1400px;
+
+// -----[ Margin
+$margin-size-base : $font-size-base;
+$margin-size-tiny : calc($margin-size-base * 0.5);
+$margin-size-small : calc($margin-size-base * 0.75);
+$margin-size-large : calc($margin-size-base * 1.25);
+$margin-size-huge : calc($margin-size-base * 1.5);
+
+// -----[ Padding
+$padding-size-base : $font-size-base;
+$padding-size-tiny : calc($padding-size-base * 0.5);
+$padding-size-small : calc($padding-size-base * 0.75);
+$padding-size-large : calc($padding-size-base * 1.25);
+$padding-size-huge : calc($padding-size-base * 1.5);
+
+// -----[ Border radii
+$border-radius-tiny : 2px;
+$border-radius-small : 4px;
+$border-radius-medium : 8px;
+$border-radius-round : 100%;
+
+// -----[ Content
+$max-content-size : 1200px;
