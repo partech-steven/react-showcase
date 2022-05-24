@@ -1,0 +1,24 @@
+h1,
+h2,
+h3,
+h4 {
+  font-size: $font-size-large;
+  margin: $margin-size-tiny;
+  padding: 0 0.5rem;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+
+  @media screen and ( min-width: $screen-size-medium ) {
+    padding: 0 1rem;
+  }
+}
+
+h1,
+.a-block-title {
+  font-size: 2rem;
+
+  @media screen and ( min-width: $screen-size-medium ) {
+    font-size: 4rem;
+  }
+}

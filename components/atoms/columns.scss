@@ -1,0 +1,66 @@
+.col-full {
+  flex: 0 100%;
+}
+
+.col-three-quart {
+  flex: 0 75%;
+}
+
+.col-two-third {
+  flex: 0 66.666666%;
+}
+
+.col-half {
+  flex: 0 50%;
+}
+
+.col-third {
+  flex: 0 33.333333%;
+}
+
+.col-quart {
+  flex: 0 100%;
+
+  @media screen and (min-width: $screen-size-medium) {
+    flex: 0 50%;
+  }
+
+  @media screen and (min-width: $screen-size-large) {
+    flex: 0 25%;
+  }
+}
+
+.col-full,
+.col-three-quart,
+.col-two-third,
+.col-half,
+.col-third,
+.col-quart {
+  margin-bottom: $margin-size-tiny;
+  padding-left: calc($margin-size-tiny * 0.5);
+  padding-right: calc($margin-size-tiny * 0.5);
+
+  &--no-padding {
+    padding: 0;
+  }
+
+  &--no-padding-right {
+    padding-right: 0;
+  }
+
+  &--no-padding-left {
+    padding-left: 0;
+  }
+
+  &--no-margin {
+    margin: 0;
+  }
+
+  &--no-margin-bottom {
+    margin-bottom: 0;
+  }
+
+  &--no-margin-top {
+    margin-top: 0;
+  }
+}

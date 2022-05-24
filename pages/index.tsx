@@ -25,8 +25,8 @@ export default class Main extends FetchService {
       return (
         <React.Fragment>
           <Head>
-            <title>Steven Nolles - A Portfolio Website</title>
-            <meta property="og:title" content="Steven Nolles - A Portfolio Website" key="title" />
+            <title>Steven Nolles - A Human Digital Showcase</title>
+            <meta property="og:title" content="A showcase website made my Steven Nolles, employee of Human Digital" key="title" />
           </Head>
           {this.state.pageData.length !== 0 && <StoryblokComponent blok={this.state.pageData.story.content} />}
         </React.Fragment>

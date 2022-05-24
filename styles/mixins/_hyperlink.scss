@@ -1,0 +1,21 @@
+@mixin hyperlink {
+  display: block;
+  position: relative;
+
+  &:after {
+    background-color: white;
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    transition: width 0.3s;
+    width: 0%;
+  }
+
+  &:focus,
+  &:hover {
+    &:after {
+        width: 100%;
+    }
+  }
+}

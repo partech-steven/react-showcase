@@ -1,0 +1,53 @@
+.o-content-block {
+  border-bottom: $font-size-micro solid $color-red-dark;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    padding: $margin-size-base;
+    position: relative;
+    height: calc($font-size-base * 20);
+    width: 100%;
+  }
+
+  &__header-content {
+    margin: 0 auto;
+    max-width: 900px;
+    padding: $padding-size-base;
+    width: 100%;
+
+    @include frosted-glass(2rem, $color-red-light-frosted, white, $color-red-light-frosted-edge);
+  }
+
+  &__header-text {
+    font-weight: $font-weight-heavy;
+    text-align: center;
+  }
+
+  &__content {
+    background-color: $color-red-light;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  &__content-title {
+    margin: 0 calc($margin-size-large * 4);
+
+    h4 {
+      color: white;
+      font-size: calc($font-size-base * 3);
+    }
+  }
+
+  &__content-wrapper {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    padding: $padding-size-base;
+  }
+}

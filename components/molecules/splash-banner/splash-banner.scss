@@ -1,0 +1,32 @@
+.m-splash-banner {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  padding: $font-size-tiny;
+  position: relative;
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 0.5rem;
+    position: relative;
+    width: 100%;
+
+    h1 {
+      text-transform: uppercase
+    }
+
+    @include frosted-glass(2rem, $color-red-light-frosted, white, $color-red-light-frosted-edge);
+
+    @media screen and (min-width: $screen-size-medium ) {
+      padding: 1rem 3rem;
+    }
+  }
+
+  @media screen and(min-width: $screen-size-medium ) {
+    padding: $font-size-base;
+  }
+}

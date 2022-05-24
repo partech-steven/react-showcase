@@ -1,0 +1,25 @@
+.hero-banner {
+  align-items: center;
+  display: flex;
+  height: calc($font-size-base * 20);
+  padding: $font-size-base;
+  position: relative;
+  width: 100%;
+
+  span {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__label {
+    display: block;
+    margin: 0 auto;
+    max-width: $max-content-size;
+    padding: $padding-size-base;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+
+    @include frosted-glass;
+  }
+}

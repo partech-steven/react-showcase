@@ -1,0 +1,70 @@
+.m-gallery-item {
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+
+  &__thumbnail {
+    background-color: $color-red-main;
+    border-radius: $border-radius-medium;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+    height: calc(100% - $font-size-base);
+    left: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: calc(100% - $font-size-base);
+
+    span {
+      transform: scale(1.0);
+      transition: transform 0.3s;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      span {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__thumbnail-arrow {
+    background-color: white;
+    border-top-right-radius: $border-radius-medium;
+    box-sizing: border-box;
+    height: calc($font-size-base * 3);
+    left: 50%;
+    opacity: 0.75;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(30deg) skewX(-30deg) scale(1, 0.866);
+    width: calc($font-size-base * 3);
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: inherit;
+      width: 100%;
+      height: 100%;
+      border-top-right-radius: 20%;
+    }
+
+    &:before {
+      transform: rotate(-135deg) skewX(-45deg) scale(1.414, .707) translate(0, -50%);
+    }
+
+    &:after {
+      transform: rotate(135deg) skewY(-45deg) scale(.707, 1.414) translate(50%);
+    }
+  }
+
+  @media screen and (min-width: $screen-size-medium) {
+    padding-bottom: 50%;
+  }
+
+  @media screen and (min-width: $screen-size-large) {
+    padding-bottom: 25%;
+  }
+}

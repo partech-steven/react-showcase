@@ -1,0 +1,23 @@
+.a-divide-line {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 8px;
+  width: 100%;
+
+  &__left,
+  &__right {
+    height: 8px;
+    position: relative;
+    width: 1rem;
+
+    span {
+      height: 8px !important;
+      width: 1rem !important;
+    }
+  }
+
+  &__center {
+    background-color: $color-dark-purple;
+    flex: 1;
+  }
+}

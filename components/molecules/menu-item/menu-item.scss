@@ -1,0 +1,61 @@
+.m-menu-item {
+  align-items: center;
+  display: flex;
+  padding: $padding-size-tiny;
+
+  &__blip {
+    background-color: $color-red-dark;
+    clip-path: polygon(calc($font-size-base * 0.5) calc($font-size-base * 0.5),
+        $font-size-base calc($font-size-base * 0.5),
+        $font-size-base $font-size-base,
+        calc($font-size-base * 0.5) $font-size-base);
+    height: calc($font-size-base * 1.5);
+    position: relative;
+    transform: rotateZ(45deg);
+    transition: transform 0.3s, clip-path 0.3s;
+    width: calc($font-size-base * 1.5);
+    z-index: 30;
+  }
+
+  &__content {
+    align-items: center;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    display: none;
+    overflow: hidden;
+    transition: clip-path 0.3s;
+    white-space: nowrap;
+
+    @media screen and (min-width: $screen-size-large) {
+      display: flex;
+    }
+  }
+
+  &__icon {
+    height: $font-size-base;
+    margin: 0 $margin-size-tiny 0 $margin-size-base;
+    position: relative;
+    width: $font-size-base;
+  }
+
+  &__label {
+    color: $color-red-main;
+    font-weight: $font-weight-light;
+    text-transform: uppercase;
+  }
+
+  &--selected &,
+  &:hover &,
+  &:focus & {
+    &__blip {
+      clip-path: polygon(0 0,
+          100% 0,
+          100% 100%,
+          0 100%);
+      transform: rotateZ(0deg);
+    }
+
+    &__content {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+}

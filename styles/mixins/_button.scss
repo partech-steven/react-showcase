@@ -1,0 +1,29 @@
+@mixin button(
+        $background-color: #000, 
+        $text-color: #fff, 
+        $hover-bg-color: lighten($background-color, 10), 
+        $active-bg-color: darken($background-color, 10), 
+        $hover-text-color: $text-color, 
+        $active-text-color: $text-color
+    ) {
+    background-color: $background-color;
+    border: none;
+    border-radius: 4px 0 4px 0;
+    color: $text-color;
+    font-weight: $font-weight-heavy;
+    padding: $padding-size-tiny $padding-size-huge;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus {
+        background-color: $hover-bg-color;
+        color: $text-color;
+        cursor: pointer;
+    }
+
+    &:active {
+        background-color: $active-bg-color;
+        box-shadow: inset 0 0 6px 2px rgba(0, 0, 0, 0.85);
+        color: $text-color;
+    }
+}

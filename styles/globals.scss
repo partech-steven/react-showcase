@@ -10,7 +10,7 @@
 @import "components/templates";
 
 // ----- [ Fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -22,11 +22,12 @@ body,
   padding: 0;
   margin: 0;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 body {
-  background-color: $color-purple;
+  background-color: $color-dark-purple;
 }
 
 input,
@@ -34,7 +35,8 @@ textarea,
 select,
 label,
 a {
-  font-family: 'Inter', sans-serif;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -47,14 +49,7 @@ a {
 }
 
 main {
-  align-items: center;
-  display: flex;
   flex: 1;
-  padding: $font-size-base;
-
-  @media screen and (min-width: $screen-size-medium) {
-    padding: 0 calc($font-size-large * 5);
-  }
 }
 
 .page {
