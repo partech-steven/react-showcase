@@ -1,6 +1,5 @@
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
-import React from "react";
-import { SRLWrapper } from "simple-react-lightbox";
+import React from "react";  
 
 const Gallery = ({ blok }) => {
 
@@ -15,12 +14,9 @@ const Gallery = ({ blok }) => {
 
   return (
     <div className="o-gallery" {...storyblokEditable(blok)}>
-      {/* Let the Lightbox do its thing */}
-      <SRLWrapper options={srlOptions}>
-        {blok.content.map((nestedBlok) => (
-          <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
-        ))}
-      </SRLWrapper>
+      {blok.content.map((nestedBlok) => (
+        <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+      ))}
     </div>
   );
 };

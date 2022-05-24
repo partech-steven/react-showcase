@@ -9,7 +9,7 @@ const Menu = ({ blok }) => {
 
       //TODO: Get the whole 'document.getElementsByTagName("main")[0].children' thing into a state without it fucking up...
       //Go through each main-page element
-      if(blok.menu_items.length > 1) {
+      if(blok.menu_items !== undefined && blok.menu_items.length > 1) {
         for(let i = 0; i < document.getElementsByTagName("main")[0].children.length; i++) {
           let el = document.getElementsByTagName("main")[0].children[i];
           let id = el.id;
@@ -49,7 +49,7 @@ const Menu = ({ blok }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if(blok.menu_items.length > 1) {
+  if(blok.menu_items !== undefined && blok.menu_items.length > 1) {
     return (
       <div className="o-menu" {...storyblokEditable(blok)}>
         <div className="o-menu__line o-menu__line--top">

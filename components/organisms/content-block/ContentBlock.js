@@ -33,25 +33,16 @@ const ContentBlock = ({ blok }) => {
   }
 
   return (
-    <div id={id} className="o-content-block" {...storyblokEditable(blok)}>
-      {(blok.banner_image.filename !== null || blok.title.length !== 0) &&
+    <div id={id} className={`o-content-block o-content-block--${id}`} {...storyblokEditable(blok)}>
+      {blok.title.length !== 0 &&
         <div className="o-content-block__header">
-          {blok.banner_image.filename !== null &&
-            <Image
-              src={blok.banner_image.filename}
-              layout="fill"
-              objectFit="cover"
-              alt="Hero Image"
-              priority={true}
-            />
-          }
           {blok.title.length !== 0 &&
             <div className="o-content-block__header-content">
               <h2 className="o-content-block__title a-block-title">{blok.title}</h2>
 
               <DivideLine />
 
-              <p className="o-content-block__header-text">{blok.intro_text}</p>
+              <p className="o-content-block__leading-paragraph">{blok.leading_paragraph}</p>
             </div>
           }
         </div>

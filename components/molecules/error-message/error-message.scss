@@ -1,0 +1,12 @@
+.m-error-message {
+    align-items: center;
+    color: $color-red-light;
+    display: flex;
+    margin: 0 auto;
+
+    h1 {
+        border-right: 1px solid $color-red-dark;
+        color: $color-red-dark;
+        padding: $padding-size-base;
+    }
+}
